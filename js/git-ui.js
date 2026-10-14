@@ -6,6 +6,7 @@ import { MISSIONS } from './missions.js';
 import { initCopy } from './copy.js';
 import { createTerminal } from './terminal.js';
 import { CommitGraph, createLegend } from './commit-graph.js';
+import { createFileExplorer } from './file-explorer.js';
 
 function make(tag, className, text) {
   const element = document.createElement(tag);
@@ -159,11 +160,15 @@ function createSandbox(root) {
   const remoteGraph = new CommitGraph('GitHub 上的 origin');
   const colleagueButton = make('button', 'colleague-button', '模擬同事推了一個 commit 到 GitHub');
   colleagueButton.type = 'button';
-  visual.append(areas, localGraph.element, remoteGraph.element, colleagueButton, createLegend());
+  const explorer = createFileExplorer();
+  visual.append(areas, explorer.element, localGraph.element, remoteGraph.element, colleagueButton);
 
   const body = make('div', 'sandbox-body');
   body.append(terminal.element, visual);
-  root.append(panel, body);
+  // 圖例放在整個練習區最下面，跟 commit 歷史分開
+  const footer = make('div', 'sandbox-footer');
+  footer.append(createLegend());
+  root.append(panel, body, footer);
 
   // ---- 畫面更新 ----
   function renderAreas(state) {
@@ -196,6 +201,7 @@ function createSandbox(root) {
   function render() {
     const { state } = sim;
     renderAreas(state);
+    explorer.update(state, state.commits[state.detached ?? state.branches[state.branch]]?.files || {});
     localGraph.update(localGraphData(sim));
     remoteGraph.element.hidden = !state.remote;
     if (state.remote) remoteGraph.update(remoteGraphData(sim));

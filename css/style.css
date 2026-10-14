@@ -919,6 +919,154 @@ pre.cmd code {
   color: var(--muted);
 }
 
+/* ---- 檔案瀏覽器（像編輯器側邊欄） ---- */
+
+.file-explorer {
+  margin-top: 10px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: #fffefa;
+}
+
+.file-explorer summary {
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.file-explorer[open] summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.file-explorer-body {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.32fr) 1fr;
+  min-height: 130px;
+}
+
+.file-list {
+  margin: 0;
+  padding: 6px;
+  border-right: 1px solid var(--border);
+  background: #f6f3ec;
+  list-style: none;
+}
+
+.file-list li {
+  margin: 0;
+}
+
+.file-list button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--ink);
+  font-size: 0.74rem;
+  text-align: left;
+}
+
+.file-list button:hover {
+  background: #ebe6db;
+}
+
+.file-list button.selected {
+  background: #dfeee6;
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.file-list-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* U / M / D 標記，配色跟 VS Code 類似 */
+.file-badge {
+  font:
+    700 0.66rem ui-monospace,
+    Consolas,
+    monospace;
+}
+
+.file-badge.new {
+  color: #2e8b57;
+}
+
+.file-badge.modified {
+  color: #b0610a;
+}
+
+.file-badge.deleted {
+  color: #c0392b;
+}
+
+.file-viewer {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.file-version-tabs {
+  display: flex;
+  gap: 4px;
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.file-version-tabs button {
+  padding: 2px 9px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+}
+
+.file-version-tabs button.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #ffffff;
+}
+
+.file-content {
+  flex: 1;
+  margin: 0;
+  padding: 10px 12px;
+  overflow: auto;
+  background: #fffefa;
+  color: #2a2724;
+  font:
+    12px/1.6 ui-monospace,
+    Consolas,
+    monospace;
+  white-space: pre-wrap;
+}
+
+.file-content.missing {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ---- 練習區最下面的圖例列 ---- */
+
+.sandbox-footer {
+  padding: 6px 14px;
+  border-top: 1px solid var(--border);
+  background: #fbf9f4;
+}
+
+.sandbox-footer .graph-legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
 /* ---- commit 圖 ---- */
 
 .graph-panel {
@@ -1582,6 +1730,15 @@ pre.cmd code {
 
   .sandbox-body {
     grid-template-columns: 1fr;
+  }
+
+  .file-explorer-body {
+    grid-template-columns: 1fr;
+  }
+
+  .file-list {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
   }
 
   .terminal-history {
