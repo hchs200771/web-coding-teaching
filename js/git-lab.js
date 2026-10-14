@@ -3,15 +3,8 @@
 
 import { LAB_GROUPS, LAB_SCENARIOS, createLabSimulator } from './lab-scenarios.js';
 import { createTerminal } from './terminal.js';
-import { CommitGraph, createLegend } from './commit-graph.js';
-import { localGraphData, remoteGraphData } from './git-ui.js';
-
-function make(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
-  return element;
-}
+import { createGitGraphs } from './git-graphs.js';
+import { make } from './dom.js';
 
 function createLab(root) {
   let scenario = LAB_SCENARIOS[0];
@@ -54,25 +47,24 @@ function createLab(root) {
   restartButton.addEventListener('click', () => load(scenario));
   boardHeader.append(boardTitle, restartButton);
 
-  const localGraph = new CommitGraph('本機', { showMessages: false });
-  const remoteGraph = new CommitGraph('GitHub（origin）', { showMessages: false });
-  const graphs = make('div', 'lab-graphs');
-  graphs.append(localGraph.element, remoteGraph.element);
-  board.append(boardHeader, graphs);
+  const graphs = createGitGraphs({
+    localTitle: '本機',
+    remoteTitle: 'GitHub（origin）',
+    showMessages: false,
+  });
+  const graphBox = make('div', 'lab-graphs');
+  graphBox.append(graphs.local, graphs.remote);
+  board.append(boardHeader, graphBox);
 
   // ---- 試試看 ----
   const tryRow = make('div', 'lab-try');
 
   const main = make('div', 'lab-main');
   main.append(terminal.element, board);
-  root.append(picker, main, tryRow, createLegend());
+  root.append(picker, main, tryRow, graphs.legend);
 
   function render() {
-    localGraph.update(localGraphData(sim));
-    const hasRemote = !!sim.state.remote;
-    remoteGraph.element.hidden = !hasRemote;
-    graphs.classList.toggle('has-remote', hasRemote);
-    if (hasRemote) remoteGraph.update(remoteGraphData(sim));
+    graphBox.classList.toggle('has-remote', graphs.render(sim));
   }
 
   function load(item) {
@@ -83,8 +75,7 @@ function createLab(root) {
     terminal.setBadge(item.name.toUpperCase());
     terminal.clear();
     terminal.print(item.intro, 'intro');
-    localGraph.reset();
-    remoteGraph.reset();
+    graphs.reset();
 
     tryRow.replaceChildren(make('span', 'lab-try-label', '試試看（點一下會填進終端機，再按 Enter）：'));
     for (const command of item.try) {

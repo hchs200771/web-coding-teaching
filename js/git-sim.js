@@ -212,7 +212,7 @@ export function createSimulator(scenario = 'empty', options = {}) {
     return index >= 0 ? args[index + 1] : undefined;
   };
   // rebase：把目前分支「從分岔點之後」的 commit，一個一個複製到 upstream 後面。
-  // 舊 commit 不會消失，只是沒有分支指著（圖上會變淡）。
+  // 舊 commit 不會消失，只是沒有分支指著（圖上會變成虛線）。
   function rebase(upstream) {
     if (!upstream) throw new Error('用法：git rebase <分支>，例如 git rebase main');
     if (!clean()) throw new Error('請先提交或還原變更，再 rebase。');

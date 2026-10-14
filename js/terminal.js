@@ -1,12 +1,7 @@
 // 模擬終端機：輸出區 + 輸入列，支援 ↑ ↓ 叫回之前的指令。
 // 任務練習（git-ui.js）和 Git 練習場（git-lab.js）共用。
 
-function make(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
-  return element;
-}
+import { make } from './dom.js';
 
 let count = 0;
 

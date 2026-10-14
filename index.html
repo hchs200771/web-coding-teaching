@@ -26,6 +26,8 @@
           'lab-scenarios',
           'git-lab',
           'file-explorer',
+          'git-graphs',
+          'dom',
         ];
         const imports = {};
         for (const name of MODULES) imports[`./js/${name}.js`] = `./js/${name}.js?v=${version}`;
@@ -728,15 +730,20 @@ gh auth status</code></pre>
           <div class="card-grid">
             <article class="card">
               <h3>圓圈 = commit</h3>
-              <p>箭頭指向「上一個 commit」。綠色圈是 HEAD 所在的位置，橘色圈是 merge commit。</p>
+              <p>
+                箭頭指向「上一個 commit」。青綠色實心、外面有一圈光暈的是 HEAD 所在的位置；紫色粗框是 merge
+                commit。
+              </p>
             </article>
             <article class="card">
               <h3>標籤 = 指標</h3>
-              <p>橘色是分支、綠色是 HEAD、米色是遠端分支（origin/main）、淺綠是 tag。</p>
+              <p>
+                藍色膠囊是分支、青綠色「➜ HEAD」是你現在的位置、淡紫色是遠端分支（origin/main）、黃色是 tag。
+              </p>
             </article>
             <article class="card">
-              <h3>變淡 = 沒人指著</h3>
-              <p>reset、rebase、刪分支之後，沒有任何標籤指著的 commit 會變淡。</p>
+              <h3>虛線 = 沒人指著</h3>
+              <p>reset、rebase、刪分支之後，沒有任何標籤指著的 commit 會變成淡淡的虛線圈。</p>
             </article>
           </div>
           <p class="note">

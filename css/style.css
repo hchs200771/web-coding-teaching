@@ -688,7 +688,7 @@ pre.cmd code {
 .hint-output.done {
   padding: 8px 14px;
   border-radius: 8px;
-  background: #2e8b57;
+  background: #0f9d8a;
   color: #ffffff;
   font-size: 0.9rem;
 }
@@ -767,7 +767,7 @@ pre.cmd code {
 }
 
 .terminal-prompt {
-  color: #f5a623;
+  color: #5eead4;
   font-weight: 700;
 }
 
@@ -997,7 +997,7 @@ pre.cmd code {
 }
 
 .file-badge.new {
-  color: #2e8b57;
+  color: #0f9d8a;
 }
 
 .file-badge.modified {
@@ -1014,23 +1014,13 @@ pre.cmd code {
   min-width: 0;
 }
 
-.file-version-tabs {
-  display: flex;
-  gap: 4px;
-  padding: 6px 8px;
+.file-status-line {
+  padding: 6px 12px;
   border-bottom: 1px solid var(--border);
-}
-
-.file-version-tabs button {
-  padding: 2px 9px;
-  border-radius: 4px;
-  font-size: 0.7rem;
-}
-
-.file-version-tabs button.selected {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #ffffff;
+  background: #fff7e6;
+  color: #9a5b0b;
+  font-size: 0.72rem;
+  font-weight: 650;
 }
 
 .file-content {
@@ -1052,6 +1042,39 @@ pre.cmd code {
   font-style: italic;
 }
 
+/* 跟最新 commit 的差異：+ 綠、- 紅 */
+.file-diff {
+  border-top: 1px dashed var(--border);
+}
+
+.file-diff-title {
+  padding: 6px 12px 0;
+  color: var(--muted);
+  font-size: 0.7rem;
+}
+
+.file-diff pre {
+  margin: 4px 0 8px;
+  padding: 0 12px;
+  font:
+    12px/1.6 ui-monospace,
+    Consolas,
+    monospace;
+  white-space: pre-wrap;
+}
+
+.file-diff .added {
+  display: block;
+  background: #e6f6ee;
+  color: #13663f;
+}
+
+.file-diff .removed {
+  display: block;
+  background: #fdecec;
+  color: #a12c2c;
+}
+
 /* ---- 練習區最下面的圖例列 ---- */
 
 .sandbox-footer {
@@ -1067,7 +1090,25 @@ pre.cmd code {
   background: transparent;
 }
 
-/* ---- commit 圖 ---- */
+/* ---- commit 圖 ----
+   自訂配色（藍灰 + 青綠 + 藍色膠囊標籤），底色是淡淡的點格紙。
+   色票集中在這裡，想換風格改這幾個變數就好。 */
+
+.git-visual,
+.lab-board,
+.graph-legend {
+  --g-line: #64748b; /* 箭頭 */
+  --g-commit: #334155; /* 一般 commit 外框 */
+  --g-head: #0f9d8a; /* HEAD 所在的 commit */
+  --g-head-dark: #0b7366;
+  --g-merge: #8b5cf6; /* merge commit */
+  --g-lost: #cbd5e1; /* 沒有分支指著 */
+  --g-branch: #2563eb; /* 分支標籤 */
+  --g-remote-bg: #ede9fe;
+  --g-remote-ink: #5b21b6;
+  --g-tag-bg: #fde68a;
+  --g-tag-ink: #78350f;
+}
 
 .graph-panel {
   margin-top: 10px;
@@ -1091,8 +1132,10 @@ pre.cmd code {
 .graph-scroller {
   overflow-x: auto;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #fffefa;
+  border-radius: 10px;
+  background-color: #fcfcfd;
+  background-image: radial-gradient(#dde3ea 1px, transparent 1px);
+  background-size: 16px 16px;
   scrollbar-width: thin;
 }
 
@@ -1102,8 +1145,9 @@ pre.cmd code {
 
 .commit-link {
   fill: none;
-  stroke: #2a2724;
+  stroke: var(--g-line);
   stroke-width: 2;
+  stroke-linecap: round;
   transition:
     d 0.5s ease,
     opacity 0.4s,
@@ -1111,11 +1155,11 @@ pre.cmd code {
 }
 
 .arrow-head {
-  fill: #2a2724;
+  fill: var(--g-line);
 }
 
 .arrow-head.lost {
-  fill: #d6d0c4;
+  fill: var(--g-lost);
 }
 
 .commit-node {
@@ -1129,37 +1173,49 @@ pre.cmd code {
   opacity: 0;
 }
 
-.commit-node circle {
+.commit-dot {
   fill: #ffffff;
-  stroke: #2a2724;
+  stroke: var(--g-commit);
   stroke-width: 2.5;
   transition:
     fill 0.3s,
     stroke 0.3s;
 }
 
-.commit-node.is-head circle {
-  fill: #2e8b57;
-  stroke: #1d6b41;
-  stroke-width: 3;
+/* HEAD 所在的 commit：青綠實心 + 一圈光暈 */
+.head-halo {
+  fill: none;
+  stroke: var(--g-head);
+  stroke-width: 2;
+  opacity: 0;
 }
 
-/* merge commit 一律橘色外框；如果 HEAD 也在這裡，就是橘框 + 綠底 */
-.commit-node.is-merge circle {
-  stroke: #f0a020;
+.commit-node.is-head .head-halo {
+  opacity: 0.35;
+}
+
+.commit-node.is-head .commit-dot {
+  fill: var(--g-head);
+  stroke: var(--g-head-dark);
+}
+
+/* merge commit：紫色粗框（HEAD 也在這裡時，紫框 + 青綠底） */
+.commit-node.is-merge .commit-dot {
+  stroke: var(--g-merge);
+  stroke-width: 3.5;
 }
 
 .commit-hash,
 .commit-message {
   /* 文字外圍描一圈底色，斜線經過時字還是看得清楚 */
   paint-order: stroke;
-  stroke: #fffefa;
+  stroke: #fcfcfd;
   stroke-width: 4px;
   stroke-linejoin: round;
 }
 
 .commit-hash {
-  fill: #4a463f;
+  fill: #334155;
   font:
     11px ui-monospace,
     Consolas,
@@ -1167,27 +1223,30 @@ pre.cmd code {
 }
 
 .commit-message {
-  fill: #8a847a;
+  fill: #64748b;
   font:
     10px system-ui,
     sans-serif;
 }
 
-/* 沒有任何分支指著的 commit（reset、rebase、刪分支之後）：變淡 */
-.commit-node.lost circle {
-  fill: #f7f5f0;
-  stroke: #dcd6ca;
+/* 沒有任何分支指著的 commit（reset、rebase、刪分支之後）：虛線外框 */
+.commit-node.lost .commit-dot {
+  fill: #f8fafc;
+  stroke: var(--g-lost);
+  stroke-dasharray: 4 3;
 }
 
 .commit-node.lost .commit-hash,
 .commit-node.lost .commit-message {
-  fill: #c8c1b4;
+  fill: #a0aec0;
 }
 
 .commit-link.lost {
-  stroke: #dcd6ca;
+  stroke: var(--g-lost);
+  stroke-dasharray: 4 4;
 }
 
+/* 標籤：圓角膠囊 */
 .ref-tag text {
   font:
     700 11.5px ui-monospace,
@@ -1196,15 +1255,15 @@ pre.cmd code {
 }
 
 .ref-tag.branch rect {
-  fill: #f5a623;
+  fill: var(--g-branch);
 }
 
 .ref-tag.branch text {
-  fill: #2a2724;
+  fill: #ffffff;
 }
 
 .ref-tag.head rect {
-  fill: #2e8b57;
+  fill: var(--g-head);
 }
 
 .ref-tag.head text {
@@ -1212,19 +1271,21 @@ pre.cmd code {
 }
 
 .ref-tag.remote rect {
-  fill: #ebe3d3;
+  fill: var(--g-remote-bg);
+  stroke: var(--g-remote-ink);
+  stroke-width: 1;
 }
 
 .ref-tag.remote text {
-  fill: #5d513c;
+  fill: var(--g-remote-ink);
 }
 
 .ref-tag.tag rect {
-  fill: #dbe6dd;
+  fill: var(--g-tag-bg);
 }
 
 .ref-tag.tag text {
-  fill: #33503d;
+  fill: var(--g-tag-ink);
 }
 
 /* ---- 圖例 ---- */
@@ -1251,44 +1312,46 @@ pre.cmd code {
 .legend-item .dot {
   width: 12px;
   height: 12px;
-  border: 2.5px solid #2a2724;
+  border: 2.5px solid var(--g-commit);
   border-radius: 50%;
-  background: #f7f4ec;
+  background: #ffffff;
 }
 
 .legend-item .dot.is-head {
-  border-color: #1d6b41;
-  background: #2e8b57;
+  border-color: var(--g-head-dark);
+  background: var(--g-head);
+  box-shadow: 0 0 0 3px #0f9d8a40;
 }
 
 .legend-item .dot.is-merge {
-  border-color: #f0a020;
+  border-color: var(--g-merge);
 }
 
 .legend-item .dot.lost {
-  border-color: #dcd6ca;
+  border: 2px dashed var(--g-lost);
 }
 
 .legend-item .chip {
-  width: 22px;
+  width: 24px;
   height: 12px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 
 .chip.branch {
-  background: #f5a623;
+  background: var(--g-branch);
 }
 
 .chip.head {
-  background: #2e8b57;
+  background: var(--g-head);
 }
 
 .chip.remote {
-  background: #ebe3d3;
+  border: 1px solid var(--g-remote-ink);
+  background: var(--g-remote-bg);
 }
 
 .chip.tag {
-  background: #dbe6dd;
+  background: var(--g-tag-bg);
 }
 
 .colleague-button {

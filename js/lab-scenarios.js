@@ -56,7 +56,7 @@ export const LAB_SCENARIOS = [
     name: 'Merge',
     title: '用 merge 合併',
     intro:
-      '現在在 main，develop 分岔出去做了兩個 commit。輸入 git merge develop，會產生一個有兩個 parent 的 merge commit（橘色圈）。',
+      '現在在 main，develop 分岔出去做了兩個 commit。輸入 git merge develop，會產生一個有兩個 parent 的 merge commit（紫色粗框）。',
     setup: [
       'git commit',
       'git switch -c develop',
@@ -73,7 +73,7 @@ export const LAB_SCENARIOS = [
     name: 'Rebase',
     title: '用 rebase 合併',
     intro:
-      '現在在 develop。輸入 git rebase main：develop 的 commit 會被「複製」一份接到 main 後面（hash 不一樣了），原本的 commit 沒有分支指著，會變淡。',
+      '現在在 develop。輸入 git rebase main：develop 的 commit 會被「複製」一份接到 main 後面（hash 不一樣了），原本的 commit 沒有分支指著，會變成虛線。',
     setup: [
       'git commit',
       'git branch develop',
@@ -92,7 +92,7 @@ export const LAB_SCENARIOS = [
     name: 'Reset',
     title: '用 reset 回到過去',
     intro:
-      'git reset HEAD~2 把 main 往回拉兩步，後面的 commit 沒有分支指著了（變淡）。它們其實還在，用 git reset 加圖上的 hash 就能拉回來。',
+      'git reset HEAD~2 把 main 往回拉兩步，後面的 commit 沒有分支指著了（變成虛線）。它們其實還在，用 git reset 加圖上的 hash 就能拉回來。',
     setup: ['git commit', 'git commit', 'git commit', 'git commit'],
     try: ['git reset HEAD~2', 'git log --oneline'],
   },
@@ -138,7 +138,7 @@ export const LAB_SCENARIOS = [
     name: 'Fetch',
     title: '用 fetch 取得遠端更新',
     intro:
-      '同事在 GitHub 上多推了兩個 commit。git fetch 只會把它們下載下來、移動 origin/main（米色標籤），你的 main 不動。',
+      '同事在 GitHub 上多推了兩個 commit。git fetch 只會把它們下載下來、移動 origin/main（淡紫色標籤），你的 main 不動。',
     setup: ['git commit', 'git commit', REMOTE, 'git push -u origin main', COLLEAGUE, COLLEAGUE],
     try: ['git fetch', 'git merge origin/main'],
   },

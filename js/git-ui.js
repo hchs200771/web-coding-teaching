@@ -5,15 +5,9 @@ import { createSimulator } from './git-sim.js';
 import { MISSIONS } from './missions.js';
 import { initCopy } from './copy.js';
 import { createTerminal } from './terminal.js';
-import { CommitGraph, createLegend } from './commit-graph.js';
+import { createGitGraphs } from './git-graphs.js';
 import { createFileExplorer } from './file-explorer.js';
-
-function make(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
-  return element;
-}
+import { make } from './dom.js';
 
 // 三區只列出「變更」，看起來像檔案在三區之間移動：
 //   工作目錄：還沒 git add 的變更（跟暫存區不一樣的檔案）→ add 之後就從這裡消失
@@ -77,37 +71,6 @@ const STATUS_TEXT = {
   committed: '已存檔',
 };
 
-// 把模擬器 state 轉成 commit 圖需要的資料（任務練習與練習場共用）
-export function localGraphData(sim) {
-  const { state } = sim;
-  return {
-    commits: state.commits,
-    mainTip: state.branches.main ?? state.branches[state.branch],
-    headId: state.detached ?? state.branches[state.branch],
-    reachable: sim.reachableCommits(),
-    refs: {
-      branches: state.branches,
-      currentBranch: state.branch,
-      detached: state.detached,
-      remoteBranches: state.remoteTracking,
-      tags: state.tags,
-    },
-    emptyText: state.initialized ? '還沒有 commit' : '還不是 Git 儲存庫（試試 git init）',
-  };
-}
-
-export function remoteGraphData(sim) {
-  const { remote } = sim.state;
-  return {
-    commits: remote.commits,
-    mainTip: remote.branches.main,
-    headId: null,
-    reachable: new Set(Object.keys(remote.commits)),
-    refs: { branches: remote.branches },
-    emptyText: '遠端是空的，還沒 push 過',
-  };
-}
-
 function createSandbox(root) {
   const mission = MISSIONS[root.dataset.mission];
   let sim = createSimulator(root.dataset.scenario);
@@ -156,18 +119,17 @@ function createSandbox(root) {
     box.append(heading, make('p', 'area-note', note), areaLists[key]);
     areas.append(box);
   }
-  const localGraph = new CommitGraph('本地 commit 歷史');
-  const remoteGraph = new CommitGraph('GitHub 上的 origin');
+  const graphs = createGitGraphs({ localTitle: '本地 commit 歷史', remoteTitle: 'GitHub 上的 origin' });
   const colleagueButton = make('button', 'colleague-button', '模擬同事推了一個 commit 到 GitHub');
   colleagueButton.type = 'button';
   const explorer = createFileExplorer();
-  visual.append(areas, explorer.element, localGraph.element, remoteGraph.element, colleagueButton);
+  visual.append(areas, explorer.element, graphs.local, graphs.remote, colleagueButton);
 
   const body = make('div', 'sandbox-body');
   body.append(terminal.element, visual);
   // 圖例放在整個練習區最下面，跟 commit 歷史分開
   const footer = make('div', 'sandbox-footer');
-  footer.append(createLegend());
+  footer.append(graphs.legend);
   root.append(panel, body, footer);
 
   // ---- 畫面更新 ----
@@ -202,9 +164,8 @@ function createSandbox(root) {
     const { state } = sim;
     renderAreas(state);
     explorer.update(state, state.commits[state.detached ?? state.branches[state.branch]]?.files || {});
-    localGraph.update(localGraphData(sim));
-    remoteGraph.element.hidden = !state.remote;
-    if (state.remote) remoteGraph.update(remoteGraphData(sim));
+    graphs.render(sim);
+    footer.hidden = graphs.legend.hidden;
     renderMission(state);
     colleagueButton.hidden = !sim.hasRemote();
   }

@@ -1,7 +1,9 @@
 // Commit 圖：把模擬器的 commits / 分支 / HEAD 畫成 SVG。
 // 每個 commit 用 id 當 key 保留同一個 <g>，位置改變時用 CSS transition 滑過去，
-// 所以 reset、rebase 時看得到 commit「移動」和「變淡」。
+// 所以 reset、rebase 時看得到 commit「移動」和「變成虛線」。
 // 這張圖不管深淺主題都用亮色底（跟紙上畫圖一樣），顏色才夠清楚。
+
+import { make } from './dom.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const COLUMN = 100; // 每一代 commit 的水平距離
@@ -15,13 +17,6 @@ function svg(tag, attributes = {}, text) {
   for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
   if (text !== undefined) node.textContent = text;
   return node;
-}
-
-function make(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
-  return element;
 }
 
 const shorten = (text, length) => (text.length > length ? `${text.slice(0, length - 1)}…` : text);
@@ -95,6 +90,7 @@ export class CommitGraph {
     this.scroller.append(this.svg);
     this.element.append(this.heading, this.empty, this.scroller);
 
+    this.features = new Set();
     this.nodes = new Map(); // commit id -> <g>
     this.edges = new Map(); // "child>parent" -> <path>
     this.positions = {};
@@ -177,6 +173,15 @@ export class CommitGraph {
 
     this.updateEdges(sorted, positions, previous, reachable);
     this.updateNodes(sorted, positions, previous, { headId, reachable, labels });
+
+    // 記下這張圖用到哪些元素，圖例只顯示這些
+    this.features = new Set();
+    for (const commit of sorted) {
+      this.features.add(commit.id === headId ? 'head-commit' : 'commit');
+      if (commit.parents.length > 1) this.features.add('merge');
+      if (!reachable.has(commit.id)) this.features.add('lost');
+    }
+    for (const list of Object.values(labels)) for (const label of list) this.features.add(label.kind);
 
     // 有新 commit 時，捲到最右邊讓它被看見
     requestAnimationFrame(() => {
@@ -266,7 +271,8 @@ export class CommitGraph {
 
   drawNodeContent(group, commit, labels, lost) {
     const title = svg('title', {}, `${commit.id}：${commit.message}${lost ? '（沒有任何分支指著）' : ''}`);
-    const circle = svg('circle', { r: RADIUS });
+    const halo = svg('circle', { r: RADIUS + 6, class: 'head-halo' });
+    const circle = svg('circle', { r: RADIUS, class: 'commit-dot' });
     circle.append(title);
     const hash = svg('text', { y: RADIUS + 15, 'text-anchor': 'middle', class: 'commit-hash' }, commit.id);
     const message = svg(
@@ -276,35 +282,51 @@ export class CommitGraph {
     );
     const tags = svg('g', { class: 'commit-labels' });
     labels.forEach((label, i) => {
-      const width = Math.max(textWidth(label.text) + 16, 40);
+      const width = Math.max(textWidth(label.text) + (label.kind === 'head' ? 30 : 20), 44);
       const top = this.labelTop + i * (TAG_HEIGHT + 4);
       const tag = svg('g', { class: `ref-tag ${label.kind}` });
       tag.append(
-        svg('rect', { x: -width / 2, y: top, width, height: TAG_HEIGHT, rx: 2 }),
-        svg('text', { y: top + 14, 'text-anchor': 'middle' }, label.text),
+        svg('rect', { x: -width / 2, y: top, width, height: TAG_HEIGHT, rx: TAG_HEIGHT / 2 }),
+        svg(
+          'text',
+          { y: top + 14, 'text-anchor': 'middle' },
+          label.kind === 'head' ? `➜ ${label.text}` : label.text,
+        ),
       );
       tags.append(tag);
     });
-    group.replaceChildren(circle, hash, ...(this.showMessages ? [message] : []), tags);
+    group.replaceChildren(halo, circle, hash, ...(this.showMessages ? [message] : []), tags);
   }
 }
 
+// 圖例：只列出目前圖上真的出現的元素（剛 git init 時什麼都不顯示）
+const LEGEND_ITEMS = [
+  ['commit', 'dot', 'commit'],
+  ['head-commit', 'dot is-head', 'HEAD 所在的 commit'],
+  ['merge', 'dot is-merge', 'merge commit'],
+  ['lost', 'dot lost', '沒有分支指著的 commit'],
+  ['branch', 'chip branch', '分支'],
+  ['head', 'chip head', 'HEAD（你現在的位置）'],
+  ['remote', 'chip remote', '遠端分支'],
+  ['tag', 'chip tag', 'tag'],
+];
+
 export function createLegend() {
-  const legend = make('div', 'graph-legend');
-  const items = [
-    ['dot', 'commit'],
-    ['dot is-head', 'HEAD 所在的 commit'],
-    ['dot is-merge', 'merge commit'],
-    ['dot lost', '沒有分支指著的 commit'],
-    ['chip branch', '分支'],
-    ['chip head', 'HEAD'],
-    ['chip remote', '遠端分支'],
-    ['chip tag', 'tag'],
-  ];
-  for (const [className, text] of items) {
+  const element = make('div', 'graph-legend');
+  const items = new Map();
+  for (const [feature, className, text] of LEGEND_ITEMS) {
     const item = make('span', 'legend-item');
     item.append(make('i', className), document.createTextNode(text));
-    legend.append(item);
+    items.set(feature, item);
+    element.append(item);
   }
-  return legend;
+  return {
+    element,
+    // features：一個或多個 CommitGraph 的 features 合起來
+    update(...featureSets) {
+      const used = new Set(featureSets.flatMap(set => [...set]));
+      for (const [feature, item] of items) item.hidden = !used.has(feature);
+      element.hidden = used.size === 0;
+    },
+  };
 }

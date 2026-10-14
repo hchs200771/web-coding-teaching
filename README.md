@@ -55,6 +55,9 @@ python3 -m http.server 8000
 | `js/request-flow.js`     | 點選與播放網站請求流程                      |
 | `js/terminal.js`         | 模擬終端機（輸出區、輸入列、↑↓ 叫回指令）   |
 | `js/commit-graph.js`     | commit 圖：版面配置、動畫、標籤、圖例       |
+| `js/git-graphs.js`       | 本地/遠端 commit 圖 + 圖例（兩種練習共用）  |
+| `js/file-explorer.js`    | 檔案瀏覽器：目前內容與跟最新 commit 的差異  |
+| `js/dom.js`              | 建立 DOM 元素的共用小工具                   |
 | `js/lab-scenarios.js`    | Git 練習場的題目與起始狀態                  |
 | `js/git-lab.js`          | Git 練習場的畫面                            |
 | `tests/git-sim.test.mjs` | 模擬器回歸測試                              |
@@ -84,6 +87,6 @@ node --test tests/
 - 只支援 help 列出的指令與主要選項，不包含 interactive rebase、stash、cherry-pick、reflog、force push。
 - 練習場使用「graph mode」：直接打 `git commit` 就會產生新 commit（真實 Git 需要有修改，或加上 `--allow-empty`）。
 - 練習狀態重新整理後就消失。後悔藥任務按「重設」會保留打勾，方便比較三種 reset。
-- commit 圖中變淡的 commit 代表沒有任何分支、tag 或 HEAD 指著（例如 reset、rebase、刪分支之後），對應真實 Git 只能靠 reflog 找回的情況。
+- commit 圖中虛線的 commit 代表沒有任何分支、tag 或 HEAD 指著（例如 reset、rebase、刪分支之後），對應真實 Git 只能靠 reflog 找回的情況。
 
 安裝指令可能隨版本更新，教之前建議對照 [Claude Code 官方文件](https://docs.claude.com/en/docs/claude-code/overview) 確認。

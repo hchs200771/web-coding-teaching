@@ -1,5 +1,7 @@
 // 「網站怎麼運作」互動圖：一個請求從瀏覽器出發，經過 DNS、伺服器、資料庫，再回到瀏覽器。
 
+import { make } from './dom.js';
+
 const NODES = [
   { id: 'browser', icon: '🖥️', name: '瀏覽器', role: '前端' },
   { id: 'dns', icon: '📒', name: 'DNS', role: '網路電話簿' },
@@ -54,13 +56,6 @@ const STEPS = [
 ];
 
 const STEP_DELAY = 1800;
-
-function make(tag, className, text) {
-  const element = document.createElement(tag);
-  if (className) element.className = className;
-  if (text !== undefined) element.textContent = text;
-  return element;
-}
 
 function createFlow(root) {
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;

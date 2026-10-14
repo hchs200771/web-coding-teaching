@@ -413,3 +413,16 @@ test('branch -d refuses unmerged branches, -D deletes them', () => {
   assert.match(sim.run('git branch -D feature'), /Deleted branch/);
   assert.equal(sim.state.branches.feature, undefined);
 });
+
+test('file explorer diff marks added and removed lines', async () => {
+  const { diffLines } = await import('../js/file-explorer.js');
+  const lines = diffLines('a\nb\nc\n', 'a\nc\nd\n');
+  assert.deepEqual(
+    lines.map(line => line.sign + line.text),
+    [' a', '-b', ' c', '+d'],
+  );
+  assert.deepEqual(
+    diffLines(undefined, 'new\n').map(line => line.sign + line.text),
+    ['+new'],
+  );
+});
