@@ -71,3 +71,11 @@ test('runtime resources are local with no package dependencies', async () => {
   const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
   assert.ok(!pkg.dependencies && !pkg.devDependencies);
 });
+
+test('cache-busting module list covers every file in js/', async () => {
+  const { readdir } = await import('node:fs/promises');
+  const files = (await readdir(new URL('../js/', import.meta.url))).filter(name => name.endsWith('.js'));
+  const listed = html.match(/const MODULES = \[([\s\S]*?)\]/)[1];
+  for (const file of files)
+    assert.ok(listed.includes(`'${file.replace(/\.js$/, '')}'`), `${file} missing from MODULES`);
+});

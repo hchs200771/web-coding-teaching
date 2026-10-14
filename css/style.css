@@ -678,9 +678,19 @@ pre.cmd code {
 }
 
 .hint-output {
-  margin: 6px 0 0;
+  margin: 8px 0 0;
   color: var(--accent);
+  font-weight: 650;
   white-space: pre-wrap;
+}
+
+/* 任務完成：明顯的綠色橫幅 */
+.hint-output.done {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #2e8b57;
+  color: #ffffff;
+  font-size: 0.9rem;
 }
 
 .hint-output:empty {
@@ -705,7 +715,7 @@ pre.cmd code {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: minmax(270px, 0.85fr) minmax(360px, 1.15fr);
+  grid-template-columns: minmax(240px, 0.62fr) minmax(380px, 1.38fr);
 }
 
 /* 終端機在淺色、深色主題都維持深色，比較像真的 */
@@ -847,7 +857,9 @@ pre.cmd code {
 }
 
 .git-area h4 {
-  margin-bottom: 4px;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
   font-size: 0.78rem;
 }
 
@@ -856,6 +868,12 @@ pre.cmd code {
   color: var(--muted);
   font-weight: 500;
   font-size: 0.66rem;
+}
+
+.git-area .area-note {
+  margin: -4px 0 6px;
+  color: var(--muted);
+  font-size: 0.64rem;
 }
 
 .git-area ul {
@@ -891,7 +909,8 @@ pre.cmd code {
   font-weight: 650;
 }
 
-.file-state.staged .file-status {
+.file-state.staged .file-status,
+.file-state.staged-new .file-status {
   color: var(--accent);
   font-weight: 650;
 }
@@ -963,7 +982,7 @@ pre.cmd code {
 }
 
 .commit-node circle {
-  fill: #f7f4ec;
+  fill: #ffffff;
   stroke: #2a2724;
   stroke-width: 2.5;
   transition:
@@ -972,8 +991,9 @@ pre.cmd code {
 }
 
 .commit-node.is-head circle {
-  fill: #dbe8de;
-  stroke: #2e8b57;
+  fill: #2e8b57;
+  stroke: #1d6b41;
+  stroke-width: 3;
 }
 
 /* merge commit 一律橘色外框；如果 HEAD 也在這裡，就是橘框 + 綠底 */
@@ -1089,8 +1109,8 @@ pre.cmd code {
 }
 
 .legend-item .dot.is-head {
-  border-color: #2e8b57;
-  background: #dbe8de;
+  border-color: #1d6b41;
+  background: #2e8b57;
 }
 
 .legend-item .dot.is-merge {

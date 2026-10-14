@@ -14,27 +14,65 @@ function make(tag, className, text) {
   return element;
 }
 
-function fileStatus(area, name, state, head) {
+// 三區只列出「變更」，看起來像檔案在三區之間移動：
+//   工作目錄：還沒 git add 的變更（跟暫存區不一樣的檔案）→ add 之後就從這裡消失
+//   暫存區：已經 add、準備 commit 的變更（跟最新 commit 不一樣的檔案）→ commit 之後就清空
+//   本地儲存庫：最新 commit 裡的所有檔案
+// （真實的工作目錄裡檔案當然一直都在，這裡畫的是「還有什麼變更待處理」。）
+const AREAS = [
+  {
+    key: 'work',
+    title: '工作目錄',
+    subtitle: 'Working Directory',
+    note: '還沒 git add 的變更',
+    empty: '沒有新的變更',
+  },
+  {
+    key: 'stage',
+    title: '暫存區',
+    subtitle: 'Staging Area',
+    note: '已 add、等著 commit 的變更',
+    empty: '空的',
+  },
+  {
+    key: 'repo',
+    title: '本地儲存庫',
+    subtitle: 'Local Repo（HEAD）',
+    note: '最新 commit 裡的檔案',
+    empty: '還沒有 commit',
+  },
+];
+
+function changedFiles(from, to) {
+  const names = new Set([...Object.keys(from), ...Object.keys(to)]);
+  return [...names].filter(name => from[name] !== to[name]).sort();
+}
+
+function areaEntries(area, state, head) {
   if (area === 'work') {
-    if (!(name in state.files)) return 'deleted';
-    if (!(name in state.index) && !(name in head)) return 'untracked';
-    return state.files[name] !== state.index[name] ? 'modified' : 'clean';
+    return changedFiles(state.index, state.files).map(name => [
+      name,
+      !(name in state.files) ? 'deleted' : !(name in state.index) ? 'untracked' : 'modified',
+    ]);
   }
   if (area === 'stage') {
-    if (!(name in state.index)) return 'staged-deletion';
-    return state.index[name] !== head[name] ? 'staged' : 'tracked';
+    return changedFiles(head, state.index).map(name => [
+      name,
+      !(name in state.index) ? 'staged-deletion' : !(name in head) ? 'staged-new' : 'staged',
+    ]);
   }
-  return 'committed';
+  return Object.keys(head)
+    .sort()
+    .map(name => [name, 'committed']);
 }
 
 const STATUS_TEXT = {
   deleted: '已刪除',
-  untracked: '未追蹤',
+  untracked: '新檔案（未追蹤）',
   modified: '已修改',
-  clean: '沒變',
   'staged-deletion': '準備刪除',
-  staged: '準備提交',
-  tracked: '同上一版',
+  'staged-new': '新檔案',
+  staged: '已修改',
   committed: '已存檔',
 };
 
@@ -109,16 +147,12 @@ function createSandbox(root) {
   const visual = make('div', 'git-visual');
   const areas = make('div', 'git-areas');
   const areaLists = {};
-  for (const [key, title, subtitle] of [
-    ['work', '工作目錄', 'Working Directory'],
-    ['stage', '暫存區', 'Staging Area'],
-    ['repo', '本地儲存庫', 'Local Repo（HEAD）'],
-  ]) {
+  for (const { key, title, subtitle, note } of AREAS) {
     const box = make('div', `git-area area-${key}`);
     const heading = make('h4', '', title);
     heading.append(make('small', '', subtitle));
     areaLists[key] = make('ul');
-    box.append(heading, areaLists[key]);
+    box.append(heading, make('p', 'area-note', note), areaLists[key]);
     areas.append(box);
   }
   const localGraph = new CommitGraph('本地 commit 歷史');
@@ -134,17 +168,12 @@ function createSandbox(root) {
   // ---- 畫面更新 ----
   function renderAreas(state) {
     const head = state.commits[state.detached ?? state.branches[state.branch]]?.files || {};
-    const namesFor = {
-      work: new Set([...Object.keys(state.files), ...Object.keys(state.index)]),
-      stage: new Set([...Object.keys(state.index), ...Object.keys(head)]),
-      repo: new Set(Object.keys(head)),
-    };
-    for (const [area, names] of Object.entries(namesFor)) {
-      const list = areaLists[area];
+    for (const { key, empty } of AREAS) {
+      const list = areaLists[key];
+      const entries = areaEntries(key, state, head);
       list.replaceChildren();
-      if (!names.size) list.append(make('li', 'muted', '（空）'));
-      for (const name of [...names].sort()) {
-        const status = fileStatus(area, name, state, head);
+      if (!entries.length) list.append(make('li', 'muted', empty));
+      for (const [name, status] of entries) {
         const row = make('li', `file-state ${status}`);
         row.append(make('span', 'file-name', name), make('span', 'file-status', STATUS_TEXT[status]));
         list.append(row);
@@ -160,6 +189,7 @@ function createSandbox(root) {
     });
     if (mission.steps.length && completed.size === mission.steps.length) {
       hintOutput.textContent = '🎉 完成！你已經走過這個流程。';
+      hintOutput.classList.add('done');
     }
   }
 
@@ -177,6 +207,7 @@ function createSandbox(root) {
   hintButton.addEventListener('click', () => {
     const next = mission.steps.find((_, i) => !completed.has(i));
     hintOutput.replaceChildren();
+    hintOutput.classList.remove('done');
     if (next?.hint) {
       const pre = make('pre', 'cmd');
       pre.append(make('code', '', next.hint));
@@ -195,6 +226,7 @@ function createSandbox(root) {
     if (root.dataset.mission !== 'undo') completed.clear();
     terminal.clear();
     hintOutput.textContent = '';
+    hintOutput.classList.remove('done');
     terminal.print('情境已重設。輸入 help 看可用指令。');
     render();
   });

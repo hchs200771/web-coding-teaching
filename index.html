@@ -6,8 +6,45 @@
     <meta name="theme-color" content="#f5f3ee" />
     <meta name="description" content="用小步驟學會 AI 協作、終端機、Git 與網站開發。" />
     <title>用 AI Agent 蓋網站：從 Claude Code 到 Git</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script type="module" src="js/deck.js"></script>
+    <script>
+      // 每次開頁都在 CSS / JS 網址後面加上新的版本號，避免瀏覽器拿到「新的 HTML + 舊的 JS」。
+      // （GitHub Pages 會讓瀏覽器快取檔案 10 分鐘，更新網站後可能新舊混在一起而壞掉。）
+      // 新增 js/ 裡的檔案時，記得把檔名加進 MODULES。
+      (() => {
+        const version = Date.now();
+        const MODULES = [
+          'deck',
+          'copy',
+          'tabs',
+          'git-sim',
+          'git-ui',
+          'missions',
+          'playground',
+          'request-flow',
+          'terminal',
+          'commit-graph',
+          'lab-scenarios',
+          'git-lab',
+        ];
+        const imports = {};
+        for (const name of MODULES) imports[`./js/${name}.js`] = `./js/${name}.js?v=${version}`;
+
+        const importMap = document.createElement('script');
+        importMap.type = 'importmap';
+        importMap.textContent = JSON.stringify({ imports });
+        document.head.append(importMap);
+
+        const style = document.createElement('link');
+        style.rel = 'stylesheet';
+        style.href = `css/style.css?v=${version}`;
+        document.head.append(style);
+
+        const main = document.createElement('script');
+        main.type = 'module';
+        main.src = `js/deck.js?v=${version}`;
+        document.head.append(main);
+      })();
+    </script>
   </head>
   <body>
     <header class="deck-header">
