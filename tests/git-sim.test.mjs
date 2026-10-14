@@ -329,3 +329,87 @@ test('commits record creation order for graph layout', () => {
   );
   assert.equal(new Set(orders).size, orders.length);
 });
+
+test('graph mode allows bare git commit', () => {
+  const sim = createSimulator('empty', { graphMode: true });
+  sim.run('git init');
+  assert.match(sim.run('git commit'), /^\[main [0-9a-f]{7}\] Commit 1$/);
+  assert.match(sim.run('git commit'), /Commit 2/);
+  assert.equal(Object.keys(sim.state.commits).length, 2);
+  assert.match(createSimulator('fresh-files').run('git commit'), /^錯誤/);
+});
+
+test('rebase replays feature commits onto main and abandons originals', () => {
+  const sim = createSimulator('empty', { graphMode: true });
+  for (const command of [
+    'git init',
+    'git commit',
+    'git switch -c feature',
+    'git commit',
+    'git commit',
+    'git switch main',
+    'git commit',
+  ])
+    sim.run(command);
+  const oldFeature = sim.state.branches.feature;
+  const main = sim.state.branches.main;
+  sim.run('git switch feature');
+  assert.match(sim.run('git rebase main'), /Successfully rebased/);
+  const tip = sim.state.branches.feature;
+  assert.notEqual(tip, oldFeature);
+  assert.equal(sim.state.commits[sim.state.commits[tip].parents[0]].parents[0], main);
+  assert.equal(sim.reachableCommits().has(oldFeature), false);
+  assert.match(sim.run('git rebase main'), /up to date/);
+});
+
+test('rebase carries file changes onto the new base', () => {
+  const sim = createSimulator('has-history');
+  sim.run('git switch -c feature');
+  sim.run('echo "feature" > feature.txt');
+  sim.run('git add .');
+  sim.run('git commit -m "feature file"');
+  sim.run('git switch main');
+  sim.run('echo "main" > main.txt');
+  sim.run('git add .');
+  sim.run('git commit -m "main file"');
+  sim.run('git switch feature');
+  sim.run('git rebase main');
+  assert.equal(sim.state.files['feature.txt'], 'feature\n');
+  assert.equal(sim.state.files['main.txt'], 'main\n');
+});
+
+test('checkout of a commit detaches HEAD; commits there become unreachable after leaving', () => {
+  const sim = createSimulator('has-history');
+  const first = Object.values(sim.state.commits).sort((a, b) => a.order - b.order)[0].id;
+  assert.match(sim.run(`git checkout ${first}`), /detached HEAD/);
+  assert.equal(sim.state.detached, first);
+  assert.match(sim.run('git status'), /HEAD detached at/);
+  sim.run('echo "x" >> index.html');
+  sim.run('git commit -am "experiment"');
+  const experiment = sim.state.detached;
+  assert.equal(sim.state.commits[experiment].parents[0], first);
+  assert.ok(sim.reachableCommits().has(experiment));
+  sim.run('git switch main');
+  assert.equal(sim.state.detached, null);
+  assert.equal(sim.reachableCommits().has(experiment), false);
+});
+
+test('tags label commits and keep them reachable', () => {
+  const sim = createSimulator('has-history');
+  const tip = sim.state.branches.main;
+  sim.run('git tag v1.0');
+  assert.equal(sim.state.tags['v1.0'], tip);
+  sim.run('git reset --hard HEAD~1');
+  assert.ok(sim.reachableCommits().has(tip));
+  assert.equal(sim.run('git tag'), 'v1.0');
+  assert.match(sim.run('git tag v1.0'), /^錯誤/);
+});
+
+test('branch -d refuses unmerged branches, -D deletes them', () => {
+  const sim = createSimulator('empty', { graphMode: true });
+  for (const command of ['git init', 'git commit', 'git switch -c feature', 'git commit', 'git switch main'])
+    sim.run(command);
+  assert.match(sim.run('git branch -d feature'), /尚未合併/);
+  assert.match(sim.run('git branch -D feature'), /Deleted branch/);
+  assert.equal(sim.state.branches.feature, undefined);
+});

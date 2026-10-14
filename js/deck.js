@@ -3,6 +3,7 @@ import { initTabs } from './tabs.js';
 import { initGitUI } from './git-ui.js';
 import { initPlaygrounds } from './playground.js';
 import { initRequestFlow } from './request-flow.js';
+import { initGitLab } from './git-lab.js';
 const chapters = [...document.querySelectorAll('.chapter')];
 const slides = chapters.map(c => [...c.querySelectorAll(':scope > .slide')]);
 let chapter = 0,
@@ -199,5 +200,6 @@ initTabs();
 initGitUI();
 initPlaygrounds();
 initRequestFlow();
+initGitLab();
 restore();
 if (!location.hash) history.replaceState(null, '', '#/0/0');

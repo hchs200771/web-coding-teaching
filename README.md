@@ -1,6 +1,8 @@
 # Web Coding Teaching
 
-「用 AI Agent 蓋網站：從 Claude Code 到 Git」是一份給完全初學者的繁體中文互動課程。左右切換章節，上下深入內容。內建 Git / GitHub 模擬終端機、六個任務、程式即時預覽與請求流程圖。
+「用 AI Agent 蓋網站：從 Claude Code 到 Git」是一份給完全初學者的繁體中文互動課程。左右切換章節，上下深入內容。內建 Git / GitHub 模擬終端機、六個任務、Git 練習場（14 個題目：commit、branch、checkout、merge、rebase、reset、revert、刪分支、tag、fetch、pull、push…）、程式即時預覽與請求流程圖。
+
+Git 練習場的版面與配色參考高見龍「為你自己學 Git」的 [Git 練習場](https://gitbook.tw/playground)。
 
 純 HTML、CSS、vanilla JS。沒有套件、CDN 或建置步驟。日常瀏覽與練習不需要連網；教材的安裝指令與外部文件連結需要網路。
 
@@ -47,12 +49,17 @@ python3 -m http.server 8000
 | `js/copy.js`             | 指令複製按鈕與 clipboard fallback           |
 | `js/tabs.js`             | 可重用的 OS 分頁與鍵盤操作                  |
 | `js/git-sim.js`          | 無 DOM 的 Git、shell、gh 模擬核心           |
-| `js/git-ui.js`           | 終端機、三區、SVG 歷史與任務畫面            |
+| `js/git-ui.js`           | 任務練習的畫面：任務面板、三區、commit 圖   |
 | `js/missions.js`         | 任務、提示與完成條件                        |
 | `js/playground.js`       | HTML/CSS/JS 編輯與隔離 iframe 預覽          |
 | `js/request-flow.js`     | 點選與播放網站請求流程                      |
+| `js/terminal.js`         | 模擬終端機（輸出區、輸入列、↑↓ 叫回指令）   |
+| `js/commit-graph.js`     | commit 圖：版面配置、動畫、標籤、圖例       |
+| `js/lab-scenarios.js`    | Git 練習場的題目與起始狀態                  |
+| `js/git-lab.js`          | Git 練習場的畫面                            |
 | `tests/git-sim.test.mjs` | 模擬器回歸測試                              |
 | `tests/deck.test.mjs`    | 情境、任務、資源與流程整合檢查              |
+| `tests/lab.test.mjs`     | 練習場每個題目都能建立、建議指令都能執行    |
 | `tests/index.js`         | 讓目錄形式的測試命令可直接執行              |
 | `package.json`           | ES module 宣告與 test 指令，無 dependencies |
 | `.gitignore`             | 忽略本機與測試產物                          |
@@ -70,6 +77,13 @@ node --test tests/
 
 ## 模擬器的限制
 
-模擬器簡化真實 Git：hash 為教學用識別碼；同檔案合併衝突會採用來源分支內容並說明，不含完整衝突編輯器；clone 載入固定示範快照；gh 不連線、不開啟真實網頁。只支援 help 列出的指令與主要選項，不包含 rebase、stash、reflog、force push。練習狀態重整後消失；後悔藥任務在「重設」後保留完成標記，方便比較三種 reset。commit graph 中虛線的 commit 代表已不在任何分支上（例如 reset 之後），對應真實 Git 只能靠 reflog 找回的情況。
+模擬器是教學用的簡化版 Git：
+
+- hash 是教學用識別碼；clone 載入固定示範快照；gh 不連線，也不開啟真實網頁。
+- 同一個檔案兩邊都改時，merge 直接採用合入分支的內容並說明，沒有衝突編輯器；rebase 不處理衝突。
+- 只支援 help 列出的指令與主要選項，不包含 interactive rebase、stash、cherry-pick、reflog、force push。
+- 練習場使用「graph mode」：直接打 `git commit` 就會產生新 commit（真實 Git 需要有修改，或加上 `--allow-empty`）。
+- 練習狀態重新整理後就消失。後悔藥任務按「重設」會保留打勾，方便比較三種 reset。
+- commit 圖中變淡的 commit 代表沒有任何分支、tag 或 HEAD 指著（例如 reset、rebase、刪分支之後），對應真實 Git 只能靠 reflog 找回的情況。
 
 安裝指令可能隨版本更新，教之前建議對照 [Claude Code 官方文件](https://docs.claude.com/en/docs/claude-code/overview) 確認。

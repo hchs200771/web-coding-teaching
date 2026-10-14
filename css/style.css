@@ -719,10 +719,17 @@ pre.cmd code {
 }
 
 .terminal-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
   padding: 8px 14px;
-  background: #ffffff0a;
-  color: #b1c3c2;
-  font-size: 0.7rem;
+  border-bottom: 1px solid #ffffff14;
+  color: #b8b2a6;
+  font:
+    0.7rem ui-monospace,
+    Consolas,
+    monospace;
+  letter-spacing: 0.08em;
 }
 
 .terminal-history {
@@ -749,6 +756,19 @@ pre.cmd code {
   color: var(--terminal-accent);
 }
 
+.terminal-prompt {
+  color: #f5a623;
+  font-weight: 700;
+}
+
+.terminal-intro {
+  color: #a8dcc1;
+}
+
+.terminal-error {
+  color: #ffb4a2;
+}
+
 .terminal-form {
   display: flex;
   align-items: center;
@@ -771,7 +791,7 @@ pre.cmd code {
 }
 
 .terminal-form input::placeholder {
-  color: #8fa1a3;
+  color: #8f8a80;
 }
 
 .terminal-form button {
@@ -783,11 +803,33 @@ pre.cmd code {
   font-size: 0.72rem;
 }
 
+/* ---- 右側視覺化：不管深淺主題都用亮色，像在白紙上畫圖 ---- */
+
+.git-visual,
+.lab-board,
+.graph-legend {
+  --ink: #2a2724;
+  --muted: #6f6a61;
+  --border: #e3ddd1;
+  --accent: #1f7360;
+  --accent-soft: #e2f0e8;
+  --warn-ink: #b0610a;
+  --surface: #fffefa;
+  color: var(--ink);
+}
+
 .git-visual {
   min-width: 0;
   min-height: 0;
   padding: 12px 14px;
   overflow: auto;
+  background: #fbf9f4;
+}
+
+.git-visual button {
+  background: #fffefa;
+  color: var(--ink);
+  border-color: var(--border);
 }
 
 .git-areas {
@@ -801,6 +843,7 @@ pre.cmd code {
   padding: 8px 10px;
   border: 1px solid var(--border);
   border-radius: 9px;
+  background: #fffefa;
 }
 
 .git-area h4 {
@@ -857,58 +900,98 @@ pre.cmd code {
   color: var(--muted);
 }
 
-.git-graphs {
-  margin-top: 8px;
-}
+/* ---- commit 圖 ---- */
 
 .graph-panel {
-  overflow-x: auto;
-  scrollbar-width: thin;
+  margin-top: 10px;
 }
 
 .graph-panel h4 {
-  margin: 6px 0 2px;
-  font-size: 0.75rem;
+  margin: 0 0 4px;
+  color: var(--muted);
+  font:
+    600 0.72rem ui-monospace,
+    Consolas,
+    monospace;
+  letter-spacing: 0.06em;
 }
 
-.graph-panel svg {
+.graph-empty {
+  margin: 4px 0;
+  color: var(--muted);
+}
+
+.graph-scroller {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fffefa;
+  scrollbar-width: thin;
+}
+
+.commit-graph {
   display: block;
 }
 
 .commit-link {
   fill: none;
-  stroke: var(--border);
-  stroke-width: 3;
+  stroke: #2a2724;
+  stroke-width: 2;
+  transition:
+    d 0.5s ease,
+    opacity 0.4s,
+    stroke 0.4s;
 }
 
-.commit-node circle {
-  fill: var(--accent-soft);
-  stroke: var(--accent);
-  stroke-width: 2;
+.arrow-head {
+  fill: #2a2724;
+}
+
+.arrow-head.lost {
+  fill: #d6d0c4;
 }
 
 .commit-node {
-  animation: commit-appear 0.35s ease-out;
+  transition:
+    transform 0.5s cubic-bezier(0.3, 0.8, 0.3, 1),
+    opacity 0.4s;
 }
 
-/* reset 之後被「丟下」的 commit：變淡、虛線 */
-.commit-node.lost,
-.commit-link.lost {
-  opacity: 0.45;
+.commit-node.entering,
+.commit-link.entering {
+  opacity: 0;
 }
 
-.commit-node.lost circle,
-.commit-link.lost {
-  stroke-dasharray: 4 3;
+.commit-node circle {
+  fill: #f7f4ec;
+  stroke: #2a2724;
+  stroke-width: 2.5;
+  transition:
+    fill 0.3s,
+    stroke 0.3s;
 }
 
-.commit-node.lost circle {
-  fill: none;
-  stroke: var(--muted);
+.commit-node.is-head circle {
+  fill: #dbe8de;
+  stroke: #2e8b57;
+}
+
+/* merge commit 一律橘色外框；如果 HEAD 也在這裡，就是橘框 + 綠底 */
+.commit-node.is-merge circle {
+  stroke: #f0a020;
+}
+
+.commit-hash,
+.commit-message {
+  /* 文字外圍描一圈底色，斜線經過時字還是看得清楚 */
+  paint-order: stroke;
+  stroke: #fffefa;
+  stroke-width: 4px;
+  stroke-linejoin: round;
 }
 
 .commit-hash {
-  fill: var(--ink);
+  fill: #4a463f;
   font:
     11px ui-monospace,
     Consolas,
@@ -916,30 +999,128 @@ pre.cmd code {
 }
 
 .commit-message {
-  fill: var(--muted);
+  fill: #8a847a;
   font:
     10px system-ui,
     sans-serif;
 }
 
-.branch-label {
-  fill: var(--accent);
-  font:
-    700 11px system-ui,
-    sans-serif;
+/* 沒有任何分支指著的 commit（reset、rebase、刪分支之後）：變淡 */
+.commit-node.lost circle {
+  fill: #f7f5f0;
+  stroke: #dcd6ca;
 }
 
-.remote-label {
-  fill: var(--warn-ink);
-  font:
-    600 10px system-ui,
-    sans-serif;
+.commit-node.lost .commit-hash,
+.commit-node.lost .commit-message {
+  fill: #c8c1b4;
 }
 
-.lost-note {
-  margin: 2px 0 0;
+.commit-link.lost {
+  stroke: #dcd6ca;
+}
+
+.ref-tag text {
+  font:
+    700 11.5px ui-monospace,
+    Consolas,
+    monospace;
+}
+
+.ref-tag.branch rect {
+  fill: #f5a623;
+}
+
+.ref-tag.branch text {
+  fill: #2a2724;
+}
+
+.ref-tag.head rect {
+  fill: #2e8b57;
+}
+
+.ref-tag.head text {
+  fill: #ffffff;
+}
+
+.ref-tag.remote rect {
+  fill: #ebe3d3;
+}
+
+.ref-tag.remote text {
+  fill: #5d513c;
+}
+
+.ref-tag.tag rect {
+  fill: #dbe6dd;
+}
+
+.ref-tag.tag text {
+  fill: #33503d;
+}
+
+/* ---- 圖例 ---- */
+
+.graph-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fffefa;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-item .dot {
+  width: 12px;
+  height: 12px;
+  border: 2.5px solid #2a2724;
+  border-radius: 50%;
+  background: #f7f4ec;
+}
+
+.legend-item .dot.is-head {
+  border-color: #2e8b57;
+  background: #dbe8de;
+}
+
+.legend-item .dot.is-merge {
+  border-color: #f0a020;
+}
+
+.legend-item .dot.lost {
+  border-color: #dcd6ca;
+}
+
+.legend-item .chip {
+  width: 22px;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.chip.branch {
+  background: #f5a623;
+}
+
+.chip.head {
+  background: #2e8b57;
+}
+
+.chip.remote {
+  background: #ebe3d3;
+}
+
+.chip.tag {
+  background: #dbe6dd;
 }
 
 .colleague-button {
@@ -947,11 +1128,179 @@ pre.cmd code {
   font-size: 0.75rem;
 }
 
-@keyframes commit-appear {
-  from {
-    opacity: 0.2;
-    transform: translateY(-4px);
-  }
+/* ==========================================================
+   Git 練習場（選題目 → 打指令 → 看圖）
+   ========================================================== */
+
+.git-lab {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 400px;
+  gap: 10px;
+}
+
+.lab-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+}
+
+.lab-picker-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.lab-picker-label {
+  width: 58px;
+  color: var(--muted);
+  font:
+    0.68rem ui-monospace,
+    Consolas,
+    monospace;
+  letter-spacing: 0.1em;
+}
+
+.lab-picker button {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+}
+
+.lab-picker button.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--surface);
+  font-weight: 650;
+}
+
+.lab-main {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.75fr) minmax(360px, 1.6fr);
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+}
+
+.lab-main .terminal {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lab-board {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fffefa;
+}
+
+.lab-board-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font:
+    0.75rem ui-monospace,
+    Consolas,
+    monospace;
+  letter-spacing: 0.06em;
+}
+
+.lab-restart {
+  padding: 2px 8px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.lab-restart:hover {
+  background: #f1ede4;
+}
+
+.lab-graphs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  padding: 2px 14px 6px;
+  overflow: hidden;
+}
+
+/* 練習場的圖會自動縮小塞進框裡（不用上下捲動），太寬時才左右捲動 */
+.lab-graphs .graph-panel:not([hidden]) {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+/* 有遠端時，本機和 GitHub 兩張圖左右並排，各自用滿高度 */
+.lab-graphs.has-remote {
+  flex-direction: row;
+  gap: 18px;
+}
+
+.lab-graphs.has-remote .graph-panel:not([hidden]) {
+  flex: 1 1 0 !important;
+  min-width: 0;
+}
+
+.lab-graphs.has-remote .graph-panel + .graph-panel {
+  padding-left: 18px;
+  border-left: 1px dashed var(--border);
+}
+
+.lab-graphs .graph-scroller {
+  flex: 1;
+  min-height: 0;
+  overflow-y: hidden;
+}
+
+.lab-graphs .commit-graph {
+  width: auto;
+  height: 100%;
+}
+
+.lab-graphs .graph-scroller {
+  border: 0;
+}
+
+.lab-graphs .graph-panel {
+  margin-top: 4px;
+}
+
+.lab-try {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+}
+
+.lab-try-label {
+  color: var(--muted);
+}
+
+.lab-chip {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font:
+    0.76rem ui-monospace,
+    Consolas,
+    monospace;
+}
+
+.git-lab .graph-legend {
+  margin-top: 0;
+  color: var(--muted);
 }
 
 /* ==========================================================
@@ -1231,6 +1580,36 @@ pre.cmd code {
   .file-state {
     flex-direction: column;
     gap: 0;
+  }
+
+  .git-lab,
+  .lab-main {
+    flex: none;
+  }
+
+  .lab-main {
+    grid-template-columns: 1fr;
+  }
+
+  .lab-main .terminal-history {
+    height: 150px;
+  }
+
+  .lab-board {
+    height: 320px;
+  }
+
+  .lab-graphs.has-remote {
+    flex-direction: column;
+  }
+
+  .lab-graphs.has-remote .graph-panel + .graph-panel {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .lab-picker-label {
+    width: 100%;
   }
 
   /* 流程圖改成直的 */

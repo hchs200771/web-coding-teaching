@@ -53,7 +53,10 @@ const changes = (from, to) =>
   [...new Set([...Object.keys(from), ...Object.keys(to)])].filter(path => from[path] !== to[path]).sort();
 const same = (a, b) => changes(a, b).length === 0;
 
-export function createSimulator(scenario = 'empty') {
+// options.graphMode：只看 commit 圖的練習場模式。
+//   允許沒有訊息、沒有修改的 git commit（真實 Git 需要 --allow-empty），讓畫面專注在分支變化。
+export function createSimulator(scenario = 'empty', options = {}) {
+  const graphMode = !!options.graphMode;
   if (typeof scenario === 'object') scenario = scenario.id;
   if (!SCENARIOS.some(item => item.id === scenario)) scenario = 'empty';
   let sequence = 0;
@@ -65,6 +68,8 @@ export function createSimulator(scenario = 'empty') {
     commits: {},
     branches: { main: null },
     branch: 'main',
+    detached: null, // detached HEAD 時，HEAD 直接指向這個 commit id
+    tags: {},
     remote: null,
     remoteTracking: {},
     loggedIn: scenario === 'gh-flow',
@@ -73,7 +78,13 @@ export function createSimulator(scenario = 'empty') {
     events: new Set(),
     cwd: '/workspace/my-project',
   };
-  const headId = () => state.branches[state.branch];
+  const headId = () => state.detached ?? state.branches[state.branch];
+  // 移動 HEAD：在分支上就移動分支；detached 時只移動 HEAD 自己
+  const setHead = id => {
+    if (state.detached) state.detached = id;
+    else state.branches[state.branch] = id;
+  };
+  const headName = () => (state.detached ? 'HEAD detached' : state.branch);
   const headFiles = () => state.commits[headId()]?.files || {};
   const event = name => state.events.add(name);
   const newCommit = (message, files, parents = []) => {
@@ -131,16 +142,19 @@ export function createSimulator(scenario = 'empty') {
     const match = /^(.*?)(?:~(\d+))?$/.exec(ref);
     const name = match[1];
     const matches = Object.keys(state.commits).filter(key => key.startsWith(name));
-    const named = name === 'HEAD' || own(state.branches, name) || name.startsWith('origin/');
+    const named =
+      name === 'HEAD' || own(state.branches, name) || own(state.tags, name) || name.startsWith('origin/');
     if (!named && matches.length > 1) throw new Error(`版本縮寫不唯一：${name}。請輸入更多 hash 字元。`);
     let id =
       name === 'HEAD'
         ? headId()
         : own(state.branches, name)
           ? state.branches[name]
-          : name.startsWith('origin/')
-            ? state.remoteTracking[name.slice(7)]
-            : matches[0];
+          : own(state.tags, name)
+            ? state.tags[name]
+            : name.startsWith('origin/')
+              ? state.remoteTracking[name.slice(7)]
+              : matches[0];
     for (let i = 0; i < Number(match[2] || 0); i++) id = state.commits[id]?.parents[0];
     if (!id || !state.commits[id]) throw new Error(`找不到版本：${ref}`);
     return id;
@@ -171,7 +185,7 @@ export function createSimulator(scenario = 'empty') {
     const current = headId();
     if (current === target || ancestors(current).has(target)) return 'Already up to date.';
     if (!current || (ancestors(target).has(current) && !forceMerge)) {
-      state.branches[state.branch] = target;
+      setHead(target);
       loadHead();
       event('merge');
       return `Fast-forward\n${current || '(root)'}..${target}`;
@@ -188,7 +202,7 @@ export function createSimulator(scenario = 'empty') {
       if (own(theirs, path)) merged[path] = theirs[path];
       else delete merged[path];
     }
-    state.branches[state.branch] = newCommit(message, merged, [current, target]);
+    setHead(newCommit(message, merged, [current, target]));
     loadHead();
     event('merge');
     return `Merge made by the three-way strategy.${conflicts.length ? `\n教學簡化：${conflicts.join(', ')} 同時被修改，已採用合入分支版本。真實 Git 可能需要手動解決衝突。` : ''}`;
@@ -197,6 +211,44 @@ export function createSimulator(scenario = 'empty') {
     const index = args.findIndex(arg => flags.includes(arg));
     return index >= 0 ? args[index + 1] : undefined;
   };
+  // rebase：把目前分支「從分岔點之後」的 commit，一個一個複製到 upstream 後面。
+  // 舊 commit 不會消失，只是沒有分支指著（圖上會變淡）。
+  function rebase(upstream) {
+    if (!upstream) throw new Error('用法：git rebase <分支>，例如 git rebase main');
+    if (!clean()) throw new Error('請先提交或還原變更，再 rebase。');
+    const onto = resolve(upstream);
+    const current = headId();
+    if (ancestors(current).has(onto)) return `Current branch ${headName()} is up to date.`;
+    if (ancestors(onto).has(current)) {
+      setHead(onto);
+      loadHead();
+      event('rebase');
+      return `Fast-forwarded ${headName()} to ${upstream}.`;
+    }
+
+    // 從 HEAD 沿著第一個 parent 往回走，直到碰到 upstream 的歷史
+    const upstreamHistory = ancestors(onto);
+    const toReplay = [];
+    for (let id = current; id && !upstreamHistory.has(id); id = state.commits[id].parents[0]) {
+      if (state.commits[id].parents.length < 2) toReplay.unshift(state.commits[id]);
+    }
+
+    let tip = onto;
+    for (const commit of toReplay) {
+      const before = state.commits[commit.parents[0]]?.files || {};
+      const files = copy(state.commits[tip].files);
+      for (const path of changes(before, commit.files)) {
+        if (own(commit.files, path)) files[path] = commit.files[path];
+        else delete files[path];
+      }
+      tip = newCommit(commit.message, files, [tip]);
+    }
+    setHead(tip);
+    loadHead();
+    event('rebase');
+    return `Successfully rebased and updated ${state.detached ? 'HEAD' : `refs/heads/${state.branch}`}.\n（${toReplay.length} 個 commit 被複製到 ${upstream} 後面，原本的 commit 變成沒有分支指著）`;
+  }
+
   function git(args) {
     const command = args.shift();
     if (command === 'init') {
@@ -249,7 +301,7 @@ export function createSimulator(scenario = 'empty') {
       }
 
       const list = (paths, from, to) => paths.map(path => `  ${label(path, from, to)}: ${path}`).join('\n');
-      const sections = [`On branch ${state.branch}`];
+      const sections = [state.detached ? `HEAD detached at ${state.detached}` : `On branch ${state.branch}`];
       if (!headId()) sections.push('No commits yet');
       if (staged.length) sections.push(`Changes to be committed:\n${list(staged, head, state.index)}`);
       if (unstaged.length)
@@ -277,19 +329,21 @@ export function createSimulator(scenario = 'empty') {
       return '已更新暫存區。';
     }
     if (command === 'commit') {
-      const message = flagValue(args, '-m', '--message', '-am', '-ma');
+      let message = flagValue(args, '-m', '--message', '-am', '-ma');
+      if (graphMode && !message?.trim()) message = `Commit ${sequence + 1}`;
       if (!message?.trim()) throw new Error('請提供提交訊息：git commit -m "message"');
       if (args.some(arg => ['-a', '--all', '-am', '-ma'].includes(arg)))
         for (const path of Object.keys(headFiles())) {
           if (own(state.files, path)) state.index[path] = state.files[path];
           else delete state.index[path];
         }
-      if (same(headFiles(), state.index)) throw new Error('nothing to commit。請先修改檔案並 git add。');
+      if (!graphMode && same(headFiles(), state.index))
+        throw new Error('nothing to commit。請先修改檔案並 git add。');
       const id = newCommit(message, state.index, [headId()]);
-      state.branches[state.branch] = id;
+      setHead(id);
       event('commit');
-      if (state.branch !== 'main') event('commit-on-feature');
-      return `[${state.branch} ${id}] ${message}`;
+      if (state.branch !== 'main' || state.detached) event('commit-on-feature');
+      return `[${headName()} ${id}] ${message}`;
     }
     if (command === 'log') {
       event('log');
@@ -305,7 +359,8 @@ export function createSimulator(scenario = 'empty') {
         .map(commit => {
           const bullet = graph ? (commit.parents.length > 1 ? '*   ' : '* ') : '';
           if (oneline) return `${bullet}${commit.id} ${commit.message}`;
-          const decoration = commit.id === headId() ? ` (HEAD -> ${state.branch})` : '';
+          const decoration =
+            commit.id === headId() ? ` (HEAD${state.detached ? '' : ` -> ${state.branch}`})` : '';
           return `${bullet}commit ${commit.id}${decoration}\n\n    ${commit.message}`;
         })
         .join('\n');
@@ -338,18 +393,22 @@ export function createSimulator(scenario = 'empty') {
     if (command === 'branch') {
       if (!args.length || args[0] === '-a')
         return [
-          ...Object.keys(state.branches).map(name => `${name === state.branch ? '*' : ' '} ${name}`),
+          ...(state.detached ? [`* (HEAD detached at ${state.detached})`] : []),
+          ...Object.keys(state.branches).map(
+            name => `${name === state.branch && !state.detached ? '*' : ' '} ${name}`,
+          ),
           ...(args[0] === '-a'
             ? Object.keys(state.remoteTracking).map(name => `  remotes/origin/${name}`)
             : []),
         ].join('\n');
       if (['-d', '-D'].includes(args[0])) {
         const name = args[1];
-        if (!own(state.branches, name) || name === state.branch)
+        if (!own(state.branches, name) || (name === state.branch && !state.detached))
           throw new Error('分支不存在，或正在使用該分支。');
         if (args[0] === '-d' && !ancestors(headId()).has(state.branches[name]))
-          throw new Error('分支尚未合併。');
+          throw new Error(`分支 ${name} 尚未合併。確定不要了請用 git branch -D ${name}`);
         delete state.branches[name];
+        event('branch-delete');
         return `Deleted branch ${name}.`;
       }
       if (args[0] === '-M' || args[0] === '-m') {
@@ -381,8 +440,17 @@ export function createSimulator(scenario = 'empty') {
       if (create) {
         git(['branch', name, ...args.slice(2)]);
       }
+      const detach = args.includes('--detach') || (command === 'checkout' && !own(state.branches, name));
+      if (detach) {
+        const target = resolve(args.filter(arg => arg !== '--detach')[0]);
+        state.detached = target;
+        loadHead();
+        event('detach');
+        return `HEAD is now at ${target} ${state.commits[target].message}\n注意：你現在在 detached HEAD 狀態（HEAD 沒有跟著任何分支）。\n在這裡 commit 後切走，那些 commit 會變成沒有分支指著。`;
+      }
       if (!own(state.branches, name)) throw new Error(`找不到分支：${name}`);
       state.branch = name;
+      state.detached = null;
       loadHead();
       event('switch');
       if (name === 'main') event('switch-main');
@@ -419,7 +487,7 @@ export function createSimulator(scenario = 'empty') {
       const ref = args.find(arg => !arg.startsWith('-')) || 'HEAD',
         target = resolve(ref);
       const oldTracked = copy(state.index);
-      state.branches[state.branch] = target;
+      setHead(target);
       if (mode !== 'soft') state.index = copy(headFiles());
       if (mode === 'hard') {
         // Untracked files survive reset --hard unless replaced by a tracked path.
@@ -443,10 +511,26 @@ export function createSimulator(scenario = 'empty') {
         if (own(before, path)) result[path] = before[path];
         else delete result[path];
       }
-      state.branches[state.branch] = newCommit(`Revert "${commit.message}"`, result, [headId()]);
+      setHead(newCommit(`Revert "${commit.message}"`, result, [headId()]));
       loadHead();
       event('revert');
-      return `[${state.branch} ${headId()}] Revert "${commit.message}"`;
+      return `[${headName()} ${headId()}] Revert "${commit.message}"`;
+    }
+    if (command === 'rebase') return rebase(args.find(arg => !arg.startsWith('-')));
+    if (command === 'tag') {
+      if (!args.length) return Object.keys(state.tags).sort().join('\n') || '還沒有 tag。';
+      if (args[0] === '-d') {
+        if (!own(state.tags, args[1])) throw new Error(`找不到 tag：${args[1]}`);
+        delete state.tags[args[1]];
+        return `Deleted tag '${args[1]}'`;
+      }
+      const name = args.find(arg => !arg.startsWith('-'));
+      if (own(state.tags, name) || ['__proto__', 'constructor', 'prototype'].includes(name))
+        throw new Error('tag 名稱無效或已存在。');
+      const target = resolve(args.filter(arg => !arg.startsWith('-'))[1] || 'HEAD');
+      state.tags[name] = target;
+      event('tag');
+      return `已在 ${target} 貼上 tag ${name}。`;
     }
     if (command === 'remote') {
       if (args[0] === 'add') {
@@ -492,6 +576,7 @@ export function createSimulator(scenario = 'empty') {
       return `To ${state.remote.url}\n${branch} -> ${branch}${previous === id ? '\nEverything up-to-date' : ''}`;
     }
     if (command === 'pull') {
+      if (state.detached) throw new Error('detached HEAD 狀態不能 pull，請先切回分支。');
       syncRemote();
       const branch = args.filter(arg => !arg.startsWith('-') && arg !== 'origin')[0] || state.branch;
       const id = state.remoteTracking[branch];
@@ -585,6 +670,8 @@ export function createSimulator(scenario = 'empty') {
         syncRemote();
         const baseId = state.remote.branches[pr.base],
           targetId = state.remote.branches[pr.head];
+        const originalDetached = state.detached;
+        state.detached = null;
         const originalBranch = state.branch,
           originalBranches = copy(state.branches),
           originalFiles = copy(state.files),
@@ -604,6 +691,7 @@ export function createSimulator(scenario = 'empty') {
           event('pr-merge');
         } finally {
           state.branch = originalBranch;
+          state.detached = originalDetached;
           state.branches = originalBranches;
           state.files = originalFiles;
           state.index = originalIndex;
@@ -637,7 +725,8 @@ export function createSimulator(scenario = 'empty') {
     return [
       'Shell: ls · cat <file> · touch <file> · echo "text" > <file> · echo "text" >> <file> · rm <file> · pwd · clear',
       'Git: init · status · add · commit -m/-am · log --oneline · diff [--staged] · branch · switch [-c] · checkout [-b]',
-      '     merge · restore [--staged] · reset --soft/--mixed/--hard HEAD~1 · revert HEAD',
+      '     merge · rebase <branch> · restore [--staged] · reset --soft/--mixed/--hard HEAD~1 · revert HEAD',
+      '     checkout <commit>（detached HEAD）· tag <name> · branch -d/-D <name>',
       '     remote · push · fetch · pull · clone',
       'GitHub CLI: gh auth login/status · gh repo create/view · gh pr create/list/view/merge · gh issue create/list',
       '所有操作只在此分頁的教學模擬器執行。',
@@ -716,7 +805,12 @@ export function createSimulator(scenario = 'empty') {
   // Commits that some branch, HEAD or origin/* can still reach.
   // Anything outside this set was "left behind" (e.g. by reset) and only reflog could find it.
   function reachableCommits() {
-    const tips = [...Object.values(state.branches), ...Object.values(state.remoteTracking)];
+    const tips = [
+      ...Object.values(state.branches),
+      ...Object.values(state.remoteTracking),
+      ...Object.values(state.tags),
+      state.detached,
+    ];
     const result = new Set();
     for (const tip of tips) for (const id of ancestors(tip)) result.add(id);
     return result;

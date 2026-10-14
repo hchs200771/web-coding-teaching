@@ -22,7 +22,7 @@
           <h1>用 AI Agent 蓋網站：<br />從 Claude Code 到 Git</h1>
           <p class="lead">先說清楚，再動手做。讓 AI 幫你把想法變成網站。</p>
           <div class="tag-row">
-            <span class="tag">12 個章節</span><span class="tag">零基礎友善</span
+            <span class="tag">13 個章節</span><span class="tag">零基礎友善</span
             ><span class="tag">邊看邊做</span>
           </div>
           <p class="keyboard-hint" aria-label="操作提示">
@@ -682,9 +682,54 @@ gh auth status</code></pre>
         </section>
       </section>
 
+      <section class="chapter" id="git-lab" data-title="Git 練習場">
+        <section class="slide" data-title="看懂 commit 圖">
+          <p class="eyebrow">09 · 把指令看清楚</p>
+          <h2>看懂 commit 圖</h2>
+          <p class="lead">下一張是 Git 練習場：選一個題目、打指令，馬上看到 commit 圖怎麼變。</p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>圓圈 = commit</h3>
+              <p>箭頭指向「上一個 commit」。綠色圈是 HEAD 所在的位置，橘色圈是 merge commit。</p>
+            </article>
+            <article class="card">
+              <h3>標籤 = 指標</h3>
+              <p>橘色是分支、綠色是 HEAD、米色是遠端分支（origin/main）、淺綠是 tag。</p>
+            </article>
+            <article class="card">
+              <h3>變淡 = 沒人指著</h3>
+              <p>reset、rebase、刪分支之後，沒有任何標籤指著的 commit 會變淡。</p>
+            </article>
+          </div>
+          <p class="note">
+            靈感來自高見龍「為你自己學 Git」的
+            <a href="https://gitbook.tw/playground">Git 練習場</a>，推薦也去玩玩看。
+          </p>
+        </section>
+        <section class="slide sandbox-slide" data-title="Git 練習場">
+          <p class="eyebrow">練習場 · 選題目、打指令、看圖</p>
+          <div class="git-lab" aria-label="Git 練習場"></div>
+        </section>
+        <section class="slide" data-title="merge 和 rebase 差在哪">
+          <p class="eyebrow">兩種把分支合在一起的方法</p>
+          <h2>merge 和 rebase 差在哪？</h2>
+          <div class="card-grid two-columns">
+            <article class="card">
+              <h3>merge</h3>
+              <p>多一個 merge commit，把兩條線接起來。歷史照實保留，最安全。</p>
+            </article>
+            <article class="card">
+              <h3>rebase</h3>
+              <p>把你的 commit 複製到對方後面，歷史變成一直線，但 commit 的 hash 都換新了。</p>
+            </article>
+          </div>
+          <p class="callout">新手原則：已經 push 出去、別人也在用的分支，不要 rebase。不確定就用 merge。</p>
+        </section>
+      </section>
+
       <section class="chapter" id="how-web-works" data-title="網站如何運作">
         <section class="slide" data-title="瀏覽器如何找到網站">
-          <p class="eyebrow">09 · 網頁的旅程</p>
+          <p class="eyebrow">10 · 網頁的旅程</p>
           <h2>打開一個網站時發生了什麼？</h2>
           <div class="request-flow" aria-label="瀏覽器請求流程互動圖"></div>
         </section>
@@ -786,7 +831,7 @@ console.log('我的第一個互動頁面');</textarea></label
 
       <section class="chapter" id="ai-workflow" data-title="AI 協作工作流">
         <section class="slide" data-title="好的協作從目標開始">
-          <p class="eyebrow">10 · 把想法交給 agent</p>
+          <p class="eyebrow">11 · 把想法交給 agent</p>
           <h2>好的協作從目標開始</h2>
           <p class="lead">描述使用者、任務與完成條件，讓 AI 知道方向。</p>
           <div class="prompt-card">
@@ -855,7 +900,7 @@ console.log('我的第一個互動頁面');</textarea></label
 
       <section class="chapter" id="cheatsheet" data-title="小抄與下一步">
         <section class="slide" data-title="終端機與 Claude Code 小抄">
-          <p class="eyebrow">11 · 小抄</p>
+          <p class="eyebrow">12 · 小抄</p>
           <h2>終端機與 Claude Code</h2>
           <div class="cheat-grid">
             <pre class="cmd"><code>pwd</code></pre>
@@ -872,7 +917,7 @@ console.log('我的第一個互動頁面');</textarea></label
           </p>
         </section>
         <section class="slide" data-title="Git 存檔與分支小抄">
-          <p class="eyebrow">11 · 小抄</p>
+          <p class="eyebrow">12 · 小抄</p>
           <h2>Git：存檔與分支</h2>
           <div class="cheat-grid">
             <pre class="cmd"><code>git status</code></pre>
@@ -887,7 +932,7 @@ console.log('我的第一個互動頁面');</textarea></label
           <p class="note">先 status 看狀態，再 add、commit。合併前先切回要接收變更的分支。</p>
         </section>
         <section class="slide" data-title="Git 後悔藥小抄">
-          <p class="eyebrow">11 · 小抄</p>
+          <p class="eyebrow">12 · 小抄</p>
           <h2>Git：後悔藥</h2>
           <div class="cheat-grid">
             <pre class="cmd"><code>git restore index.html</code></pre>
@@ -902,7 +947,7 @@ console.log('我的第一個互動頁面');</textarea></label
           </p>
         </section>
         <section class="slide" data-title="GitHub 與 gh 小抄">
-          <p class="eyebrow">11 · 小抄</p>
+          <p class="eyebrow">12 · 小抄</p>
           <h2>GitHub 與 gh</h2>
           <div class="cheat-grid">
             <pre class="cmd"><code>git push -u origin main</code></pre>
@@ -946,7 +991,8 @@ console.log('我的第一個互動頁面');</textarea></label
             <li><a href="https://cli.github.com/manual">GitHub CLI 手冊</a></li>
           </ul>
           <p class="next-links">
-            <a href="#/2/0">重看安裝</a><a href="#/4/0">重練 Git</a><a href="#/9/0">再看網站流程</a>
+            <a href="#/2/0">重看安裝</a><a href="#/4/0">重練 Git</a><a href="#/9/1">玩 Git 練習場</a
+            ><a href="#/10/0">再看網站流程</a>
           </p>
         </section>
       </section>
