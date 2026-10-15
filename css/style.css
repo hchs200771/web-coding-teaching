@@ -1694,6 +1694,188 @@ pre.cmd code {
 }
 
 /* ==========================================================
+   第一堂：功能小測驗與拍照存檔
+   ========================================================== */
+
+.agenda td:first-child {
+  white-space: nowrap;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.slide.break-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.break-slide h2 {
+  font-size: clamp(2rem, 6vw, 5rem);
+}
+
+.backend-quiz,
+.stage-demo {
+  flex-shrink: 0;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--surface);
+}
+
+.backend-quiz__chips,
+.backend-quiz__controls,
+.stage-demo__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.backend-quiz__chip {
+  border-radius: 20px;
+  text-align: left;
+}
+
+.backend-quiz__chip[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.backend-quiz__result {
+  margin: 10px 0 0;
+  padding: 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--bg);
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.backend-quiz__result > span {
+  display: block;
+  font-weight: 650;
+}
+
+.backend-quiz .no-backend {
+  color: var(--accent);
+}
+
+.backend-quiz .needs-backend {
+  color: var(--warn-ink);
+}
+
+.backend-quiz__chip.no-backend,
+.backend-quiz__chip.needs-backend {
+  border-color: currentColor;
+}
+
+.stage-demo__areas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stage-demo__area {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.stage-demo__area-title {
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.stage-demo__area-note,
+.stage-demo__file-status,
+.stage-demo__commit-files {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.stage-demo__list {
+  min-height: 130px;
+}
+
+.stage-demo__list--work:empty::after {
+  content: '沒有新的變更';
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.stage-demo__list--stage:empty::after {
+  content: '拍照台是空的';
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.stage-demo__file,
+.stage-demo__commit {
+  position: relative;
+  margin-top: 8px;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  overflow-wrap: anywhere;
+  font-size: 0.85rem;
+}
+
+.stage-demo__file {
+  border-left: 3px solid var(--warm);
+  z-index: 1;
+}
+
+.stage-demo__file--new {
+  border-left-color: var(--accent);
+}
+
+.stage-demo__commit {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.stage-demo__button--primary {
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.stage-demo__caption {
+  min-height: 1.65em;
+  color: var(--accent);
+}
+
+.stage-demo__terminal {
+  min-width: 0;
+  color: var(--muted);
+  font: 0.8rem ui-monospace, Consolas, monospace;
+}
+
+.stage-demo__terminal pre.cmd {
+  margin: 6px 0 0;
+}
+
+.stage-demo__flash {
+  animation: stage-flash 500ms ease-out;
+}
+
+.stage-demo__shake {
+  animation: stage-shake 300ms ease;
+}
+
+@keyframes stage-flash {
+  50% { background: var(--accent-soft); box-shadow: 0 0 0 5px var(--warm); }
+}
+
+@keyframes stage-shake {
+  25%, 75% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+}
+
+/* ==========================================================
    大螢幕 / 手機
    ========================================================== */
 
@@ -1770,6 +1952,19 @@ pre.cmd code {
   th,
   td {
     padding: 8px;
+  }
+
+  .stage-demo__areas {
+    grid-template-columns: 1fr;
+  }
+
+  .backend-quiz,
+  .stage-demo {
+    padding: 12px;
+  }
+
+  .stage-demo__list {
+    min-height: 45px;
   }
 
   /* 手機上練習場改成上下排，頁面可以捲動 */

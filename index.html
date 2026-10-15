@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f5f3ee" />
-    <meta name="description" content="用小步驟學會 AI 協作、終端機、Git 與網站開發。" />
-    <title>用 AI Agent 蓋網站：從 Claude Code 到 Git</title>
+    <meta name="description" content="第一堂 3 小時：Windows 零基礎，用 Claude Code 管理紋繡網站，認識前後端與 Git / GitHub。" />
+    <title>第一堂：用 Claude Code 管理你的網站</title>
     <script>
       // 每次開頁都在 CSS / JS 網址後面加上新的版本號，避免瀏覽器拿到「新的 HTML + 舊的 JS」。
       // （GitHub Pages 會讓瀏覽器快取檔案 10 分鐘，更新網站後可能新舊混在一起而壞掉。）
@@ -21,6 +21,8 @@
           'missions',
           'playground',
           'request-flow',
+          'backend-quiz',
+          'stage-demo',
           'terminal',
           'commit-graph',
           'lab-scenarios',
@@ -56,988 +58,872 @@
       <button id="theme-toggle" type="button" aria-label="切換色彩主題">切換主題</button>
     </header>
     <main id="deck" aria-label="課程投影片">
-      <section class="chapter" id="top" data-title="用 AI Agent 蓋網站">
-        <section class="slide cover" data-title="用 AI Agent 蓋網站：從 Claude Code 到 Git">
-          <p class="eyebrow">一份可以動手做的入門課</p>
-          <h1>用 AI Agent 蓋網站：<br />從 Claude Code 到 Git</h1>
-          <p class="lead">先說清楚，再動手做。讓 AI 幫你把想法變成網站。</p>
+      <section class="chapter" id="top" data-title="第一堂課">
+        <section class="slide cover" data-title="第一堂：用 Claude Code 管理你的網站">
+          <p class="eyebrow">00 · 第一堂課</p>
+          <h1>第一堂：用 Claude Code 管理你的網站</h1>
+          <p class="lead">今天裝好 Claude Code、搞懂網站前後端、用 Git / GitHub 幫網站存檔。</p>
           <div class="tag-row">
-            <span class="tag">13 個章節</span><span class="tag">零基礎友善</span
-            ><span class="tag">邊看邊做</span>
+            <span class="tag">3 小時</span><span class="tag">零基礎</span><span class="tag">Windows</span>
           </div>
-          <p class="keyboard-hint" aria-label="操作提示">
+          <p class="keyboard-hint">
             <kbd>← →</kbd> 切換章節 <kbd>↑ ↓</kbd> 切換投影片 <kbd>Esc</kbd> 開啟或關閉章節總覽
           </p>
         </section>
-        <section class="slide" data-title="今天會走過的路">
-          <p class="eyebrow">課程地圖</p>
-          <h2>今天會走過的路</h2>
-          <div class="card-grid">
-            <article class="card">
-              <h3>準備工具</h3>
-              <p>認識 agent，熟悉終端機與 Git。</p>
-            </article>
-            <article class="card">
-              <h3>掌握版本</h3>
-              <p>用提交、分支、復原和 GitHub 管理作品。</p>
-            </article>
-            <article class="card">
-              <h3>做出網站</h3>
-              <p>理解網站運作，建立 AI 協作習慣。</p>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="怎麼使用這份課程">
-          <p class="eyebrow">先從一小步開始</p>
-          <h2>怎麼使用這份課程</h2>
-          <ul class="check-list">
-            <li>左右方向鍵切換章節，上下方向鍵切換投影片。</li>
-            <li>按 Esc 開啟或關閉章節總覽。</li>
-            <li>執行指令前，先確認所在資料夾；練習可以重來。</li>
-          </ul>
-        </section>
-        <section class="slide" data-title="先有一個想法">
-          <p class="eyebrow">你的第一個作品</p>
-          <h2>先有一個想法</h2>
-          <p class="lead">想一個你希望網站幫人完成的小任務。</p>
-          <div class="prompt-card">
-            <pre class="cmd"><code>做一張給新手的植物照顧卡，讓人知道今天要不要澆水。</code></pre>
-          </div>
-        </section>
-      </section>
-
-      <section class="chapter" id="ai-agent" data-title="AI agent 是什麼">
-        <section class="slide" data-title="AI agent 是什麼">
-          <p class="eyebrow">01 · 認識協作者</p>
-          <h2>AI agent 是什麼？</h2>
-          <p class="lead">
-            它會讀檔案、執行命令、修改程式，再回報結果。你是 reviewer（審查者），負責確認方向與品質。
-          </p>
-          <div class="diagram">
-            <span class="diagram-node">你描述目標</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">agent 規劃</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">工具執行</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">你檢查</span>
-          </div>
-        </section>
-        <section class="slide" data-title="對話與 agent 的差別">
-          <p class="eyebrow">它會採取行動</p>
-          <h2>對話與 agent 的差別</h2>
-          <div class="card-grid two-columns">
-            <article class="card">
-              <h3>一般對話</h3>
-              <p>提供建議，由你把答案帶到工具執行。</p>
-            </article>
-            <article class="card">
-              <h3>Agent 協作</h3>
-              <p>能讀寫專案檔案、執行命令，再整理變更。</p>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="把任務說清楚">
-          <p class="eyebrow">好任務的四個線索</p>
-          <h2>把任務說清楚</h2>
-          <div class="card-grid">
-            <article class="card">
-              <h3>目標</h3>
-              <p>想完成什麼？</p>
-            </article>
-            <article class="card">
-              <h3>脈絡</h3>
-              <p>誰會使用、目前有什麼？</p>
-            </article>
-            <article class="card">
-              <h3>限制</h3>
-              <p>哪些範圍要遵守？</p>
-            </article>
-            <article class="card">
-              <h3>驗收</h3>
-              <p>怎樣才算完成？</p>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="讓 AI 做小步驟">
-          <p class="eyebrow">先看，再改，再驗證</p>
-          <h2>讓 AI 做小步驟</h2>
-          <ol class="step-list">
-            <li>探索：先摘要專案結構。</li>
-            <li>計畫：拆成可檢查的小任務。</li>
-            <li>執行：一次完成一個變更。</li>
-            <li>驗證：預覽後再決定下一步。</li>
-          </ol>
-        </section>
-        <section class="slide" data-title="為什麼學 Git 與 GitHub">
-          <p class="eyebrow">AI 幫忙，你掌握方向</p>
-          <h2>讓每次嘗試有退路</h2>
-          <div class="card-grid">
-            <article class="card">
-              <h3>你是 reviewer</h3>
-              <p>看懂變更與預覽，決定是否接受。</p>
-            </article>
-            <article class="card">
-              <h3>Git 是安全網</h3>
-              <p>小步存檔，改錯時可以找回版本。</p>
-            </article>
-            <article class="card">
-              <h3>GitHub 是雲端副本</h3>
-              <p>備份作品、一起協作，也能發布靜態網站。</p>
-            </article>
-          </div>
-        </section>
-      </section>
-
-      <section class="chapter" id="install-claude" data-title="安裝 Claude Code">
-        <section class="slide" data-title="安裝 Claude Code">
-          <p class="eyebrow">02 · 準備工具</p>
-          <h2>安裝 Claude Code</h2>
-          <p>Claude Code 是在終端機裡工作的 AI 程式開發 agent。</p>
-          <div class="callout">
-            <strong>先準備：</strong>Claude Pro 或 Max 訂閱，或 Anthropic Console 帳號與計費設定。
-          </div>
-          <p>安裝後從專案資料夾輸入 claude 啟動，依畫面登入並授權。</p>
-        </section>
-        <section class="slide" data-title="安裝 Claude Code 指令">
-          <p class="eyebrow">選你的作業系統</p>
-          <h2>安裝 Claude Code</h2>
-          <div class="tabs">
-            <div class="tab-buttons" role="tablist" aria-label="選擇作業系統">
-              <button type="button" data-tab="claude-mac">macOS</button
-              ><button type="button" data-tab="claude-linux">Linux · WSL</button
-              ><button type="button" data-tab="claude-win">Windows</button>
-            </div>
-            <div class="tab-panel" id="claude-mac">
-              <pre class="cmd"><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
-              <p>打開「終端機」App，貼上後按 Enter。</p>
-            </div>
-            <div class="tab-panel" id="claude-linux" hidden>
-              <pre class="cmd"><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
-              <p>Windows 使用者建議先裝 WSL（Ubuntu），之後所有指令都在 WSL 裡打。</p>
-            </div>
-            <div class="tab-panel" id="claude-win" hidden>
-              <pre class="cmd"><code>irm https://claude.ai/install.ps1 | iex</code></pre>
-              <p>在 PowerShell 執行。Windows 版需要先裝好 Git for Windows（下一頁有指令）。</p>
-            </div>
-          </div>
-          <p class="note">另一種方式：已經有 Node.js 18 以上，可以用 npm 安裝。</p>
-          <pre class="cmd"><code>npm install -g @anthropic-ai/claude-code</code></pre>
-        </section>
-        <section class="slide" data-title="啟動與設定專案脈絡">
-          <p class="eyebrow">第一次啟動</p>
-          <h2>啟動與設定專案脈絡</h2>
-          <pre class="cmd"><code>claude --version
-cd my-project
-claude</code></pre>
-          <p>第一次執行 claude 會帶你登入。輸入 /init 建立 CLAUDE.md，讓 agent 記住專案說明。</p>
-        </section>
-        <section class="slide" data-title="指令與權限模式">
-          <p class="eyebrow">互動中的控制方式</p>
-          <h2>指令與權限模式</h2>
-          <div class="card-grid">
-            <article class="card">
-              <h3>/help · /clear</h3>
-              <p>查看指令，或清空目前對話。</p>
-            </article>
-            <article class="card">
-              <h3>/init</h3>
-              <p>建立 CLAUDE.md 專案脈絡。</p>
-            </article>
-            <article class="card">
-              <h3>Esc</h3>
-              <p>中斷目前生成或動作。</p>
-            </article>
-            <article class="card">
-              <h3>Shift + Tab</h3>
-              <p>切換權限模式。</p>
-            </article>
-          </div>
-          <p class="callout">
-            直接用自然語言描述目標。agent
-            會依目前權限模式，在執行工具前詢問或依設定自動進行；仔細查看授權提示。
-          </p>
-        </section>
-        <section class="slide" data-title="安裝 Git 與 GitHub CLI">
-          <p class="eyebrow">工具準備</p>
-          <h2>安裝 Git 與 GitHub CLI</h2>
-          <div class="tabs">
-            <div class="tab-buttons" role="tablist" aria-label="選擇作業系統">
-              <button type="button" role="tab" aria-selected="true" data-tab="git-mac">macOS</button
-              ><button type="button" role="tab" aria-selected="false" data-tab="git-linux">Linux · WSL</button
-              ><button type="button" role="tab" aria-selected="false" data-tab="git-win">Windows</button>
-            </div>
-            <div class="tab-panel" id="git-mac" role="tabpanel">
-              <p>Homebrew：</p>
-              <pre class="cmd"><code>brew install git gh</code></pre>
-            </div>
-            <div class="tab-panel" id="git-linux" role="tabpanel" hidden>
-              <p>
-                Ubuntu / Debian 可用 apt 安裝 Git；若套件來源沒有 gh，請依 GitHub CLI 官方 Linux
-                安裝說明設定來源。
-              </p>
-              <pre class="cmd"><code>sudo apt update
-sudo apt install git gh</code></pre>
-              <p><a href="https://cli.github.com/manual/installation">GitHub CLI 官方安裝指引</a></p>
-            </div>
-            <div class="tab-panel" id="git-win" role="tabpanel" hidden>
-              <p>winget：</p>
-              <pre class="cmd"><code>winget install --id Git.Git -e
-winget install --id GitHub.cli -e</code></pre>
-            </div>
-          </div>
-        </section>
-        <section class="slide" data-title="設定 Git 提交身分">
-          <p class="eyebrow">提交會標記作者</p>
-          <h2>設定 Git 提交身分</h2>
-          <pre class="cmd"><code>git config --global user.name "你的名字"
-git config --global user.email "you@example.com"
-git config --global init.defaultBranch main</code></pre>
-          <p>名字與信箱會寫進提交紀錄，請換成提交作者資訊。查看設定及來源：</p>
-          <pre class="cmd"><code>git config --list --show-origin</code></pre>
-        </section>
-      </section>
-
-      <section class="chapter" id="terminal" data-title="終端機基本功">
-        <section class="slide" data-title="終端機是什麼">
-          <p class="eyebrow">03 · 和電腦說話</p>
-          <h2>終端機是什麼？</h2>
-          <p class="lead">你輸入文字命令，電腦照著做，再回傳結果。</p>
-          <div class="diagram">
-            <span class="diagram-node">指令</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">作業系統</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">結果</span>
-          </div>
-        </section>
-        <section class="slide" data-title="先認識所在位置">
-          <p class="eyebrow">路徑就是位置</p>
-          <h2>先認識所在位置</h2>
-          <pre class="cmd"><code>pwd
-ls
-cd my-project</code></pre>
-          <p>pwd 看位置、ls 列檔案、cd 進入資料夾。</p>
-        </section>
-        <section class="slide" data-title="建立與檢查檔案">
-          <p class="eyebrow">常用檔案操作</p>
-          <h2>建立與檢查檔案</h2>
-          <div class="tabs">
-            <div class="tab-buttons" role="tablist" aria-label="選擇作業系統">
-              <button type="button" role="tab" aria-selected="true" data-tab="terminal-unix">
-                macOS · Linux</button
-              ><button type="button" role="tab" aria-selected="false" data-tab="terminal-windows">
-                Windows PowerShell
-              </button>
-            </div>
-            <div class="tab-panel" id="terminal-unix" role="tabpanel">
-              <pre class="cmd"><code>mkdir hello-site
-cd hello-site
-touch index.html
-ls</code></pre>
-            </div>
-            <div class="tab-panel" id="terminal-windows" role="tabpanel" hidden>
-              <pre class="cmd"><code>New-Item -ItemType Directory hello-site
-cd hello-site
-New-Item index.html
-Get-ChildItem</code></pre>
-            </div>
-          </div>
-        </section>
-        <section class="slide" data-title="移動與中斷快捷鍵">
-          <p class="eyebrow">讓終端機操作更順手</p>
-          <h2>移動與中斷快捷鍵</h2>
-          <div class="card-grid">
-            <article class="card">
-              <h3>cd ..</h3>
-              <p>回到上一層資料夾。</p>
-            </article>
-            <article class="card">
-              <h3>Tab</h3>
-              <p>補完檔案或資料夾名稱。</p>
-            </article>
-            <article class="card">
-              <h3>Ctrl + C</h3>
-              <p>中斷目前執行中的程序。</p>
-            </article>
-          </div>
-          <pre class="cmd"><code>cd ..</code></pre>
-        </section>
-        <section class="slide" data-title="安全使用命令列">
-          <p class="eyebrow">動手前看一眼</p>
-          <h2>安全使用命令列</h2>
-          <ul class="check-list">
-            <li>確認目前路徑，再執行會改檔的命令。</li>
-            <li>看不懂的指令先請 AI 解釋每一段。</li>
-            <li>刪除或覆寫前，確認是否有備份。</li>
-          </ul>
-        </section>
-      </section>
-
-      <section class="chapter" id="git-basics" data-title="Git 與提交">
-        <section class="slide" data-title="Git 幫你記錄變化">
-          <p class="eyebrow">04 · 作品的時間軸</p>
-          <h2>Git 幫你記錄變化</h2>
-          <p class="lead">Git 是本機的版本記錄工具，可以比較、保存與找回檔案變化。</p>
-          <div class="diagram">
-            <span class="diagram-node">工作目錄</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">暫存區</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">提交紀錄</span>
-          </div>
-        </section>
-        <section class="slide" data-title="三個工作區">
-          <p class="eyebrow">理解 Git 的流向</p>
-          <h2>三個工作區</h2>
-          <div class="diagram">
-            <span class="diagram-node">工作目錄<br />正在編輯</span
-            ><span class="diagram-arrow">→ git add</span><span class="diagram-node">暫存區<br />準備記錄</span
-            ><span class="diagram-arrow">→ git commit</span
-            ><span class="diagram-node">提交<br />保存快照</span>
-          </div>
-        </section>
-        <section class="slide sandbox-slide" data-title="第一筆提交：剛開始的專案">
-          <p class="eyebrow">任務 · first-commit</p>
-          <h2>第一筆提交：剛開始的專案</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="fresh-files"
-            data-mission="first-commit"
-            aria-label="第一筆提交互動練習"
-          ></div>
-        </section>
-        <section class="slide sandbox-slide" data-title="下一筆提交：已有紀錄的專案">
-          <p class="eyebrow">任務 · next-commit</p>
-          <h2>下一筆提交：已有紀錄的專案</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="has-history"
-            data-mission="next-commit"
-            aria-label="新增提交互動練習"
-          ></div>
-        </section>
-        <section class="slide" data-title="提交訊息要說清楚">
-          <p class="eyebrow">每筆記錄都是一個句子</p>
-          <h2>提交訊息要說清楚</h2>
-          <div class="card-grid two-columns">
-            <article class="card">
-              <h3>清楚</h3>
-              <p>新增首頁導覽</p>
-            </article>
-            <article class="card">
-              <h3>難懂</h3>
-              <p>更新一些東西</p>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="暫存是挑選存檔內容">
-          <p class="eyebrow">像遊戲的存檔點</p>
-          <h2>暫存是挑選存檔內容</h2>
-          <p>
-            Git
-            像遊戲的存檔。工作目錄是正在玩的進度；暫存區挑選這次要保存的內容；commit（提交）留下可回看的版本。
-          </p>
-          <div class="diagram">
-            <span class="diagram-node">編輯檔案</span><span class="diagram-arrow">→ git add 選入</span
-            ><span class="diagram-node">暫存區</span><span class="diagram-arrow">→ git commit 拍下</span
-            ><span class="diagram-node">存檔點</span>
-          </div>
-        </section>
-        <section class="slide" data-title="一筆 commit 記錄什麼">
-          <p class="eyebrow">版本快照的標籤</p>
-          <h2>一筆 commit 記錄什麼？</h2>
-          <div class="card-grid">
-            <article class="card">
-              <h3>hash（雜湊值）</h3>
-              <p>唯一識別這筆版本記錄。</p>
-            </article>
-            <article class="card">
-              <h3>訊息與作者</h3>
-              <p>說明改動目的與提交者。</p>
-            </article>
-            <article class="card">
-              <h3>父提交</h3>
-              <p>指出這筆記錄接在哪個版本之後。</p>
-            </article>
-          </div>
-          <pre class="cmd"><code>git log --oneline --decorate</code></pre>
-        </section>
-      </section>
-
-      <section class="chapter" id="branches" data-title="分支與嘗試">
-        <section class="slide" data-title="分支讓你安全嘗試">
-          <p class="eyebrow">05 · 平行工作線</p>
-          <h2>分支讓你安全嘗試</h2>
-          <p class="lead">分支像同一作品的另一條時間線，可以先做新功能再合併。</p>
-          <div class="diagram">
-            <span class="diagram-node">main</span><span class="diagram-arrow">↗</span
-            ><span class="diagram-node">功能分支</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">合併</span>
-          </div>
-        </section>
-        <section class="slide sandbox-slide" data-title="在分支上做新功能">
-          <p class="eyebrow">任務 · branch</p>
-          <h2>在分支上做新功能</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="branching"
-            data-mission="branch"
-            aria-label="Git 分支互動練習"
-          ></div>
-        </section>
-        <section class="slide" data-title="分支的基本命令">
-          <p class="eyebrow">記住命令的方向</p>
-          <h2>分支的基本命令</h2>
-          <pre class="cmd"><code>git switch -c feature/homepage
-git status
-git switch main
-git merge feature/homepage</code></pre>
-          <p>先切回要接收變更的分支，再執行 merge。</p>
-        </section>
-        <section class="slide" data-title="先提交，再合併">
-          <p class="eyebrow">保持每一步看得懂</p>
-          <h2>先提交，再合併</h2>
-          <ol class="step-list">
-            <li>確認目前分支。</li>
-            <li>完成小功能並提交。</li>
-            <li>切回目標分支，合併功能分支。</li>
-            <li>遇到衝突時逐段整理。</li>
-          </ol>
-        </section>
-        <section class="slide" data-title="快轉合併與合併提交">
-          <p class="eyebrow">兩種常見合併結果</p>
-          <h2>快轉合併與合併提交</h2>
-          <div class="card-grid two-columns">
-            <article class="card">
-              <h3>Fast-forward</h3>
-              <p>目標分支沒有新提交時，分支指標直接向前移動，歷史保持直線。</p>
-            </article>
-            <article class="card">
-              <h3>Merge commit</h3>
-              <p>兩邊都有新提交時，Git 建立合併提交，保留兩條工作線的交會點。</p>
-            </article>
-          </div>
-          <p>是否保留分支形狀，取決於團隊的合併策略。</p>
-        </section>
-      </section>
-
-      <section class="chapter" id="undo" data-title="復原與重設">
-        <section class="slide" data-title="選對復原方法">
-          <p class="eyebrow">06 · 改錯時怎麼辦</p>
-          <h2>選對復原方法</h2>
-          <p class="lead">先問：改動在哪裡？要保留修改嗎？提交已分享出去嗎？</p>
-          <div class="callout">復原命令會影響不同位置；執行前先看狀態。</div>
-        </section>
-        <section class="slide" data-title="restore 與 reset 影響哪裡">
-          <p class="eyebrow">看清受影響區域與風險</p>
-          <h2>restore 與 reset 影響哪裡</h2>
+        <section class="slide" data-title="今天的流程">
+          <p class="eyebrow">00 · 第一堂課</p>
+          <h2>今天的流程</h2>
           <div class="table-wrap">
-            <table>
+            <table class="agenda">
               <thead>
                 <tr>
-                  <th>方式</th>
-                  <th>工作目錄</th>
-                  <th>暫存區</th>
-                  <th>分支指標</th>
-                  <th>風險</th>
+                  <th scope="col">時間</th>
+                  <th scope="col">一起做什麼</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>restore 檔案</td>
-                  <td>以暫存區內容覆寫</td>
-                  <td>不變</td>
-                  <td>不變</td>
-                  <td>未保存修改會消失</td>
+                  <td>0:00–0:50</td>
+                  <td>Claude Code 安裝、設定與試用</td>
                 </tr>
                 <tr>
-                  <td>restore staged</td>
-                  <td>不變</td>
-                  <td>取消選取</td>
-                  <td>不變</td>
-                  <td>修改仍在工作目錄</td>
+                  <td>0:50–1:10</td>
+                  <td>網站前端與後端</td>
                 </tr>
                 <tr>
-                  <td>reset soft</td>
-                  <td>不變</td>
-                  <td>保留為已暫存</td>
-                  <td>移動</td>
-                  <td>提交歷史被改寫</td>
+                  <td>1:10–1:20</td>
+                  <td>休息</td>
                 </tr>
                 <tr>
-                  <td>reset mixed</td>
-                  <td>不變</td>
-                  <td>清空暫存狀態</td>
-                  <td>移動</td>
-                  <td>提交歷史被改寫</td>
+                  <td>1:20–2:10</td>
+                  <td>Git 第一章：環境設定與存檔（add / commit）</td>
                 </tr>
                 <tr>
-                  <td>reset hard</td>
-                  <td>覆寫追蹤檔案</td>
-                  <td>重設</td>
-                  <td>移動</td>
-                  <td>未保存修改會遺失</td>
+                  <td>2:10–2:25</td>
+                  <td>Git 第二章：分支簡介</td>
                 </tr>
                 <tr>
-                  <td>revert</td>
-                  <td>新增反向變更</td>
-                  <td>依提交流程</td>
-                  <td>新增提交</td>
-                  <td>安全保留共享歷史</td>
+                  <td>2:25–3:00</td>
+                  <td>Git 第三章：實戰（Lovable → GitHub → 本機修改 → push）</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p>restore 預設從 index 取回檔案內容。reset 移動目前分支位置；hard 也會覆寫工作檔案。</p>
         </section>
-        <section class="slide" data-title="復原命令範例">
-          <p class="eyebrow">先確認狀態，再選操作</p>
-          <h2>復原命令範例</h2>
-          <pre class="cmd"><code>git restore index.html</code></pre>
-          <pre class="cmd"><code>git restore --staged index.html</code></pre>
-          <pre class="cmd"><code>git reset --soft HEAD~1</code></pre>
-          <pre class="cmd"><code>git reset HEAD~1</code></pre>
-          <pre class="cmd"><code>git reset --hard HEAD~1</code></pre>
-          <pre class="cmd"><code>git revert HEAD</code></pre>
-        </section>
-        <section class="slide sandbox-slide" data-title="練習安全復原">
-          <p class="eyebrow">任務 · undo</p>
-          <h2>練習安全復原</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="has-history"
-            data-mission="undo"
-            aria-label="Git 復原互動練習"
-          ></div>
-        </section>
-        <section class="slide" data-title="安全復原與 reflog">
-          <p class="eyebrow">保留共同歷史，找回移動過的指標</p>
-          <h2>安全復原與 reflog</h2>
-          <p class="lead">已分享的提交，優先用 revert 新增反向提交，不要直接重寫共同歷史。</p>
-          <pre class="cmd"><code>git revert HEAD</code></pre>
-          <p>
-            reflog 是本機分支與 HEAD 移動的近期紀錄。若 reset 移走提交，可從 reflog 找到原提交，再建立分支或
-            reset 回去；它不是遠端備份。
-          </p>
-        </section>
-      </section>
-
-      <section class="chapter" id="remote" data-title="遠端與同步">
-        <section class="slide" data-title="遠端是另一份 Git 紀錄">
-          <p class="eyebrow">07 · 把作品放到網路上</p>
-          <h2>遠端是另一份 Git 紀錄</h2>
-          <p class="lead">本機方便工作，遠端方便備份與協作；同步前先確認狀態。</p>
-          <div class="diagram">
-            <span class="diagram-node">本機</span><span class="diagram-arrow">push →</span
-            ><span class="diagram-node">遠端</span><span class="diagram-arrow">← pull</span
-            ><span class="diagram-node">本機更新</span>
-          </div>
-        </section>
-        <section class="slide sandbox-slide" data-title="連接並同步遠端">
-          <p class="eyebrow">任務 · remote</p>
-          <h2>連接並同步遠端</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="has-history"
-            data-mission="remote"
-            aria-label="Git 遠端互動練習"
-          ></div>
-        </section>
-        <section class="slide" data-title="遠端名稱與同步命令">
-          <p class="eyebrow">同步方向</p>
-          <h2>遠端名稱與同步命令</h2>
-          <p>origin 是慣用的遠端名稱，指向 GitHub 上的儲存庫網址；名稱可以自訂。</p>
-          <pre class="cmd"><code>git remote -v</code></pre>
-          <pre class="cmd"><code>git clone https://github.com/demo/my-site.git</code></pre>
-          <pre class="cmd"><code>git fetch origin</code></pre>
-          <pre class="cmd"><code>git pull</code></pre>
-          <pre class="cmd"><code>git push -u origin main</code></pre>
-          <p>clone 複製 repo；fetch 下載提交但不自動整合；pull 取得並整合遠端更新。</p>
-        </section>
-        <section class="slide" data-title="先同步，再開始工作">
-          <p class="eyebrow">降低衝突的習慣</p>
-          <h2>先同步，再開始工作</h2>
+        <section class="slide" data-title="怎麼使用這份投影片">
+          <p class="eyebrow">00 · 第一堂課</p>
+          <h2>怎麼使用這份投影片</h2>
           <ol class="step-list">
-            <li>開始前取得最新版本。</li>
-            <li>把工作拆成小提交。</li>
-            <li>推送前檢查提交內容。</li>
-            <li>協作時說明檔案負責範圍。</li>
+            <li>左右方向鍵切章節；上下方向鍵切投影片。</li>
+            <li>Space / PageDown 往下看；PageUp 往回看。Home / End 到第一張 / 最後一張。</li>
+            <li>Esc 開啟或關閉總覽。手機可以滑動；內容太長就往下捲。</li>
+            <li>每個指令都有「複製」按鈕。直接點它，不用自己選取文字。</li>
+            <li>先看清楚要貼在 PowerShell，還是 Claude Code 裡，再按 Enter。</li>
           </ol>
         </section>
-        <section class="slide" data-title="推送被拒絕時">
-          <p class="eyebrow">遠端有你還沒有的提交</p>
-          <h2>推送被拒絕時</h2>
-          <p>常見原因是遠端分支已更新。先 fetch 檢查差異，整合遠端提交並解決衝突，再推送。</p>
-          <pre class="cmd"><code>git fetch origin</code></pre>
-          <pre class="cmd"><code>git pull origin main</code></pre>
-          <p>整合方式依團隊約定；如果有衝突，先完成解決與檢查再推送。</p>
-          <pre class="cmd"><code>git push</code></pre>
-          <p class="callout">不要直接強制推送覆蓋別人的工作。先確認分支與協作約定。</p>
-        </section>
       </section>
 
-      <section class="chapter" id="github-cli" data-title="用 GitHub CLI 協作">
-        <section class="slide" data-title="讓終端機連上 GitHub">
-          <p class="eyebrow">08 · GitHub CLI</p>
-          <h2>讓終端機連上 GitHub</h2>
-          <p class="lead">GitHub CLI（gh）能從命令列建立 repo、發起 PR 和檢查狀態。</p>
-          <pre class="cmd"><code>gh auth login
-gh auth status</code></pre>
-        </section>
-        <section class="slide sandbox-slide" data-title="GitHub 流程練習">
-          <p class="eyebrow">任務 · gh-flow</p>
-          <h2>GitHub 流程練習</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="gh-flow"
-            data-mission="gh"
-            aria-label="GitHub CLI 互動練習"
-          ></div>
-        </section>
-        <section class="slide" data-title="Repo 指令">
-          <p class="eyebrow">建立、複製與開啟儲存庫</p>
-          <h2>Repo 指令</h2>
-          <pre class="cmd"><code>gh repo create my-site --public --source=. --push</code></pre>
-          <pre class="cmd"><code>gh repo clone demo/my-site</code></pre>
-          <pre class="cmd"><code>gh browse</code></pre>
-        </section>
-        <section class="slide" data-title="Pull Request 指令">
-          <p class="eyebrow">檢查變更並合併</p>
-          <h2>Pull Request 指令</h2>
-          <pre class="cmd"><code>gh pr create</code></pre>
-          <pre class="cmd"><code>gh pr list</code></pre>
-          <pre class="cmd"><code>gh pr merge</code></pre>
-          <p>PR 是提出變更、討論差異和協作檢查的地方。</p>
-        </section>
-        <section class="slide" data-title="Issue 指令">
-          <p class="eyebrow">記下問題與下一步</p>
-          <h2>Issue 指令</h2>
-          <pre class="cmd"><code>gh issue create</code></pre>
-          <pre class="cmd"><code>gh issue list</code></pre>
-          <p>Issue 可記錄待辦、錯誤和功能想法。</p>
-        </section>
-        <section class="slide" data-title="一個簡單的 PR 流程">
-          <p class="eyebrow">協作有跡可循</p>
-          <h2>一個簡單的 PR 流程</h2>
-          <div class="diagram">
-            <span class="diagram-node">開分支</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">提交變更</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">開 PR</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">檢查合併</span>
-          </div>
-        </section>
-      </section>
-
-      <section class="chapter" id="git-lab" data-title="Git 練習場">
-        <section class="slide" data-title="看懂 commit 圖">
-          <p class="eyebrow">09 · 把指令看清楚</p>
-          <h2>看懂 commit 圖</h2>
-          <p class="lead">下一張是 Git 練習場：選一個題目、打指令，馬上看到 commit 圖怎麼變。</p>
+      <section class="chapter" id="claude-code" data-title="Claude Code 安裝與試用">
+        <section class="slide" data-title="Claude Code 是什麼">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>Claude Code 是什麼</h2>
+          <p class="lead">
+            Claude Code 是住在終端機（terminal）裡的 AI 助手（agent）。它能讀檔、改檔，也能執行指令。
+            你是檢查成果的人（reviewer）。
+          </p>
           <div class="card-grid">
             <article class="card">
-              <h3>圓圈 = commit</h3>
-              <p>
-                箭頭指向「上一個 commit」。青綠色實心、外面有一圈光暈的是 HEAD 所在的位置；紫色粗框是 merge
-                commit。
-              </p>
+              <h3>一般對話</h3>
+              <p>像問朋友怎麼做。拿到建議後，要自己動手。</p>
             </article>
             <article class="card">
-              <h3>標籤 = 指標</h3>
-              <p>
-                藍色膠囊是分支、青綠色「➜ HEAD」是你現在的位置、淡紫色是遠端分支（origin/main）、黃色是 tag。
-              </p>
+              <h3>Claude Code</h3>
+              <p>像有助手坐在你旁邊。先問過你，再幫你動手；權限模式會影響詢問方式。</p>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="打開 PowerShell">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>打開 PowerShell</h2>
+          <ol class="step-list">
+            <li>按 Windows 的 Win 鍵。</li>
+            <li>輸入 PowerShell 或「終端機」，按 Enter。</li>
+            <li>看到下面這行，就可以輸入指令。</li>
+          </ol>
+          <pre class="example"><code>PS C:\Users\你的名字&gt;</code></pre>
+          <p>這行提示像地址牌：告訴你現在在哪個資料夾。PS 表示這裡是 PowerShell。</p>
+        </section>
+        <section class="slide" data-title="終端機三個基本動作">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>終端機三個基本動作</h2>
+          <div class="card-grid">
+            <article class="card">
+              <p>看地址：現在在哪裡？</p>
+              <pre class="cmd"><code>pwd</code></pre>
             </article>
             <article class="card">
-              <h3>虛線 = 沒人指著</h3>
-              <p>reset、rebase、刪分支之後，沒有任何標籤指著的 commit 會變成淡淡的虛線圈。</p>
+              <p>看清單：這裡有哪些檔案？</p>
+              <pre class="cmd"><code>ls</code></pre>
+            </article>
+            <article class="card">
+              <p>換位置：走進桌面資料夾。</p>
+              <pre class="cmd"><code>cd Desktop</code></pre>
+            </article>
+            <article class="card">
+              <p>退一層：回上一個資料夾。</p>
+              <pre class="cmd"><code>cd ..</code></pre>
             </article>
           </div>
           <p class="note">
-            靈感來自高見龍「為你自己學 Git」的
-            <a href="https://gitbook.tw/playground">Git 練習場</a>，推薦也去玩玩看。
+            按 Tab 可以補完名稱。Ctrl+C 可以中斷目前的指令。
+            若桌面放在 OneDrive，後面的「整理桌面」有專用走法。
           </p>
         </section>
-        <section class="slide sandbox-slide" data-title="Git 練習場">
-          <p class="eyebrow">練習場 · 選題目、打指令、看圖</p>
-          <div class="git-lab" aria-label="Git 練習場"></div>
+        <section class="slide" data-title="安裝 Claude Code">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>安裝 Claude Code</h2>
+          <p>在剛剛的 PowerShell 貼上 Windows PowerShell 這一格。</p>
+          <div class="tabs">
+            <div class="tab-buttons" aria-label="選擇作業系統">
+              <button type="button" data-tab="claude-install-0">Windows（PowerShell）</button>
+              <button type="button" data-tab="claude-install-1">Windows CMD</button>
+              <button type="button" data-tab="claude-install-2">macOS</button>
+            </div>
+            <div class="tab-panel" id="claude-install-0">
+              <pre class="cmd"><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+            </div>
+            <div class="tab-panel" id="claude-install-1" hidden>
+              <pre class="cmd"><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code></pre>
+            </div>
+            <div class="tab-panel" id="claude-install-2" hidden>
+              <pre class="cmd"><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+            </div>
+          </div>
+          <p class="callout">
+            需要 Claude Pro / Max 訂閱或 Console 帳號（API 預付費）；Team / Enterprise 也可。
+            免費 claude.ai 帳號不含 Claude Code。
+          </p>
+          <p class="note">
+            Windows 10 1809 以上或 Windows 11、至少 4GB 記憶體與網路。
+            不用管理員權限，也不用先裝 Git，等一下的 Git 第一章才裝。原生安裝會自動更新。
+            下載時可能沒有進度，請等完成，再關掉並重開 PowerShell。
+          </p>
+          <p class="note">
+            看到「The token '&&' is not a valid statement separator」：把 CMD 指令貼進 PowerShell 了。
+            看到「'irm' is not recognized」：把 PowerShell 指令貼進 CMD 了。
+          </p>
         </section>
-        <section class="slide" data-title="merge 和 rebase 差在哪">
-          <p class="eyebrow">兩種把分支合在一起的方法</p>
-          <h2>merge 和 rebase 差在哪？</h2>
-          <div class="card-grid two-columns">
+        <section class="slide" data-title="確認安裝與第一次登入">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>確認安裝與第一次登入</h2>
+          <pre class="cmd"><code>claude --version</code></pre>
+          <p>看版本，例如 2.1.x（Claude Code）。</p>
+          <pre class="cmd"><code>claude doctor</code></pre>
+          <p>做唯讀檢查，不會修改你的專案。</p>
+          <pre class="cmd"><code>claude</code></pre>
+          <ol class="step-list">
+            <li>選喜歡的外觀主題。</li>
+            <li>依畫面打開瀏覽器登入。</li>
+            <li>回到終端機，之後登入資料會保留。</li>
+          </ol>
+          <p class="note">若顯示找不到 claude，先把 PowerShell 關掉重開。</p>
+        </section>
+        <section class="slide" data-title="設定 1：外觀與偏好">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>設定 1：外觀與偏好</h2>
+          <p>下面有斜線的指令，要輸入在 Claude Code 裡。不是 PowerShell。</p>
+          <div class="card-grid">
             <article class="card">
-              <h3>merge</h3>
-              <p>多一個 merge commit，把兩條線接起來。歷史照實保留，最安全。</p>
+              <p>開設定：調外觀、模型與回答風格。</p>
+              <pre class="cmd"><code>/config</code></pre>
             </article>
             <article class="card">
-              <h3>rebase</h3>
-              <p>把你的 commit 複製到對方後面，歷史變成一直線，但 commit 的 hash 都換新了。</p>
+              <p>選模型（model）：這次請哪位助手。</p>
+              <pre class="cmd"><code>/model</code></pre>
+            </article>
+            <article class="card">
+              <p>登入，或換另一個帳號。</p>
+              <pre class="cmd"><code>/login</code></pre>
+            </article>
+            <article class="card">
+              <p>看用量與額度。</p>
+              <pre class="cmd"><code>/usage</code></pre>
             </article>
           </div>
-          <p class="callout">新手原則：已經 push 出去、別人也在用的分支，不要 rebase。不確定就用 merge。</p>
+        </section>
+        <section class="slide" data-title="設定 2：底下的狀態列">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>設定 2：底下的狀態列</h2>
+          <p>狀態列（status line）像儀表板。在底下顯示目前模型、資料夾、Git 分支。</p>
+          <p>在 Claude Code 裡貼上，讓它幫你設定：</p>
+          <pre class="cmd"><code>/statusline 顯示目前模型、資料夾名稱和 Git 分支</code></pre>
+          <p class="note">
+            它會把腳本放在 %USERPROFILE%\.claude\，並更新 %USERPROFILE%\.claude\settings.json。不用自己寫。
+          </p>
+          <p class="note">設定檔是 JSON：不能加註解或最後多一個逗號。自訂狀態列可能藏起部分底部快捷鍵提示。</p>
+        </section>
+        <section class="slide" data-title="設定 3：權限模式與安全">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>設定 3：權限模式與安全</h2>
+          <p>Shift+Tab 切模式。先看底下的名稱，練習時切到 manual mode。</p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>manual / default（預設）</h3>
+              <p>⏸ manual mode on：改檔、跑指令前先問你。新手先用這個。</p>
+            </article>
+            <article class="card">
+              <h3>accept edits（接受編輯）</h3>
+              <p>⏵⏵ accept edits on：改檔與簡單檔案指令不再逐次問。</p>
+            </article>
+            <article class="card">
+              <h3>plan（計畫）</h3>
+              <p>⏸ plan mode on：只看、只規劃，不修改。</p>
+            </article>
+            <article class="card">
+              <h3>auto（自動）</h3>
+              <p>⏵⏵ auto mode on：另一個模型代你檢查動作。新版可能從這個模式開始。</p>
+            </article>
+          </div>
+          <pre class="cmd"><code>/permissions</code></pre>
+          <p>在 Claude Code 裡查看允許、詢問與拒絕的規則。</p>
+          <p class="callout">
+            看清楚授權提示再按一般的 Yes。先不要選「Yes, and don’t ask again」。
+            不懂就問它「這個指令會做什麼？」平常電腦不要用略過權限（bypassPermissions）。
+          </p>
+          <p class="note">
+            Esc 中斷；空白輸入列連按兩次 Esc 可回到之前（rewind）。
+            這能復原 Claude 的檔案編輯，但不能復原指令搬動、刪除的檔案，也不能代替 Git。
+          </p>
+        </section>
+        <section class="slide" data-title="常用指令小卡">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>常用指令小卡</h2>
+          <p>這些斜線指令在 Claude Code 裡輸入：</p>
+          <div class="card-grid">
+            <article class="card">
+              <p>查說明。</p>
+              <pre class="cmd"><code>/help</code></pre>
+            </article>
+            <article class="card">
+              <p>開新對話。</p>
+              <pre class="cmd"><code>/clear</code></pre>
+            </article>
+            <article class="card">
+              <p>挑一段舊對話繼續。</p>
+              <pre class="cmd"><code>/resume</code></pre>
+            </article>
+            <article class="card">
+              <p>建立 CLAUDE.md，寫下專案說明。</p>
+              <pre class="cmd"><code>/init</code></pre>
+            </article>
+          </div>
+          <p>下面這個則在 PowerShell 輸入：</p>
+          <pre class="cmd"><code>claude -c</code></pre>
+          <p class="note">
+            繼續這個資料夾上次的對話。Windows Terminal 可按 Shift+Enter 換行；
+            也可用 Ctrl+J，或先打反斜線 \ 再按 Enter。
+          </p>
+        </section>
+        <section class="slide" data-title="試用 1：先聊聊">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>試用 1：先聊聊</h2>
+          <p>先在 Claude Code 裡問兩個小問題：</p>
+          <div class="prompt-card">
+            <pre class="cmd"><code>你好！用很簡單的話告訴我，你可以幫我做哪些事？</code></pre>
+          </div>
+          <div class="prompt-card">
+            <pre class="cmd"><code>我目前在哪個資料夾？裡面有什麼？</code></pre>
+          </div>
+        </section>
+        <section class="slide" data-title="試用 2：整理桌面">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>試用 2：整理桌面</h2>
+          <p>先回到 PowerShell，走到真正的桌面；放在 OneDrive 也找得到。</p>
+          <pre class="cmd"><code>cd ([Environment]::GetFolderPath(&#x27;Desktop&#x27;))</code></pre>
+          <pre class="cmd"><code>claude</code></pre>
+          <div class="prompt-card">
+            <pre class="cmd"><code>請先列出我桌面上的檔案，依類型提出整理計畫（例如：圖片、文件、安裝檔）。只移動、不要刪除任何東西。先給我看計畫，等我說好再動手。</code></pre>
+          </div>
+          <p class="callout">先計畫、再確認、不刪除。也可以按 Shift+Tab 切到計畫模式。</p>
+        </section>
+        <section class="slide" data-title="試用 3：整理指定資料夾">
+          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <h2>試用 3：整理指定資料夾</h2>
+          <p>回到 PowerShell，改走下載資料夾。</p>
+          <pre class="cmd"><code>cd $HOME\Downloads</code></pre>
+          <pre class="cmd"><code>claude</code></pre>
+          <div class="prompt-card">
+            <pre class="cmd"><code>把這個資料夾裡的作品照片集中到一個『作品集照片』資料夾，依月份分類；不要刪除檔案，完成後告訴我搬了哪些。</code></pre>
+          </div>
+          <div class="card-grid">
+            <article class="card">
+              <h3>目標</h3>
+              <p>把作品照片集中起來。</p>
+            </article>
+            <article class="card">
+              <h3>脈絡</h3>
+              <p>照片在目前的下載資料夾。</p>
+            </article>
+            <article class="card">
+              <h3>限制</h3>
+              <p>依月份分，不刪檔。</p>
+            </article>
+            <article class="card">
+              <h3>驗收</h3>
+              <p>列出搬了哪些照片。</p>
+            </article>
+          </div>
         </section>
       </section>
 
-      <section class="chapter" id="how-web-works" data-title="網站如何運作">
-        <section class="slide" data-title="瀏覽器如何找到網站">
-          <p class="eyebrow">10 · 網頁的旅程</p>
-          <h2>打開一個網站時發生了什麼？</h2>
-          <div class="request-flow" aria-label="瀏覽器請求流程互動圖"></div>
+      <section class="chapter" id="web-basics" data-title="網站前端與後端">
+        <section class="slide" data-title="打開網站時發生什麼">
+          <p class="eyebrow">02 · 網站前端與後端</p>
+          <h2>打開網站時發生什麼</h2>
+          <p>
+            像點餐：瀏覽器送出請求（request），伺服器把畫面或資料送回來。
+            互動圖示範有查資料的網站；照片牆不一定會用到資料庫。
+          </p>
+          <div class="request-flow"></div>
         </section>
-        <section class="slide" data-title="前端與後端各自負責什麼">
-          <p class="eyebrow">畫面與資料</p>
-          <h2>前端與後端各自負責什麼</h2>
-          <div class="card-grid two-columns">
+        <section class="slide" data-title="前端與後端：想成一間餐廳">
+          <p class="eyebrow">02 · 網站前端與後端</p>
+          <h2>前端與後端：想成一間餐廳</h2>
+          <div class="card-grid">
             <article class="card">
-              <h3>前端</h3>
-              <p>HTML 定義結構，CSS 控制外觀，JavaScript 加上互動。</p>
+              <h3>前端（frontend）＝店面</h3>
+              <p>
+                客人看得到的菜單、裝潢與按鈕。HTML 是菜單內容和架構；CSS 管裝潢與配色；
+                JavaScript（JS）讓按鈕有反應。
+              </p>
             </article>
             <article class="card">
-              <h3>後端</h3>
-              <p>伺服器處理請求，API 接收操作，資料庫保存資料。</p>
+              <h3>後端（backend）＝廚房＋倉庫</h3>
+              <p>客人看不到。處理訂單、記住預約，把資料收進資料庫（database）。</p>
             </article>
           </div>
         </section>
-        <section class="slide" data-title="API 讓前後端交換資料">
-          <p class="eyebrow">一個請求與一份 JSON</p>
-          <h2>API 讓前後端交換資料</h2>
-          <p>前端向 API 發出請求，後端處理後回傳資料；JSON 是常見的資料格式。</p>
-          <pre class="example"><code>GET /api/plants/1</code></pre>
-          <div class="diagram">
-            <span class="diagram-node">前端</span><span class="diagram-arrow">HTTP request →</span
-            ><span class="diagram-node">API</span><span class="diagram-arrow">→</span
-            ><span class="diagram-node">JSON response</span>
-          </div>
-          <pre class="example"><code>{ "name": "小葉", "waterToday": true }</code></pre>
+        <section class="slide" data-title="這個功能需要後端嗎？">
+          <p class="eyebrow">02 · 網站前端與後端</p>
+          <h2>這個功能需要後端嗎？</h2>
+          <p>想一想你的紋繡網站。先猜，再點功能看答案。</p>
+          <div class="backend-quiz"></div>
         </section>
         <section class="slide" data-title="靜態網站與動態網站">
-          <p class="eyebrow">網站需要的服務不同</p>
+          <p class="eyebrow">02 · 網站前端與後端</p>
           <h2>靜態網站與動態網站</h2>
-          <div class="card-grid two-columns">
-            <article class="card">
-              <h3>靜態</h3>
-              <p>主機直接提供 HTML、CSS、JavaScript 和圖片，適合作品集與文件。</p>
-            </article>
-            <article class="card">
-              <h3>動態</h3>
-              <p>伺服器會執行程式、呼叫 API 或資料庫，適合登入、訂單與個人化資料。</p>
-            </article>
-          </div>
-          <p>先從靜態頁開始，只有在需求出現時再加入後端。</p>
-        </section>
-        <section class="slide" data-title="試著改一個小頁面">
-          <p class="eyebrow">即時預覽</p>
-          <h2>試著改一個小頁面</h2>
-          <p>修改 HTML、CSS 或 JavaScript，看看預覽如何改變。</p>
-          <div class="playground">
-            <label
-              >HTML<textarea data-lang="html" spellcheck="false">
-<h1>你好，網頁！</h1>
-<p>改改這段文字。</p>
-<button onclick="document.querySelector('p').textContent='你按了按鈕！'">按我</button></textarea></label
-            ><label
-              >CSS<textarea data-lang="css" spellcheck="false">
-body { font-family: sans-serif; padding: 2rem; color: #26352e; }
-button { padding: .6rem 1rem; border-radius: 999px; }</textarea></label
-            ><label
-              >JavaScript<textarea data-lang="js" spellcheck="false">
-console.log('我的第一個互動頁面');</textarea></label
-            ><iframe title="網頁程式練習預覽" sandbox="allow-scripts"></iframe>
-          </div>
-        </section>
-        <section class="slide" data-title="網站架構全景">
-          <p class="eyebrow">從瀏覽器一路到資料</p>
-          <h2>網站架構全景</h2>
-          <div class="diagram">
-            <span class="diagram-node">瀏覽器<br />前端</span><span class="diagram-arrow">HTTPS</span
-            ><span class="diagram-node">主機<br />靜態檔案</span><span class="diagram-arrow">API</span
-            ><span class="diagram-node">後端服務</span><span class="diagram-arrow">查詢</span
-            ><span class="diagram-node">資料庫</span>
-          </div>
-          <p>網域經 DNS 指向主機；前端可呼叫 API，後端再讀寫資料庫。</p>
-        </section>
-        <section class="slide" data-title="部署到靜態網站主機">
-          <p class="eyebrow">發布後用公開網址檢查</p>
-          <h2>部署到靜態網站主機</h2>
-          <p>
-            GitHub Pages、Vercel 與 Cloudflare Pages 都能部署靜態網站。連接 repo
-            後，依平台設定建置或發布目錄，再用公開網址檢查首頁與資源路徑。
-          </p>
           <div class="card-grid">
             <article class="card">
-              <h3>GitHub Pages</h3>
-              <p>適合放在 GitHub repo 的靜態網站。</p>
+              <h3>靜態網站（static website）</h3>
+              <p>像印好的作品冊：照片、介紹、價目表先準備好，打開就看得到。按鈕和照片切換也能有。</p>
             </article>
             <article class="card">
-              <h3>Vercel</h3>
-              <p>連接 Git repo，依設定自動建置發布。</p>
-            </article>
-            <article class="card">
-              <h3>Cloudflare Pages</h3>
-              <p>以 Git repo 或建置輸出發布靜態檔案。</p>
+              <h3>動態網站（dynamic website）</h3>
+              <p>像預約櫃台：依客人和時間查資料，記住誰約了哪個時段。</p>
             </article>
           </div>
+          <p class="callout">你的網站現在：靜態網站就夠了。作品、服務、價目表，加一個 LINE 預約連結。</p>
         </section>
-      </section>
-
-      <section class="chapter" id="ai-workflow" data-title="AI 協作工作流">
-        <section class="slide" data-title="好的協作從目標開始">
-          <p class="eyebrow">11 · 把想法交給 agent</p>
-          <h2>好的協作從目標開始</h2>
-          <p class="lead">描述使用者、任務與完成條件，讓 AI 知道方向。</p>
-          <div class="prompt-card">
-            <pre
-              class="cmd"
-            ><code>請先讀取專案並摘要結構。不要修改檔案。告訴我首頁入口在哪裡，以及你建議的下一步。</code></pre>
-          </div>
-        </section>
-        <section class="slide" data-title="把需求拆成小任務">
-          <p class="eyebrow">每次交付一個可檢查結果</p>
-          <h2>把需求拆成小任務</h2>
+        <section class="slide" data-title="SEO 先打底：讓 Google 找得到你">
+          <p class="eyebrow">02 · 網站前端與後端</p>
+          <h2>SEO 先打底：讓 Google 找得到你</h2>
+          <p>搜尋引擎最佳化（SEO），先想成替店面掛好招牌。</p>
           <ol class="step-list">
-            <li>描述：說清楚使用者、目標與限制。</li>
-            <li>計畫：請 agent 拆分步驟並先確認方向。</li>
-            <li>編碼：一次實作一個小功能。</li>
-            <li>審查：檢查 diff、預覽畫面與錯誤。</li>
-            <li>提交：保存理解過的變更。</li>
-            <li>推送與部署：分享版本，再確認線上結果。</li>
+            <li>每頁寫清楚標題與描述：這是誰的店、提供什麼服務。</li>
+            <li>作品照片加說明文字（alt），例如「台中霧眉：自然眉型前後對比」。</li>
+            <li>文字自然放入地區關鍵字，例如「台中霧眉」。</li>
+            <li>建立 Google 商家，填好地點、營業時間與聯絡方式。</li>
           </ol>
+          <p class="note">
+            靜態網站最容易做好 SEO 的基本功。之後可以請 Claude Code 幫忙檢查；搜尋排名仍需要時間。
+          </p>
         </section>
-        <section class="slide" data-title="讓結果容易檢查">
-          <p class="eyebrow">把驗收寫進提示</p>
-          <h2>讓結果容易檢查</h2>
-          <div class="prompt-card">
-            <pre
-              class="cmd"
-            ><code>新增植物照顧卡片，顯示植物名稱、今日澆水建議與圖示。請先提出計畫；實作後告訴我改了哪些檔案，以及如何確認。</code></pre>
-          </div>
-        </section>
-        <section class="slide" data-title="提示範例：個人網站">
-          <p class="eyebrow">給清楚的目標與驗收條件</p>
-          <h2>提示範例：個人網站</h2>
-          <pre
-            class="cmd"
-          ><code>幫我用 HTML/CSS/JS 做一個個人介紹網頁，有深色模式。先說明計畫，完成後檢查手機版與按鈕功能。</code></pre>
-        </section>
-        <section class="slide" data-title="提示範例：部署到 GitHub Pages">
-          <p class="eyebrow">部署也要說清楚限制</p>
-          <h2>提示範例：部署到 GitHub Pages</h2>
-          <pre
-            class="cmd"
-          ><code>幫我把這個專案用 gh 建立 GitHub repo 並開啟 GitHub Pages。先檢查網站與要推送的檔案，完成後回報網址。</code></pre>
-        </section>
-        <section class="slide" data-title="審查差異、保護作品">
-          <p class="eyebrow">Agent reviewer × Git 安全 × GitHub 備份</p>
-          <h2>審查差異、保護作品</h2>
+        <section class="slide" data-title="以後需要後端時">
+          <p class="eyebrow">02 · 網站前端與後端</p>
+          <h2>以後需要後端時</h2>
           <div class="card-grid">
             <article class="card">
-              <h3>你是 reviewer</h3>
-              <p>看 diff 與預覽。可請 AI 協助找錯，你決定是否接受。</p>
+              <h3>先用現成服務</h3>
+              <p>LINE 官方帳號、Google 表單、預約系統。像先請現成的櫃台幫忙。</p>
             </article>
             <article class="card">
-              <h3>用 Git 保護成果</h3>
-              <p>小步提交、功能開分支；金鑰和密碼不要提交，加入 .gitignore。</p>
-            </article>
-            <article class="card">
-              <h3>推送備份與發布</h3>
-              <p>推到 GitHub 保存遠端副本，再由靜態網站主機部署公開網址。</p>
+              <h3>真的需要，再加後端</h3>
+              <p>例如 Supabase 幫你管帳號與資料庫，Lovable 也能接。等需求清楚再學。</p>
             </article>
           </div>
-          <pre
-            class="cmd"
-          ><code>請審查目前的 Git diff，指出可能的錯誤、祕密資訊或不符合需求處。先報告檔案與原因，不要直接修改。</code></pre>
+        </section>
+        <section class="slide break-slide" data-title="☕ 休息 10 分鐘">
+          <p class="eyebrow">02 · 網站前端與後端</p>
+          <h2>☕ 休息 10 分鐘</h2>
+          <p class="lead">起來走走，喝口水。</p>
+          <p>回來後：Git 與 GitHub</p>
         </section>
       </section>
 
-      <section class="chapter" id="cheatsheet" data-title="小抄與下一步">
-        <section class="slide" data-title="終端機與 Claude Code 小抄">
-          <p class="eyebrow">12 · 小抄</p>
-          <h2>終端機與 Claude Code</h2>
-          <div class="cheat-grid">
-            <pre class="cmd"><code>pwd</code></pre>
-            <pre class="cmd"><code>ls</code></pre>
-            <pre class="cmd"><code>mkdir my-project</code></pre>
-            <pre class="cmd"><code>cd my-project</code></pre>
-            <pre class="cmd"><code>cd ..</code></pre>
-            <pre class="cmd"><code>claude</code></pre>
-            <pre class="cmd"><code>/init</code></pre>
-            <pre class="cmd"><code>/clear</code></pre>
-          </div>
-          <p class="note">
-            claude 在終端機輸入；/init、/clear 在 Claude Code 對話裡輸入。Esc 中斷，Shift+Tab 切換權限模式。
-          </p>
-        </section>
-        <section class="slide" data-title="Git 存檔與分支小抄">
-          <p class="eyebrow">12 · 小抄</p>
-          <h2>Git：存檔與分支</h2>
-          <div class="cheat-grid">
-            <pre class="cmd"><code>git status</code></pre>
-            <pre class="cmd"><code>git diff</code></pre>
-            <pre class="cmd"><code>git add .</code></pre>
-            <pre class="cmd"><code>git commit -m "更新首頁"</code></pre>
-            <pre class="cmd"><code>git log --oneline</code></pre>
-            <pre class="cmd"><code>git switch -c feature</code></pre>
-            <pre class="cmd"><code>git switch main</code></pre>
-            <pre class="cmd"><code>git merge feature</code></pre>
-          </div>
-          <p class="note">先 status 看狀態，再 add、commit。合併前先切回要接收變更的分支。</p>
-        </section>
-        <section class="slide" data-title="Git 後悔藥小抄">
-          <p class="eyebrow">12 · 小抄</p>
-          <h2>Git：後悔藥</h2>
-          <div class="cheat-grid">
-            <pre class="cmd"><code>git restore index.html</code></pre>
-            <pre class="cmd"><code>git restore --staged index.html</code></pre>
-            <pre class="cmd"><code>git reset --soft HEAD~1</code></pre>
-            <pre class="cmd"><code>git reset --mixed HEAD~1</code></pre>
-            <pre class="cmd"><code>git reset --hard HEAD~1</code></pre>
-            <pre class="cmd"><code>git revert HEAD</code></pre>
-          </div>
-          <p class="note">
-            三種 reset 是三選一，不是連續三步。--hard 會丟掉沒存的修改；已經 push 的 commit 用 revert。
-          </p>
-        </section>
-        <section class="slide" data-title="GitHub 與 gh 小抄">
-          <p class="eyebrow">12 · 小抄</p>
-          <h2>GitHub 與 gh</h2>
-          <div class="cheat-grid">
-            <pre class="cmd"><code>git push -u origin main</code></pre>
-            <pre class="cmd"><code>git pull</code></pre>
-            <pre class="cmd"><code>gh auth login</code></pre>
-            <pre class="cmd"><code>gh repo create my-site --public --source=. --push</code></pre>
-            <pre class="cmd"><code>gh pr create --title "更新首頁" --body "加入新內容"</code></pre>
-            <pre class="cmd"><code>gh pr merge 1 --merge</code></pre>
-            <pre class="cmd"><code>gh issue list</code></pre>
-            <pre class="cmd"><code>gh browse</code></pre>
-          </div>
-          <p class="note">開 PR 前先 push 功能分支；合併後切回 main 並 pull。</p>
-        </section>
-        <section class="slide" data-title="下一步：完成小作品">
-          <p class="eyebrow">把學到的用出來</p>
-          <h2>做一個能分享的小作品</h2>
-          <p class="lead">選一個真實的小需求。請 Claude Code 做出第一版，自己預覽，再留下 commit。</p>
-          <div class="diagram">
-            <span>描述</span><span class="diagram-arrow">→</span><span>實作</span
-            ><span class="diagram-arrow">→</span><span>檢查</span><span class="diagram-arrow">→</span
-            ><span>分享</span>
+      <section class="chapter" id="git-basics" data-title="Git 第一章：存檔">
+        <section class="slide" data-title="Git 是什麼">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>Git 是什麼</h2>
+          <p class="lead">像遊戲存檔點（commit）：每完成一小步就存一次，之後可以回頭看。</p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Git：本機存檔工具</h3>
+              <p>在你電腦裡記錄每次改了什麼。還沒上網也能存。</p>
+            </article>
+            <article class="card">
+              <h3>GitHub：雲端保管箱</h3>
+              <p>放存檔的網站。把本機紀錄送上去，就多一份雲端副本。</p>
+            </article>
           </div>
         </section>
-        <section class="slide sandbox-slide" data-title="自由練習">
-          <p class="eyebrow">想怎麼試都可以</p>
-          <h2>Git 自由練習場</h2>
+        <section class="slide" data-title="安裝 Git 與 GitHub CLI">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>安裝 Git 與 GitHub CLI</h2>
+          <p>GitHub 命令列工具（GitHub CLI，簡稱 gh）幫我們登入、建保管箱。</p>
+          <div class="tabs">
+            <div class="tab-buttons" aria-label="選擇作業系統">
+              <button type="button" data-tab="git-install-0">Windows（PowerShell）</button>
+              <button type="button" data-tab="git-install-1">macOS</button>
+            </div>
+            <div class="tab-panel" id="git-install-0">
+              <pre class="cmd"><code>winget install --id Git.Git -e --source winget</code></pre>
+              <pre class="cmd"><code>winget install --id GitHub.cli --source winget</code></pre>
+            </div>
+            <div class="tab-panel" id="git-install-1" hidden>
+              <p>已經有 Homebrew 的話：</p>
+              <pre class="cmd"><code>brew install git gh</code></pre>
+            </div>
+          </div>
+          <p class="callout">裝完把 PowerShell 整個關掉再開。Windows Terminal 要開新視窗，只有新分頁不夠。</p>
+          <pre class="cmd"><code>git --version</code></pre>
+          <pre class="cmd"><code>gh --version</code></pre>
+        </section>
+        <section class="slide" data-title="告訴 Git 你是誰">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>告訴 Git 你是誰</h2>
+          <p>每次存檔都會簽上名字。把下面的名字與信箱換成自己的。</p>
+          <pre class="cmd"><code>git config --global user.name &quot;你的名字&quot;</code></pre>
+          <pre class="cmd"><code>git config --global user.email &quot;你的 GitHub 信箱&quot;</code></pre>
+          <pre class="cmd"><code>git config --global init.defaultBranch main</code></pre>
+          <p>最後一行把新專案的正式分支預設叫 main。檢查設定：</p>
+          <pre class="cmd"><code>git config --global --list</code></pre>
+        </section>
+        <section class="slide" data-title="讓電腦連上 GitHub">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>讓電腦連上 GitHub</h2>
+          <p>還沒有帳號，先到 <a href="https://github.com/signup">GitHub 註冊</a>。</p>
+          <pre class="cmd"><code>gh auth login</code></pre>
+          <ol class="step-list">
+            <li>選 GitHub.com。</li>
+            <li>連線協定先選 HTTPS；第三章再換 SSH。</li>
+            <li>選 Login with a web browser。</li>
+            <li>複製一次性代碼，到瀏覽器貼上並授權。</li>
+          </ol>
+          <pre class="cmd"><code>gh auth status</code></pre>
+          <p>確認這台電腦已經登入你的帳號。</p>
+        </section>
+        <section class="slide" data-title="三個區域：拍照存檔">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>三個區域：拍照存檔</h2>
+          <p>改好檔案 → 放上拍照台 → 拍成一張存檔照片。先按修改，再按 add 與 commit。</p>
+          <div class="stage-demo"></div>
+        </section>
+        <section class="slide" data-title="把資料夾變成 Git 專案">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>把資料夾變成 Git 專案</h2>
+          <p>在 PowerShell 依序執行：</p>
+          <pre class="cmd"><code>mkdir my-site</code></pre>
+          <pre class="cmd"><code>cd my-site</code></pre>
+          <pre class="cmd"><code>git init</code></pre>
+          <p class="note">隱藏的 .git 資料夾就是存檔簿。每個專案只要初始化一次，不要刪它。</p>
+        </section>
+        <section class="slide" data-title="四個每天用的指令">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>四個每天用的指令</h2>
+          <div class="card-grid">
+            <article class="card">
+              <p>現在狀況如何？</p>
+              <pre class="cmd"><code>git status</code></pre>
+            </article>
+            <article class="card">
+              <p>把改好的檔案放上拍照台（暫存區）。</p>
+              <pre class="cmd"><code>git add .</code></pre>
+            </article>
+            <article class="card">
+              <p>按下快門，存一個檔。</p>
+              <pre class="cmd"><code>git commit -m &quot;新增作品集頁面&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>看存檔紀錄。</p>
+              <pre class="cmd"><code>git log --oneline</code></pre>
+            </article>
+          </div>
+          <p class="note">想看改了哪幾行，也可以用：</p>
+          <pre class="cmd"><code>git diff</code></pre>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：第一次存檔">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>練習：第一次存檔</h2>
           <div
             class="git-sandbox"
-            data-scenario="empty"
-            data-mission="free"
-            aria-label="Git 自由練習場"
+            data-scenario="fresh-files"
+            data-mission="first-commit"
+            aria-label="練習：第一次存檔"
           ></div>
         </section>
-        <section class="slide" data-title="繼續學習">
-          <p class="eyebrow">下一步</p>
-          <h2>收藏這些學習資源</h2>
+        <section class="slide sandbox-slide" data-title="練習：修改後再存檔">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>練習：修改後再存檔</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="has-history"
+            data-mission="next-commit"
+            aria-label="練習：修改後再存檔"
+          ></div>
+        </section>
+        <section class="slide" data-title="好的存檔訊息，讓以後的你看得懂">
+          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <h2>好的存檔訊息，讓以後的你看得懂</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>清楚</h3>
+              <p>「新增霧眉作品照片」：知道這次做了什麼。</p>
+            </article>
+            <article class="card">
+              <h3>難懂</h3>
+              <p>「更新」：過一週就忘了。</p>
+            </article>
+          </div>
+          <div class="prompt-card">
+            <pre class="cmd"><code>幫我看一下目前改了什麼，用一句中文寫 commit 訊息，然後幫我 git add 和 commit。先讓我確認訊息。</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <section class="chapter" id="branches" data-title="Git 第二章：分支簡介">
+        <section class="slide" data-title="分支是什麼：另開一本草稿">
+          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <h2>分支是什麼：另開一本草稿</h2>
+          <p class="lead">分支（branch）像草稿本。main 是正式版；另開分支試新設計，滿意再合回來（merge）。</p>
+          <p class="callout">一個人做網站，大多時候直接在 main 上存檔就好。想大改版、不確定要不要時才開分支。</p>
+        </section>
+        <section class="slide" data-title="只要認得這四個">
+          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <h2>只要認得這四個</h2>
+          <div class="card-grid">
+            <article class="card">
+              <p>看有哪些分支。</p>
+              <pre class="cmd"><code>git branch</code></pre>
+            </article>
+            <article class="card">
+              <p>開草稿，並切過去。</p>
+              <pre class="cmd"><code>git switch -c new-design</code></pre>
+            </article>
+            <article class="card">
+              <p>回到正式版。</p>
+              <pre class="cmd"><code>git switch main</code></pre>
+            </article>
+            <article class="card">
+              <p>在 main 把草稿合回來。</p>
+              <pre class="cmd"><code>git merge new-design</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：開草稿再合回來">
+          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <h2>練習：開草稿再合回來</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="branching"
+            data-mission="branch"
+            aria-label="練習：開草稿再合回來"
+          ></div>
+        </section>
+        <section class="slide" data-title="開分支，也能交給 Claude Code">
+          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <h2>開分支，也能交給 Claude Code</h2>
+          <div class="prompt-card">
+            <pre class="cmd"><code>我想試一個新的首頁設計，請幫我開一個分支再改，改完讓我預覽，我說好再合回 main。</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <section class="chapter" id="real-project" data-title="Git 第三章：實戰">
+        <section class="slide" data-title="整個流程一張圖">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>整個流程一張圖</h2>
+          <div class="diagram">
+            <span class="diagram-node">Lovable</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">GitHub（雲端）</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">你的電腦（clone）</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">Claude Code 修改</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">commit</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">push</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">GitHub → Lovable 自動同步回去</span>
+          </div>
+          <p>複製到本機叫 clone；把存檔送上雲端叫 push。今天把你的網站接起來。</p>
+        </section>
+        <section class="slide" data-title="方法 A（推薦）：Lovable 連上 GitHub">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>方法 A（推薦）：Lovable 連上 GitHub</h2>
+          <ol class="step-list">
+            <li>打開 Lovable 專案設定（Project settings）→ Git → GitHub。</li>
+            <li>按 Add account，安裝 Lovable 的 GitHub App。</li>
+            <li>按 Connect。Lovable 會建立新的私人儲存庫（repository，簡稱 repo）。</li>
+            <li>開始雙向同步，預設同步 main 分支。推上這個分支，Lovable 也會收到。</li>
+          </ol>
+          <p class="callout">推薦用於持續修改網站，讓本機與 Lovable 保持雙向同步。</p>
+          <p class="note">不要刪掉 GitHub 上的 repo，會斷開同步。一次只會同步一個分支，預設 main。</p>
+        </section>
+        <section class="slide" data-title="方法 B：下載程式碼再上傳">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>方法 B：下載程式碼再上傳</h2>
+          <ol class="step-list">
+            <li>Lovable 專案設定 → Git → Download codebase。你的付費方案可以直接下載。</li>
+            <li>解壓縮。打開 PowerShell，走到解壓縮後的資料夾。</li>
+          </ol>
+          <pre class="cmd"><code>cd &quot;C:\Users\你的名字\Downloads\你的網站資料夾&quot;</code></pre>
+          <pre class="cmd"><code>git init</code></pre>
+          <pre class="cmd"><code>git add .</code></pre>
+          <pre class="cmd"><code>git commit -m &quot;從 Lovable 匯入&quot;</code></pre>
+          <pre class="cmd"><code>gh repo create my-site --private --source=. --remote=origin --push</code></pre>
+          <p class="note">
+            這樣建立的 repo 不會跟 Lovable 同步，適合備份或一次性使用；持續修改請用方法 A。
+            後面有「自動同步」的步驟只適用方法 A。
+          </p>
+        </section>
+        <section class="slide" data-title="SSH key 是什麼：鑰匙與門鎖">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>SSH key 是什麼：鑰匙與門鎖</h2>
+          <p>SSH 是安全連線的方式。SSH 金鑰（key）像鑰匙與門鎖：</p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>私鑰 id_ed25519</h3>
+              <p>鑰匙留在自己電腦，絕不給別人。</p>
+            </article>
+            <article class="card">
+              <h3>公鑰 id_ed25519.pub</h3>
+              <p>交給 GitHub 當門鎖。設好後，push 不用再輸入 GitHub 帳密。</p>
+            </article>
+          </div>
+          <p class="note">
+            懶人做法：下面指令會引導你自動產生、上傳金鑰。我們接著練手動步驟，知道鑰匙放哪裡。
+          </p>
+          <pre class="cmd"><code>gh auth login -p ssh</code></pre>
+        </section>
+        <section class="slide" data-title="產生 SSH key">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>產生 SSH key</h2>
+          <p>Windows 10 1809 以上與 Windows 11 已內建 OpenSSH 用戶端。把信箱換成自己的：</p>
+          <pre class="cmd"><code>ssh-keygen -t ed25519 -C &quot;你的 GitHub 信箱&quot;</code></pre>
+          <ol class="step-list">
+            <li>存放位置用預設，按 Enter。若已有同名金鑰，不要覆蓋，先請老師協助。</li>
+            <li>密碼可留空，按 Enter 兩次；想多一層保護也可設密碼。</li>
+            <li>檔案會放在 C:\Users\你的名字\.ssh\。</li>
+          </ol>
+          <pre class="cmd"><code>ls $HOME\.ssh</code></pre>
+        </section>
+        <section class="slide" data-title="把公鑰交給 GitHub">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>把公鑰交給 GitHub</h2>
+          <p>第一次要多給 gh 一個權限，允許它上傳公鑰。</p>
+          <pre class="cmd"><code>gh auth refresh -h github.com -s admin:public_key</code></pre>
+          <pre class="cmd"><code>gh ssh-key add $HOME\.ssh\id_ed25519.pub --title &quot;我的筆電&quot;</code></pre>
+          <p>也可以改用網頁：先複製公鑰。</p>
+          <pre class="cmd"><code>Get-Content $HOME\.ssh\id_ed25519.pub | Set-Clipboard</code></pre>
+          <p class="note">GitHub Settings → SSH and GPG keys → New SSH key → 貼上。兩種做法擇一即可。</p>
+        </section>
+        <section class="slide" data-title="測試連線">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>測試連線</h2>
+          <pre class="cmd"><code>ssh -T git@github.com</code></pre>
+          <p>第一次看到 Are you sure you want to continue connecting (yes/no)?，輸入：</p>
+          <pre class="cmd"><code>yes</code></pre>
+          <pre class="example"><code>Hi 你的帳號! You've successfully authenticated, but GitHub does not provide shell access.</code></pre>
+          <p>看到這行就成功。它說不提供 shell 是正常的。讓 gh 之後使用 SSH：</p>
+          <pre class="cmd"><code>gh config set git_protocol ssh</code></pre>
+        </section>
+        <section class="slide" data-title="把網站抓到電腦（clone）">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>把網站抓到電腦（clone）</h2>
+          <p>PowerShell 依序執行；帳號與 repo 換成自己的。</p>
+          <pre class="cmd"><code>cd $HOME\Documents</code></pre>
+          <pre class="cmd"><code>git clone git@github.com:你的帳號/你的repo.git</code></pre>
+          <pre class="cmd"><code>cd 你的repo</code></pre>
+          <p class="note">Lovable 的 GitHub 設定頁也有 SSH 網址可以直接複製。</p>
+          <p>如果先前已經用 HTTPS 抓下來，不必重抓；在那個專案資料夾改連線地址：</p>
+          <pre class="cmd"><code>git remote set-url origin git@github.com:你的帳號/你的repo.git</code></pre>
+          <pre class="cmd"><code>git remote -v</code></pre>
+        </section>
+        <section class="slide" data-title="在本機預覽 Lovable 網站">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>在本機預覽 Lovable 網站</h2>
+          <p>Lovable 專案使用 React + Vite。要先安裝 Node.js，才有執行網站的工具 npm。</p>
+          <pre class="cmd"><code>winget install OpenJS.NodeJS.LTS</code></pre>
+          <p>裝完關掉並重開 PowerShell，再回到剛剛的網站資料夾。依序執行：</p>
+          <pre class="cmd"><code>npm install</code></pre>
+          <pre class="cmd"><code>npm run dev</code></pre>
+          <p>打開它顯示的 http://localhost:… 網址。這是自己電腦上的預覽。Ctrl+C 停止。</p>
+          <p class="note">也可以直接請 Claude Code 幫你跑起來。</p>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：把新作品推上 GitHub">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>練習：把新作品推上 GitHub</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="has-history"
+            data-mission="push"
+            aria-label="練習：把新作品推上 GitHub"
+          ></div>
+        </section>
+        <section class="slide" data-title="每天的工作循環">
+          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <h2>每天的工作循環</h2>
+          <ol class="step-list">
+            <li>先拿最新版：你可能也在 Lovable 改過。</li>
+            <li>請 Claude Code 修改 → 自己預覽。</li>
+            <li>確認後 add、commit、push。方法 A 會自動同步回 Lovable。</li>
+          </ol>
+          <pre class="cmd"><code>git pull</code></pre>
+          <pre class="cmd"><code>git add .</code></pre>
+          <pre class="cmd"><code>git commit -m &quot;更新首頁價目表&quot;</code></pre>
+          <pre class="cmd"><code>git push</code></pre>
+          <div class="prompt-card">
+            <pre class="cmd"><code>先 git pull 拿最新版。然後把首頁的價目表更新成：霧眉 8800、飄眉 9800。改完讓我預覽，確認後幫我 commit 並 push。</code></pre>
+          </div>
+        </section>
+      </section>
+
+      <section class="chapter" id="cheatsheet" data-title="小抄與課後練習">
+        <section class="slide" data-title="Claude Code 小抄">
+          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <h2>Claude Code 小抄</h2>
+          <p>前兩個在 PowerShell；斜線指令在 Claude Code 裡。</p>
+          <div class="cheat-grid">
+            <article class="card">
+              <p>啟動。</p>
+              <pre class="cmd"><code>claude</code></pre>
+            </article>
+            <article class="card">
+              <p>繼續上次。</p>
+              <pre class="cmd"><code>claude -c</code></pre>
+            </article>
+            <article class="card">
+              <p>查說明。</p>
+              <pre class="cmd"><code>/help</code></pre>
+            </article>
+            <article class="card">
+              <p>新對話。</p>
+              <pre class="cmd"><code>/clear</code></pre>
+            </article>
+            <article class="card">
+              <p>開設定。</p>
+              <pre class="cmd"><code>/config</code></pre>
+            </article>
+            <article class="card">
+              <p>設定狀態列。</p>
+              <pre class="cmd"><code>/statusline</code></pre>
+            </article>
+            <article class="card">
+              <p>建立專案說明。</p>
+              <pre class="cmd"><code>/init</code></pre>
+            </article>
+          </div>
+          <p class="note">Esc 中斷；Shift+Tab 切權限模式，練習用 manual mode。</p>
+        </section>
+        <section class="slide" data-title="Git 小抄">
+          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <h2>Git 小抄</h2>
+          <div class="cheat-grid">
+            <article class="card">
+              <p>看狀況。</p>
+              <pre class="cmd"><code>git status</code></pre>
+            </article>
+            <article class="card">
+              <p>放上拍照台。</p>
+              <pre class="cmd"><code>git add .</code></pre>
+            </article>
+            <article class="card">
+              <p>存一個檔，訊息換成這次做的事。</p>
+              <pre class="cmd"><code>git commit -m &quot;更新作品照片&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>看紀錄。</p>
+              <pre class="cmd"><code>git log --oneline</code></pre>
+            </article>
+            <article class="card">
+              <p>看修改。</p>
+              <pre class="cmd"><code>git diff</code></pre>
+            </article>
+            <article class="card">
+              <p>拿最新版。</p>
+              <pre class="cmd"><code>git pull</code></pre>
+            </article>
+            <article class="card">
+              <p>送上雲端。</p>
+              <pre class="cmd"><code>git push</code></pre>
+            </article>
+            <article class="card">
+              <p>開草稿。</p>
+              <pre class="cmd"><code>git switch -c new-design</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="GitHub / SSH 小抄">
+          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <h2>GitHub / SSH 小抄</h2>
+          <div class="cheat-grid">
+            <article class="card">
+              <p>登入。</p>
+              <pre class="cmd"><code>gh auth login</code></pre>
+            </article>
+            <article class="card">
+              <p>檢查登入。</p>
+              <pre class="cmd"><code>gh auth status</code></pre>
+            </article>
+            <article class="card">
+              <p>產生鑰匙。</p>
+              <pre class="cmd"><code>ssh-keygen -t ed25519 -C &quot;你的 GitHub 信箱&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>上傳公鑰。第一次需先授權，見實戰章。</p>
+              <pre class="cmd"><code>gh ssh-key add $HOME\.ssh\id_ed25519.pub --title &quot;我的筆電&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>測試連線。</p>
+              <pre class="cmd"><code>ssh -T git@github.com</code></pre>
+            </article>
+            <article class="card">
+              <p>抓到本機。</p>
+              <pre class="cmd"><code>git clone git@github.com:帳號/repo.git</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide sandbox-slide" data-title="Git 練習場">
+          <p class="eyebrow">06 · 課後玩玩看</p>
+          <h2>Git 練習場</h2>
+          <p>選一題、輸入指令、看圖怎麼變。進階題可以留到以後玩。</p>
+          <div class="git-lab"></div>
+        </section>
+        <section class="slide sandbox-slide" data-title="自由練習">
+          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <h2>自由練習</h2>
+          <div class="git-sandbox" data-scenario="empty" data-mission="free" aria-label="自由練習"></div>
+        </section>
+        <section class="slide" data-title="下次見：收藏這些資源">
+          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <h2>下次見：收藏這些資源</h2>
+          <p>課後試著更新一張作品照片，預覽後存檔。下次帶著你的網站和問題來。</p>
           <ul>
             <li><a href="https://git-scm.com/book/zh-tw">Pro Git 繁體中文版</a></li>
             <li><a href="https://learngitbranching.js.org/">Learn Git Branching</a></li>
-            <li><a href="https://docs.claude.com/en/docs/claude-code/overview">Claude Code 文件</a></li>
+            <li><a href="https://code.claude.com/docs">Claude Code 文件</a></li>
             <li><a href="https://cli.github.com/manual">GitHub CLI 手冊</a></li>
+            <li><a href="https://docs.lovable.dev/integrations/github">Lovable GitHub 文件</a></li>
           </ul>
           <p class="next-links">
-            <a href="#/2/0">重看安裝</a><a href="#/4/0">重練 Git</a><a href="#/9/1">玩 Git 練習場</a
-            ><a href="#/10/0">再看網站流程</a>
+            <a href="#/1/3">重看安裝</a><a href="#/3/7">重練 Git</a>
+            <a href="#/6/3">玩 Git 練習場</a><a href="#/2/0">再看網站流程</a>
           </p>
         </section>
       </section>

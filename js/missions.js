@@ -58,6 +58,24 @@ export const MISSIONS = {
     ],
   },
 
+  push: {
+    title: '把新作品推上 GitHub',
+    goal: '先推送一次，再修改、存檔，把新版本也推上去。',
+    steps: [
+      step('設定 origin', 'git remote add origin git@github.com:demo/my-site.git', 'remote-add'),
+      step('第一次 push', 'git push -u origin main', 'push'),
+      step('修改首頁', 'echo "新的作品照片" >> index.html', editedIndexHtml),
+      step('放上拍照台', 'git add .', 'add'),
+      step('存檔', 'git commit -m "新增作品照片"', 'commit'),
+      step(
+        '把新存檔推上 GitHub',
+        'git push',
+        state => state.events.has('commit') && state.events.has('push') &&
+          state.remote?.branches.main === state.branches.main,
+      ),
+    ],
+  },
+
   undo: {
     title: '後悔藥實驗室',
     goal: '每試完一種 reset 就按「重設」回到三個 commit（打勾會保留），比較三區的差別。',

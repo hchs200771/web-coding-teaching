@@ -1,6 +1,6 @@
 # Web Coding Teaching
 
-「用 AI Agent 蓋網站：從 Claude Code 到 Git」是一份給完全初學者的繁體中文互動課程。左右切換章節，上下深入內容。內建 Git / GitHub 模擬終端機、六個任務、Git 練習場（14 個題目：commit、branch、checkout、merge、rebase、reset、revert、刪分支、tag、fetch、pull、push…）、程式即時預覽與請求流程圖。
+「第一堂：用 Claude Code 管理你的網站」是一份給 Windows 10/11 + PowerShell 完全初學者的繁體中文互動課程。以紋繡師的 Lovable 網站為例，3 小時分成 7 章：第一堂課、Claude Code 安裝與試用、網站前端與後端、Git 存檔、分支簡介、Lovable / GitHub 實戰、小抄與課後練習。內建後端功能小測驗、拍照存檔動畫、5 個引導任務與自由練習，以及 Git 練習場（14 題）。任務模組另外保留 undo、remote、gh 三個舊任務供測試與日後使用。
 
 Git 練習場的版面與配色參考高見龍「為你自己學 Git」的 [Git 練習場](https://gitbook.tw/playground)。
 
@@ -52,6 +52,8 @@ python3 -m http.server 8000
 | `js/git-ui.js`           | 任務練習的畫面：任務面板、三區、commit 圖   |
 | `js/missions.js`         | 任務、提示與完成條件                        |
 | `js/playground.js`       | HTML/CSS/JS 編輯與隔離 iframe 預覽          |
+| `js/backend-quiz.js`     | 紋繡網站功能：是否需要後端的小測驗          |
+| `js/stage-demo.js`       | 工作目錄 → 暫存區 → 儲存庫的拍照存檔動畫    |
 | `js/request-flow.js`     | 點選與播放網站請求流程                      |
 | `js/terminal.js`         | 模擬終端機（輸出區、輸入列、↑↓ 叫回指令）   |
 | `js/commit-graph.js`     | commit 圖：版面配置、動畫、標籤、圖例       |
@@ -89,4 +91,4 @@ node --test tests/
 - 練習狀態重新整理後就消失。後悔藥任務按「重設」會保留打勾，方便比較三種 reset。
 - commit 圖中虛線的 commit 代表沒有任何分支、tag 或 HEAD 指著（例如 reset、rebase、刪分支之後），對應真實 Git 只能靠 reflog 找回的情況。
 
-安裝指令可能隨版本更新，教之前建議對照 [Claude Code 官方文件](https://docs.claude.com/en/docs/claude-code/overview) 確認。
+安裝指令可能隨版本更新，教之前建議對照 [Claude Code 官方文件](https://code.claude.com/docs) 確認。

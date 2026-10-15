@@ -134,6 +134,17 @@ function createSandbox(root) {
 
   // ---- 畫面更新 ----
   function renderAreas(state) {
+    // 記住三區裡原本的位置，讓 add / commit 看起來像把檔案搬過去。
+    const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches &&
+      !!root.closest('.slide.current');
+    const previous = new Map();
+    if (animate) {
+      for (const { key } of AREAS) {
+        for (const row of areaLists[key].querySelectorAll('.file-state')) {
+          previous.set(`${key}:${row.dataset.file}`, row.getBoundingClientRect());
+        }
+      }
+    }
     const head = state.commits[state.detached ?? state.branches[state.branch]]?.files || {};
     for (const { key, empty } of AREAS) {
       const list = areaLists[key];
@@ -142,8 +153,27 @@ function createSandbox(root) {
       if (!entries.length) list.append(make('li', 'muted', empty));
       for (const [name, status] of entries) {
         const row = make('li', `file-state ${status}`);
+        row.dataset.file = name;
         row.append(make('span', 'file-name', name), make('span', 'file-status', STATUS_TEXT[status]));
         list.append(row);
+      }
+    }
+    if (animate) {
+      for (const { key } of AREAS) {
+        for (const row of areaLists[key].querySelectorAll('.file-state')) {
+          // 儲存庫本來也可能有同名檔案；優先找剛從上一區消失的那份變更。
+          const source = AREAS.find(area => area.key !== key &&
+            previous.has(`${area.key}:${row.dataset.file}`) &&
+            ![...areaLists[area.key].querySelectorAll('.file-state')]
+              .some(item => item.dataset.file === row.dataset.file));
+          if (!source) continue;
+          const from = previous.get(`${source.key}:${row.dataset.file}`);
+          const to = row.getBoundingClientRect();
+          row.animate([
+            { transform: `translate(${from.left - to.left}px, ${from.top - to.top}px)`, background: 'var(--accent-soft)' },
+            { transform: 'translate(0, 0)', background: 'transparent' },
+          ], { duration: 450, easing: 'ease-out' });
+        }
       }
     }
   }
@@ -176,9 +206,11 @@ function createSandbox(root) {
     hintOutput.replaceChildren();
     hintOutput.classList.remove('done');
     if (next?.hint) {
-      const pre = make('pre', 'cmd');
-      pre.append(make('code', '', next.hint));
-      hintOutput.append(pre);
+      for (const command of next.hint.split('\n')) {
+        const pre = make('pre', 'cmd');
+        pre.append(make('code', '', command));
+        hintOutput.append(pre);
+      }
       initCopy(hintOutput);
     } else if (next) {
       hintOutput.textContent = '按右下角的「模擬同事推了一個 commit 到 GitHub」。';

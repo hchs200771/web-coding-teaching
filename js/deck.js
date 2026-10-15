@@ -3,6 +3,8 @@ import { initTabs } from './tabs.js';
 import { initGitUI } from './git-ui.js';
 import { initPlaygrounds } from './playground.js';
 import { initRequestFlow } from './request-flow.js';
+import { initBackendQuiz } from './backend-quiz.js';
+import { initStageDemo } from './stage-demo.js';
 import { initGitLab } from './git-lab.js';
 const chapters = [...document.querySelectorAll('.chapter')];
 const slides = chapters.map(c => [...c.querySelectorAll(':scope > .slide')]);
@@ -195,11 +197,13 @@ theme.addEventListener('click', () => {
   } catch {}
 });
 window.addEventListener('hashchange', restore);
-initCopy();
 initTabs();
 initGitUI();
 initPlaygrounds();
 initRequestFlow();
 initGitLab();
+initBackendQuiz();
+initStageDemo();
+initCopy();
 restore();
 if (!location.hash) history.replaceState(null, '', '#/0/0');

@@ -8,7 +8,7 @@ test('all mounted scenarios and missions exist', () => {
   const scenarios = new Set(SCENARIOS.map(s => s.id));
   for (const match of html.matchAll(/data-scenario="([^"]+)"/g)) assert.ok(scenarios.has(match[1]), match[1]);
   for (const match of html.matchAll(/data-mission="([^"]+)"/g)) assert.ok(MISSIONS[match[1]], match[1]);
-  assert.equal([...html.matchAll(/class="chapter"/g)].length, 13);
+  assert.equal([...html.matchAll(/class="chapter"/g)].length, 7);
 });
 test('linked local assets exist and tabs reference unique panels', async () => {
   for (const [, path] of html.matchAll(/(?:src|href)="((?:css|js)\/[^\"]+)"/g))
@@ -22,6 +22,7 @@ test('guided mission hints can complete every exercise', () => {
     'first-commit': 'fresh-files',
     'next-commit': 'has-history',
     branch: 'branching',
+    push: 'has-history',
     undo: 'has-history',
     remote: 'has-history',
     gh: 'gh-flow',
@@ -78,4 +79,24 @@ test('cache-busting module list covers every file in js/', async () => {
   const listed = html.match(/const MODULES = \[([\s\S]*?)\]/)[1];
   for (const file of files)
     assert.ok(listed.includes(`'${file.replace(/\.js$/, '')}'`), `${file} missing from MODULES`);
+});
+
+
+test('push mission requires the new commit to reach the remote', () => {
+  const sim = createSimulator('has-history');
+  for (const item of MISSIONS.push.steps.slice(0, -1)) sim.run(item.hint);
+  const last = MISSIONS.push.steps.at(-1);
+  assert.equal(last.check(sim.state), false);
+  sim.run(last.hint);
+  assert.equal(last.check(sim.state), true);
+  sim.run('echo "another change" >> index.html');
+  sim.run('git commit -am "another version"');
+  assert.equal(last.check(sim.state), false);
+});
+
+test('OS tabs start with Windows and have unique targets', () => {
+  const tabs = [...html.matchAll(/data-tab="([^"]+)"/g)].map(match => match[1]);
+  assert.equal(tabs.length, new Set(tabs).size);
+  for (const [, group] of html.matchAll(/class="tab-buttons"[^>]*>([\s\S]*?)<\/div>/g))
+    assert.match(group, /^\s*<button[^>]*>Windows/);
 });
