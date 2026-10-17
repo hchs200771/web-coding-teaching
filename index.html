@@ -407,35 +407,49 @@ Installing Claude Code native build latest...</code></pre>
             irm … | iex 會直接執行網路上的程式碼。只用在信任的官方網址；來路不明的網站叫你貼這種指令，不要照做。
           </p>
         </section>
-        <section class="slide" data-title="確認安裝與第一次登入">
+        <section class="slide" data-title="確認安裝成功">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>確認安裝與第一次登入</h2>
+          <h2>確認安裝成功</h2>
           <pre class="cmd"><code>claude --version</code></pre>
           <p>看版本，例如 2.1.x（Claude Code）。</p>
           <pre class="cmd"><code>claude doctor</code></pre>
           <p>做唯讀檢查，不會修改你的專案。</p>
-          <pre class="cmd"><code>claude</code></pre>
-          <ol class="step-list">
-            <li>選喜歡的外觀主題。</li>
-            <li>依畫面打開瀏覽器登入。</li>
-            <li>回到終端機，之後登入資料會保留。</li>
-          </ol>
-          <p class="note">若顯示找不到 claude，把 VS Code 整個關掉重開；只開新的終端機不夠。</p>
+          <p class="note">若顯示找不到 claude，先把 VS Code 整個關掉重開；只開新的終端機不夠。還是不行就看下一張。</p>
         </section>
         <section class="slide" data-title="卡關：無法辨識 claude">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
           <h2>卡關：無法辨識 claude</h2>
           <pre class="example"><code>claude : 無法辨識 'claude' 詞彙是否為 Cmdlet、函數、指令檔或可執行程式的名稱。</code></pre>
-          <p>電腦找不到 claude 這個程式。依序試：</p>
+          <p>程式裝好了，但電腦不知道去哪裡找它。在終端機依序執行這兩行：</p>
           <ol class="step-list">
-            <li>VS Code 所有視窗都關掉，再重新打開，開新的終端機再打 claude。</li>
-            <li>還是不行，先確認程式有沒有裝好。顯示 True 是有裝好，False 代表安裝沒跑完，回上一張重裝。</li>
+            <li>把 Claude Code 的位置加進 PATH（電腦找程式的路線清單）：</li>
           </ol>
-          <pre class="cmd"><code>Test-Path $HOME\.local\bin\claude.exe</code></pre>
-          <p>有裝好但找不到，就把它的位置加進 PATH：</p>
           <pre class="cmd"><code>[Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;) + &quot;;$HOME\.local\bin&quot;, &#x27;User&#x27;)</code></pre>
-          <p>再把 VS Code 整個關掉重開。等不及的話，這行可以先在目前的終端機啟動：</p>
+          <ol class="step-list" start="2">
+            <li>用完整路徑啟動 Claude Code，現在就能用：</li>
+          </ol>
           <pre class="cmd"><code>&amp; &quot;$HOME\.local\bin\claude.exe&quot;</code></pre>
+          <p class="note">
+            下次把 VS Code 整個關掉重開後，直接打 claude 就可以。
+            第二行如果顯示找不到檔案，代表安裝沒跑完，回到「安裝 Claude Code」重裝。
+          </p>
+        </section>
+        <section class="slide" data-title="第一次登入：授權流程">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>第一次登入：授權流程</h2>
+          <pre class="cmd"><code>claude</code></pre>
+          <ol class="step-list">
+            <li>選喜歡的外觀主題，用上下方向鍵選，Enter 確認。</li>
+            <li>選登入方式：選 Claude 帳號（Claude account with subscription），不是 Console。</li>
+            <li>瀏覽器會自動打開 Claude 的授權頁。還沒登入就先登入有訂閱的帳號。</li>
+            <li>頁面列出 Claude Code 會用到的權限，例如存取 Claude Code 工作階段、代表你上傳檔案。拉到最下面，按「授權」。</li>
+            <li>回到 VS Code 的終端機，看到登入成功，按 Enter 繼續。</li>
+            <li>問是否信任這個資料夾（trust this folder）：自己的資料夾選 Yes。</li>
+          </ol>
+          <p class="note">
+            瀏覽器沒有自動打開：按住 Ctrl 點終端機裡的網址。授權頁給你一串代碼的話，複製後貼回終端機，按 Enter。
+            登入一次就會記住，之後不用再登入。
+          </p>
         </section>
         <section class="slide" data-title="開兩個終端機：一個聊天、一個下指令">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
