@@ -354,8 +354,14 @@
           <p class="note">
             Windows 10 1809 以上或 Windows 11、至少 4GB 記憶體與網路。
             不用管理員權限，也不用先裝 Git，等一下的 Git 第一章才裝。原生安裝會自動更新。
-            下載時可能沒有進度，請等完成，再把 VS Code 整個關掉重開。
           </p>
+          <p class="callout">
+            這裡大概要等 5 到 10 分鐘。下載時畫面不會動、也沒有進度條，下載完才會出現下面的文字。不要關掉視窗。
+          </p>
+          <pre class="example"><code>Setting up Claude Code...
+
+Installing Claude Code native build latest...</code></pre>
+          <p>出現這兩行代表正在安裝，再等它跑完。完成後把 VS Code 整個關掉重開。</p>
           <p class="note">
             看到「The token '&&' is not a valid statement separator」：把 CMD 指令貼進 PowerShell 了。
             看到「'irm' is not recognized」：把 PowerShell 指令貼進 CMD 了。
@@ -415,6 +421,21 @@
             <li>回到終端機，之後登入資料會保留。</li>
           </ol>
           <p class="note">若顯示找不到 claude，把 VS Code 整個關掉重開；只開新的終端機不夠。</p>
+        </section>
+        <section class="slide" data-title="卡關：無法辨識 claude">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>卡關：無法辨識 claude</h2>
+          <pre class="example"><code>claude : 無法辨識 'claude' 詞彙是否為 Cmdlet、函數、指令檔或可執行程式的名稱。</code></pre>
+          <p>電腦找不到 claude 這個程式。依序試：</p>
+          <ol class="step-list">
+            <li>VS Code 所有視窗都關掉，再重新打開，開新的終端機再打 claude。</li>
+            <li>還是不行，先確認程式有沒有裝好。顯示 True 是有裝好，False 代表安裝沒跑完，回上一張重裝。</li>
+          </ol>
+          <pre class="cmd"><code>Test-Path $HOME\.local\bin\claude.exe</code></pre>
+          <p>有裝好但找不到，就把它的位置加進 PATH：</p>
+          <pre class="cmd"><code>[Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;) + &quot;;$HOME\.local\bin&quot;, &#x27;User&#x27;)</code></pre>
+          <p>再把 VS Code 整個關掉重開。等不及的話，這行可以先在目前的終端機啟動：</p>
+          <pre class="cmd"><code>&amp; &quot;$HOME\.local\bin\claude.exe&quot;</code></pre>
         </section>
         <section class="slide" data-title="開兩個終端機：一個聊天、一個下指令">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
