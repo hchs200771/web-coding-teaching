@@ -1,6 +1,6 @@
 # Web Coding Teaching
 
-「第一堂：用 Claude Code 管理你的網站」是一份給 Windows 10/11 + PowerShell 完全初學者的繁體中文互動課程。以紋繡師的 Lovable 網站為例，3 小時分成 8 章：第一堂課、VS Code 安裝與介紹、Claude Code 安裝與試用、網站前端與後端、Git 存檔、分支簡介、Lovable / GitHub 實戰、小抄與課後練習。內建後端功能小測驗、拍照存檔動畫、5 個引導任務與自由練習，以及 Git 練習場（14 題）。任務模組另外保留 undo、remote、gh 三個舊任務供測試與日後使用。
+「第一堂：用 Claude Code 管理你的網站」是一份給 Windows 10/11 + PowerShell 完全初學者的繁體中文互動課程。以紋繡師的 Lovable 網站為例，3 小時分成 9 章：上課前要準備、第一堂課、VS Code 安裝與介紹、Claude Code 安裝與試用、網站前端與後端、Git 存檔、分支簡介、Lovable / GitHub 實戰、小抄與課後練習。內建後端功能小測驗、拍照存檔動畫、5 個引導任務與自由練習，以及 Git 練習場（14 題）。任務模組另外保留 undo、remote、gh 三個舊任務供測試與日後使用。
 
 Git 練習場的版面與配色參考高見龍「為你自己學 Git」的 [Git 練習場](https://gitbook.tw/playground)。
 

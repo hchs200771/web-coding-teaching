@@ -39,6 +39,12 @@ export async function copyText(text) {
   legacyCopy(text);
 }
 
+// 兩個疊在一起的方框：大家熟悉的「複製」圖示
+const COPY_ICON =
+  '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" ' +
+  'stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/>' +
+  '<path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"/></svg>';
+
 export function initCopy(root = document) {
   root.querySelectorAll('pre.cmd').forEach(pre => {
     if (pre.querySelector('.copy-button')) return;
@@ -46,20 +52,21 @@ export function initCopy(root = document) {
     const button = document.createElement('button');
     button.className = 'copy-button';
     button.type = 'button';
-    button.textContent = '複製';
+    button.innerHTML = `${COPY_ICON}<span>複製</span>`;
     button.setAttribute('aria-label', '複製指令');
+    const label = button.querySelector('span');
 
     button.addEventListener('click', async () => {
       try {
         await copyText(pre.querySelector('code').textContent);
-        button.textContent = '已複製 ✓';
+        label.textContent = '已複製';
         button.classList.add('copied');
       } catch {
-        button.textContent = '請手動選取';
+        label.textContent = '請手動選取';
       }
       clearTimeout(button.resetTimer);
       button.resetTimer = setTimeout(() => {
-        button.textContent = '複製';
+        label.textContent = '複製';
         button.classList.remove('copied');
       }, 1500);
     });

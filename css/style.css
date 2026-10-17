@@ -52,11 +52,16 @@
   box-sizing: border-box;
 }
 
+/* rem 跟著放大：投影片在教室投影時要看得清楚 */
+html {
+  font-size: 112.5%;
+}
+
 body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.65;
   overflow: hidden;
 }
@@ -235,7 +240,7 @@ kbd {
 .slide > p,
 .slide > ul,
 .slide > ol {
-  max-width: 850px;
+  max-width: 960px;
 }
 
 .slide > h1,
@@ -561,7 +566,7 @@ pre.cmd {
   position: relative;
   flex-shrink: 0;
   margin: 12px 0;
-  padding: 18px 96px 18px 36px;
+  padding: 18px 124px 18px 36px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--surface);
@@ -582,17 +587,37 @@ pre.cmd code {
   font-size: 0.86rem;
 }
 
+/* 深色實心 + 複製圖示，跟淺色的指令框分得開；上下置中 */
 .copy-button {
   position: absolute;
-  top: 10px;
-  right: 9px;
-  padding: 5px 10px;
-  font-size: 0.75rem;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: var(--ink);
+  border-color: var(--ink);
+  border-radius: 10px;
+  color: var(--surface);
+}
+
+.copy-button svg {
+  flex-shrink: 0;
+}
+
+.copy-button:hover {
+  background: var(--ink);
+  filter: brightness(1.25);
 }
 
 .copy-button.copied {
-  color: var(--accent);
+  background: var(--accent);
   border-color: var(--accent);
+  color: var(--surface);
 }
 
 /* 小抄頁：指令兩欄排，比較省空間 */
@@ -606,10 +631,6 @@ pre.cmd code {
   margin: 4px 0;
   padding-top: 12px;
   padding-bottom: 12px;
-}
-
-.cheat-grid .copy-button {
-  top: 7px;
 }
 
 /* ---- 作業系統分頁 ---- */
@@ -744,12 +765,19 @@ pre.cmd code {
   padding-bottom: 8px;
 }
 
-.hint-output pre.cmd code {
-  font-size: 0.78rem;
+/* 提示框比較矮，按鈕跟著縮小才不會超出框 */
+.hint-output .copy-button {
+  padding: 3px 12px;
+  font-size: 0.8rem;
 }
 
-.hint-output .copy-button {
-  top: 5px;
+.hint-output .copy-button svg {
+  width: 14px;
+  height: 14px;
+}
+
+.hint-output pre.cmd code {
+  font-size: 0.78rem;
 }
 
 .sandbox-body {
@@ -1922,7 +1950,7 @@ pre.cmd code {
 
 @media (min-width: 1500px) {
   .terminal-history {
-    font-size: 13px;
+    font-size: 15px;
   }
 }
 
@@ -1932,8 +1960,12 @@ pre.cmd code {
     --footer-height: 78px;
   }
 
+  html {
+    font-size: 100%;
+  }
+
   body {
-    font-size: 16px;
+    font-size: 17px;
   }
 
   .deck-header {
