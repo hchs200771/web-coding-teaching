@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f5f3ee" />
-    <meta name="description" content="第一堂 3 小時：Windows 零基礎，用 Claude Code 管理紋繡網站，認識前後端與 Git / GitHub。" />
+    <meta name="description" content="第一堂 3 小時：Windows 零基礎，從安裝 VS Code 開始，用 Claude Code 管理紋繡網站，認識前後端與 Git / GitHub。" />
     <title>第一堂：用 Claude Code 管理你的網站</title>
     <script>
       // 每次開頁都在 CSS / JS 網址後面加上新的版本號，避免瀏覽器拿到「新的 HTML + 舊的 JS」。
@@ -62,7 +62,7 @@
         <section class="slide cover" data-title="第一堂：用 Claude Code 管理你的網站">
           <p class="eyebrow">00 · 第一堂課</p>
           <h1>第一堂：用 Claude Code 管理你的網站</h1>
-          <p class="lead">今天裝好 Claude Code、搞懂網站前後端、用 Git / GitHub 幫網站存檔。</p>
+          <p class="lead">今天裝好 VS Code 與 Claude Code、搞懂網站前後端、用 Git / GitHub 幫網站存檔。</p>
           <div class="tag-row">
             <span class="tag">3 小時</span><span class="tag">零基礎</span><span class="tag">Windows</span>
           </div>
@@ -83,19 +83,23 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>0:00–0:50</td>
+                  <td>0:00–0:20</td>
+                  <td>VS Code 安裝與介紹（編輯器、終端機）</td>
+                </tr>
+                <tr>
+                  <td>0:20–1:05</td>
                   <td>Claude Code 安裝、設定與試用</td>
                 </tr>
                 <tr>
-                  <td>0:50–1:10</td>
+                  <td>1:05–1:20</td>
                   <td>網站前端與後端</td>
                 </tr>
                 <tr>
-                  <td>1:10–1:20</td>
+                  <td>1:20–1:30</td>
                   <td>休息</td>
                 </tr>
                 <tr>
-                  <td>1:20–2:10</td>
+                  <td>1:30–2:10</td>
                   <td>Git 第一章：環境設定與存檔（add / commit）</td>
                 </tr>
                 <tr>
@@ -118,43 +122,118 @@
             <li>Space / PageDown 往下看；PageUp 往回看。Home / End 到第一張 / 最後一張。</li>
             <li>Esc 開啟或關閉總覽。手機可以滑動；內容太長就往下捲。</li>
             <li>每個指令都有「複製」按鈕。直接點它，不用自己選取文字。</li>
-            <li>先看清楚要貼在 PowerShell，還是 Claude Code 裡，再按 Enter。</li>
+            <li>先看清楚要貼在 PowerShell（VS Code 的終端機），還是 Claude Code 裡，再按 Enter。</li>
           </ol>
         </section>
       </section>
 
-      <section class="chapter" id="claude-code" data-title="Claude Code 安裝與試用">
-        <section class="slide" data-title="Claude Code 是什麼">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
-          <h2>Claude Code 是什麼</h2>
+      <section class="chapter" id="vscode" data-title="VS Code 安裝與介紹">
+        <section class="slide" data-title="VS Code 是什麼">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>VS Code 是什麼</h2>
           <p class="lead">
-            Claude Code 是住在終端機（terminal）裡的 AI 助手（agent）。它能讀檔、改檔，也能執行指令。
-            你是檢查成果的人（reviewer）。
+            VS Code（Visual Studio Code）是免費的程式編輯器。看檔案、改檔案、下指令，都在同一個視窗。
           </p>
           <div class="card-grid">
             <article class="card">
-              <h3>一般對話</h3>
-              <p>像問朋友怎麼做。拿到建議後，要自己動手。</p>
+              <h3>像記事本，但更聰明</h3>
+              <p>網站的檔案其實都是文字。VS Code 會幫程式碼上色，比較好讀。</p>
             </article>
             <article class="card">
-              <h3>Claude Code</h3>
-              <p>像有助手坐在你旁邊。先問過你，再幫你動手；權限模式會影響詢問方式。</p>
+              <h3>今天的工作台</h3>
+              <p>左邊看檔案，中間看內容，下面的終端機跑 Claude Code 和 Git。</p>
             </article>
           </div>
         </section>
-        <section class="slide" data-title="打開 PowerShell">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
-          <h2>打開 PowerShell</h2>
+        <section class="slide" data-title="下載 VS Code">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>下載 VS Code</h2>
           <ol class="step-list">
-            <li>按 Windows 的 Win 鍵。</li>
-            <li>輸入 PowerShell 或「終端機」，按 Enter。</li>
+            <li>打開瀏覽器，到 <a href="https://code.visualstudio.com/">code.visualstudio.com</a>。</li>
+            <li>按藍色的下載按鈕。網站會自動選好你的系統。</li>
+            <li>到「下載」資料夾，雙擊剛下載的安裝檔。</li>
+          </ol>
+          <div class="tabs">
+            <div class="tab-buttons" aria-label="選擇作業系統">
+              <button type="button" data-tab="vscode-install-0">Windows</button>
+              <button type="button" data-tab="vscode-install-1">macOS</button>
+            </div>
+            <div class="tab-panel" id="vscode-install-0">
+              <p>檔名像 VSCodeUserSetup-x64-….exe。這是 User Installer，不用管理員權限。</p>
+            </div>
+            <div class="tab-panel" id="vscode-install-1" hidden>
+              <p>下載的是 .zip。解開後，把 Visual Studio Code 拖進「應用程式」資料夾。</p>
+            </div>
+          </div>
+          <p class="note">只從官網下載。搜尋結果裡的其他下載站可能夾帶廣告軟體。</p>
+        </section>
+        <section class="slide" data-title="安裝時要勾的選項">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>安裝時要勾的選項</h2>
+          <p>一路按「下一步」。到「選取其他工作」這頁，確認下面都有勾：</p>
+          <ol class="step-list">
+            <li>將「以 Code 開啟」動作加入 Windows 檔案總管檔案的操作功能表。</li>
+            <li>將「以 Code 開啟」動作加入 Windows 檔案總管目錄的操作功能表。</li>
+            <li>加入 PATH（重新啟動後生效）。這個最重要，預設已經勾好。</li>
+          </ol>
+          <p class="note">前兩個讓你在資料夾上按右鍵，就能用 VS Code 打開。最後勾「啟動 Visual Studio Code」，按完成。</p>
+        </section>
+        <section class="slide" data-title="第一次打開：換成中文">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>第一次打開：換成中文</h2>
+          <p>右下角通常會跳出「安裝語言套件」的提示，直接按安裝並重新啟動。沒看到的話：</p>
+          <ol class="step-list">
+            <li>按 Ctrl+Shift+X 打開延伸模組（Extensions）。</li>
+            <li>搜尋 Chinese (Traditional)，安裝 Microsoft 出的那一個。</li>
+            <li>按右下角的 Change Language and Restart。</li>
+          </ol>
+          <p class="note">歡迎頁可以直接關掉。想換深色或淺色外觀：Ctrl+K 放開，再按 Ctrl+T。</p>
+        </section>
+        <section class="slide" data-title="打開一個資料夾">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>打開一個資料夾</h2>
+          <p>VS Code 一次打開「一整個資料夾」。一個網站就是一個資料夾。</p>
+          <ol class="step-list">
+            <li>上方選單選「檔案 → 開啟資料夾」。</li>
+            <li>先選「文件」資料夾試試看，按「選擇資料夾」。</li>
+            <li>問「是否信任此資料夾中檔案的作者」：自己的資料夾就按「是，我信任作者」。</li>
+          </ol>
+          <p class="note">從別人那裡下載、不確定的資料夾，先選「否，我不信任」，只看不執行。</p>
+        </section>
+        <section class="slide" data-title="VS Code 畫面的五個區塊">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>VS Code 畫面的五個區塊</h2>
+          <div class="vscode-map" role="img" aria-label="VS Code 畫面配置：最左活動列、左邊側邊欄、中間編輯區、下方面板、最底狀態列">
+            <div class="vm-activity">1</div>
+            <div class="vm-side">2 側邊欄</div>
+            <div class="vm-editor">3 編輯區</div>
+            <div class="vm-panel">4 面板（終端機）</div>
+            <div class="vm-status">5 狀態列</div>
+          </div>
+          <ol class="step-list">
+            <li><strong>活動列</strong>：最左邊一排圖示。檔案總管、搜尋、原始檔控制（Git）、延伸模組都從這裡切換。</li>
+            <li><strong>側邊欄</strong>：點活動列的圖示就換內容。最常用檔案總管，看資料夾裡有哪些檔案。Ctrl+B 收起或打開。</li>
+            <li><strong>編輯區</strong>：點檔名就在這裡打開，上方是分頁。分頁上有白點代表還沒存，按 Ctrl+S 存檔。</li>
+            <li><strong>面板</strong>：終端機住在這裡。Ctrl+` 打開或收起。</li>
+            <li><strong>狀態列</strong>：最底下一條。左邊顯示目前的 Git 分支，右邊顯示游標在第幾行。</li>
+          </ol>
+          <p class="note">忘記功能在哪：Ctrl+Shift+P 打開命令選擇區，直接打字搜尋。Ctrl+P 用檔名找檔案。</p>
+        </section>
+        <section class="slide" data-title="在 VS Code 打開終端機">
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
+          <h2>在 VS Code 打開終端機</h2>
+          <p>終端機（terminal）是用打字下指令的視窗。VS Code 下方的面板就有一個，Windows 預設是 PowerShell。</p>
+          <ol class="step-list">
+            <li>按 Ctrl+`（Esc 下面那顆鍵），或從上方選單選「終端機 → 新增終端」。</li>
+            <li>畫面下方會出現終端機面板。</li>
             <li>看到下面這行，就可以輸入指令。</li>
           </ol>
           <pre class="example"><code>PS C:\Users\你的名字&gt;</code></pre>
           <p>這行提示像地址牌：告訴你現在在哪個資料夾。PS 表示這裡是 PowerShell。</p>
+          <p class="note">之後投影片寫「在 PowerShell 輸入」，就是貼在這個終端機裡。</p>
         </section>
         <section class="slide" data-title="終端機三個基本動作">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">01 · VS Code 安裝與介紹</p>
           <h2>終端機三個基本動作</h2>
           <div class="card-grid">
             <article class="card">
@@ -179,10 +258,31 @@
             若桌面放在 OneDrive，後面的「整理桌面」有專用走法。
           </p>
         </section>
+      </section>
+
+      <section class="chapter" id="claude-code" data-title="Claude Code 安裝與試用">
+        <section class="slide" data-title="Claude Code 是什麼">
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
+          <h2>Claude Code 是什麼</h2>
+          <p class="lead">
+            Claude Code 是住在終端機（terminal）裡的 AI 助手（agent）。它能讀檔、改檔，也能執行指令。
+            你是檢查成果的人（reviewer）。
+          </p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>一般對話</h3>
+              <p>像問朋友怎麼做。拿到建議後，要自己動手。</p>
+            </article>
+            <article class="card">
+              <h3>Claude Code</h3>
+              <p>像有助手坐在你旁邊。先問過你，再幫你動手；權限模式會影響詢問方式。</p>
+            </article>
+          </div>
+        </section>
         <section class="slide" data-title="安裝 Claude Code">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>安裝 Claude Code</h2>
-          <p>在剛剛的 PowerShell 貼上 Windows PowerShell 這一格。</p>
+          <p>在 VS Code 的終端機（PowerShell）貼上 Windows PowerShell 這一格。</p>
           <div class="tabs">
             <div class="tab-buttons" aria-label="選擇作業系統">
               <button type="button" data-tab="claude-install-0">Windows（PowerShell）</button>
@@ -206,7 +306,7 @@
           <p class="note">
             Windows 10 1809 以上或 Windows 11、至少 4GB 記憶體與網路。
             不用管理員權限，也不用先裝 Git，等一下的 Git 第一章才裝。原生安裝會自動更新。
-            下載時可能沒有進度，請等完成，再關掉並重開 PowerShell。
+            下載時可能沒有進度，請等完成，再把 VS Code 整個關掉重開。
           </p>
           <p class="note">
             看到「The token '&&' is not a valid statement separator」：把 CMD 指令貼進 PowerShell 了。
@@ -214,7 +314,7 @@
           </p>
         </section>
         <section class="slide" data-title="確認安裝與第一次登入">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>確認安裝與第一次登入</h2>
           <pre class="cmd"><code>claude --version</code></pre>
           <p>看版本，例如 2.1.x（Claude Code）。</p>
@@ -226,10 +326,10 @@
             <li>依畫面打開瀏覽器登入。</li>
             <li>回到終端機，之後登入資料會保留。</li>
           </ol>
-          <p class="note">若顯示找不到 claude，先把 PowerShell 關掉重開。</p>
+          <p class="note">若顯示找不到 claude，把 VS Code 整個關掉重開；只開新的終端機不夠。</p>
         </section>
         <section class="slide" data-title="設定 1：外觀與偏好">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>設定 1：外觀與偏好</h2>
           <p>下面有斜線的指令，要輸入在 Claude Code 裡。不是 PowerShell。</p>
           <div class="card-grid">
@@ -252,7 +352,7 @@
           </div>
         </section>
         <section class="slide" data-title="設定 2：底下的狀態列">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>設定 2：底下的狀態列</h2>
           <p>狀態列（status line）像儀表板。在底下顯示目前模型、資料夾、Git 分支。</p>
           <p>在 Claude Code 裡貼上，讓它幫你設定：</p>
@@ -263,7 +363,7 @@
           <p class="note">設定檔是 JSON：不能加註解或最後多一個逗號。自訂狀態列可能藏起部分底部快捷鍵提示。</p>
         </section>
         <section class="slide" data-title="設定 3：權限模式與安全">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>設定 3：權限模式與安全</h2>
           <p>Shift+Tab 切模式。先看底下的名稱，練習時切到 manual mode。</p>
           <div class="card-grid">
@@ -296,7 +396,7 @@
           </p>
         </section>
         <section class="slide" data-title="常用指令小卡">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>常用指令小卡</h2>
           <p>這些斜線指令在 Claude Code 裡輸入：</p>
           <div class="card-grid">
@@ -320,12 +420,12 @@
           <p>下面這個則在 PowerShell 輸入：</p>
           <pre class="cmd"><code>claude -c</code></pre>
           <p class="note">
-            繼續這個資料夾上次的對話。Windows Terminal 可按 Shift+Enter 換行；
-            也可用 Ctrl+J，或先打反斜線 \ 再按 Enter。
+            繼續這個資料夾上次的對話。要換行可按 Ctrl+J，或先打反斜線 \ 再按 Enter；
+            在 Claude Code 裡執行一次 /terminal-setup，VS Code 也能用 Shift+Enter 換行。
           </p>
         </section>
         <section class="slide" data-title="試用 1：先聊聊">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>試用 1：先聊聊</h2>
           <p>先在 Claude Code 裡問兩個小問題：</p>
           <div class="prompt-card">
@@ -336,9 +436,9 @@
           </div>
         </section>
         <section class="slide" data-title="試用 2：整理桌面">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>試用 2：整理桌面</h2>
-          <p>先回到 PowerShell，走到真正的桌面；放在 OneDrive 也找得到。</p>
+          <p>先按兩次 Ctrl+C 離開 Claude Code，回到 PowerShell，走到真正的桌面；放在 OneDrive 也找得到。</p>
           <pre class="cmd"><code>cd ([Environment]::GetFolderPath(&#x27;Desktop&#x27;))</code></pre>
           <pre class="cmd"><code>claude</code></pre>
           <div class="prompt-card">
@@ -347,7 +447,7 @@
           <p class="callout">先計畫、再確認、不刪除。也可以按 Shift+Tab 切到計畫模式。</p>
         </section>
         <section class="slide" data-title="試用 3：整理指定資料夾">
-          <p class="eyebrow">01 · Claude Code 安裝與試用</p>
+          <p class="eyebrow">02 · Claude Code 安裝與試用</p>
           <h2>試用 3：整理指定資料夾</h2>
           <p>回到 PowerShell，改走下載資料夾。</p>
           <pre class="cmd"><code>cd $HOME\Downloads</code></pre>
@@ -378,7 +478,7 @@
 
       <section class="chapter" id="web-basics" data-title="網站前端與後端">
         <section class="slide" data-title="打開網站時發生什麼">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>打開網站時發生什麼</h2>
           <p>
             像點餐：瀏覽器送出請求（request），伺服器把畫面或資料送回來。
@@ -387,7 +487,7 @@
           <div class="request-flow"></div>
         </section>
         <section class="slide" data-title="前端與後端：想成一間餐廳">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>前端與後端：想成一間餐廳</h2>
           <div class="card-grid">
             <article class="card">
@@ -404,13 +504,13 @@
           </div>
         </section>
         <section class="slide" data-title="這個功能需要後端嗎？">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>這個功能需要後端嗎？</h2>
           <p>想一想你的紋繡網站。先猜，再點功能看答案。</p>
           <div class="backend-quiz"></div>
         </section>
         <section class="slide" data-title="靜態網站與動態網站">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>靜態網站與動態網站</h2>
           <div class="card-grid">
             <article class="card">
@@ -425,7 +525,7 @@
           <p class="callout">你的網站現在：靜態網站就夠了。作品、服務、價目表，加一個 LINE 預約連結。</p>
         </section>
         <section class="slide" data-title="SEO 先打底：讓 Google 找得到你">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>SEO 先打底：讓 Google 找得到你</h2>
           <p>搜尋引擎最佳化（SEO），先想成替店面掛好招牌。</p>
           <ol class="step-list">
@@ -439,7 +539,7 @@
           </p>
         </section>
         <section class="slide" data-title="以後需要後端時">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>以後需要後端時</h2>
           <div class="card-grid">
             <article class="card">
@@ -453,7 +553,7 @@
           </div>
         </section>
         <section class="slide break-slide" data-title="☕ 休息 10 分鐘">
-          <p class="eyebrow">02 · 網站前端與後端</p>
+          <p class="eyebrow">03 · 網站前端與後端</p>
           <h2>☕ 休息 10 分鐘</h2>
           <p class="lead">起來走走，喝口水。</p>
           <p>回來後：Git 與 GitHub</p>
@@ -462,7 +562,7 @@
 
       <section class="chapter" id="git-basics" data-title="Git 第一章：存檔">
         <section class="slide" data-title="Git 是什麼">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>Git 是什麼</h2>
           <p class="lead">像遊戲存檔點（commit）：每完成一小步就存一次，之後可以回頭看。</p>
           <div class="card-grid">
@@ -477,7 +577,7 @@
           </div>
         </section>
         <section class="slide" data-title="安裝 Git 與 GitHub CLI">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>安裝 Git 與 GitHub CLI</h2>
           <p>GitHub 命令列工具（GitHub CLI，簡稱 gh）幫我們登入、建保管箱。</p>
           <div class="tabs">
@@ -494,12 +594,12 @@
               <pre class="cmd"><code>brew install git gh</code></pre>
             </div>
           </div>
-          <p class="callout">裝完把 PowerShell 整個關掉再開。Windows Terminal 要開新視窗，只有新分頁不夠。</p>
+          <p class="callout">裝完把 VS Code 整個關掉再打開。只開新的終端機不夠。</p>
           <pre class="cmd"><code>git --version</code></pre>
           <pre class="cmd"><code>gh --version</code></pre>
         </section>
         <section class="slide" data-title="告訴 Git 你是誰">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>告訴 Git 你是誰</h2>
           <p>每次存檔都會簽上名字。把下面的名字與信箱換成自己的。</p>
           <pre class="cmd"><code>git config --global user.name &quot;你的名字&quot;</code></pre>
@@ -509,7 +609,7 @@
           <pre class="cmd"><code>git config --global --list</code></pre>
         </section>
         <section class="slide" data-title="讓電腦連上 GitHub">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>讓電腦連上 GitHub</h2>
           <p>還沒有帳號，先到 <a href="https://github.com/signup">GitHub 註冊</a>。</p>
           <pre class="cmd"><code>gh auth login</code></pre>
@@ -523,13 +623,13 @@
           <p>確認這台電腦已經登入你的帳號。</p>
         </section>
         <section class="slide" data-title="三個區域：拍照存檔">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>三個區域：拍照存檔</h2>
           <p>改好檔案 → 放上拍照台 → 拍成一張存檔照片。先按修改，再按 add 與 commit。</p>
           <div class="stage-demo"></div>
         </section>
         <section class="slide" data-title="把資料夾變成 Git 專案">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>把資料夾變成 Git 專案</h2>
           <p>在 PowerShell 依序執行：</p>
           <pre class="cmd"><code>mkdir my-site</code></pre>
@@ -538,7 +638,7 @@
           <p class="note">隱藏的 .git 資料夾就是存檔簿。每個專案只要初始化一次，不要刪它。</p>
         </section>
         <section class="slide" data-title="四個每天用的指令">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>四個每天用的指令</h2>
           <div class="card-grid">
             <article class="card">
@@ -562,7 +662,7 @@
           <pre class="cmd"><code>git diff</code></pre>
         </section>
         <section class="slide sandbox-slide" data-title="練習：第一次存檔">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>練習：第一次存檔</h2>
           <div
             class="git-sandbox"
@@ -572,7 +672,7 @@
           ></div>
         </section>
         <section class="slide sandbox-slide" data-title="練習：修改後再存檔">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>練習：修改後再存檔</h2>
           <div
             class="git-sandbox"
@@ -582,7 +682,7 @@
           ></div>
         </section>
         <section class="slide" data-title="好的存檔訊息，讓以後的你看得懂">
-          <p class="eyebrow">03 · Git 第一章：存檔</p>
+          <p class="eyebrow">04 · Git 第一章：存檔</p>
           <h2>好的存檔訊息，讓以後的你看得懂</h2>
           <div class="card-grid">
             <article class="card">
@@ -602,13 +702,13 @@
 
       <section class="chapter" id="branches" data-title="Git 第二章：分支簡介">
         <section class="slide" data-title="分支是什麼：另開一本草稿">
-          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <p class="eyebrow">05 · Git 第二章：分支簡介</p>
           <h2>分支是什麼：另開一本草稿</h2>
           <p class="lead">分支（branch）像草稿本。main 是正式版；另開分支試新設計，滿意再合回來（merge）。</p>
           <p class="callout">一個人做網站，大多時候直接在 main 上存檔就好。想大改版、不確定要不要時才開分支。</p>
         </section>
         <section class="slide" data-title="只要認得這四個">
-          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <p class="eyebrow">05 · Git 第二章：分支簡介</p>
           <h2>只要認得這四個</h2>
           <div class="card-grid">
             <article class="card">
@@ -630,7 +730,7 @@
           </div>
         </section>
         <section class="slide sandbox-slide" data-title="練習：開草稿再合回來">
-          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <p class="eyebrow">05 · Git 第二章：分支簡介</p>
           <h2>練習：開草稿再合回來</h2>
           <div
             class="git-sandbox"
@@ -640,7 +740,7 @@
           ></div>
         </section>
         <section class="slide" data-title="開分支，也能交給 Claude Code">
-          <p class="eyebrow">04 · Git 第二章：分支簡介</p>
+          <p class="eyebrow">05 · Git 第二章：分支簡介</p>
           <h2>開分支，也能交給 Claude Code</h2>
           <div class="prompt-card">
             <pre class="cmd"><code>我想試一個新的首頁設計，請幫我開一個分支再改，改完讓我預覽，我說好再合回 main。</code></pre>
@@ -650,7 +750,7 @@
 
       <section class="chapter" id="real-project" data-title="Git 第三章：實戰">
         <section class="slide" data-title="整個流程一張圖">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>整個流程一張圖</h2>
           <div class="diagram">
             <span class="diagram-node">Lovable</span><span class="diagram-arrow">→</span>
@@ -664,7 +764,7 @@
           <p>複製到本機叫 clone；把存檔送上雲端叫 push。今天把你的網站接起來。</p>
         </section>
         <section class="slide" data-title="方法 A（推薦）：Lovable 連上 GitHub">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>方法 A（推薦）：Lovable 連上 GitHub</h2>
           <ol class="step-list">
             <li>打開 Lovable 專案設定（Project settings）→ Git → GitHub。</li>
@@ -676,7 +776,7 @@
           <p class="note">不要刪掉 GitHub 上的 repo，會斷開同步。一次只會同步一個分支，預設 main。</p>
         </section>
         <section class="slide" data-title="方法 B：下載程式碼再上傳">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>方法 B：下載程式碼再上傳</h2>
           <ol class="step-list">
             <li>Lovable 專案設定 → Git → Download codebase。你的付費方案可以直接下載。</li>
@@ -693,7 +793,7 @@
           </p>
         </section>
         <section class="slide" data-title="SSH key 是什麼：鑰匙與門鎖">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>SSH key 是什麼：鑰匙與門鎖</h2>
           <p>SSH 是安全連線的方式。SSH 金鑰（key）像鑰匙與門鎖：</p>
           <div class="card-grid">
@@ -712,7 +812,7 @@
           <pre class="cmd"><code>gh auth login -p ssh</code></pre>
         </section>
         <section class="slide" data-title="產生 SSH key">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>產生 SSH key</h2>
           <p>Windows 10 1809 以上與 Windows 11 已內建 OpenSSH 用戶端。把信箱換成自己的：</p>
           <pre class="cmd"><code>ssh-keygen -t ed25519 -C &quot;你的 GitHub 信箱&quot;</code></pre>
@@ -724,7 +824,7 @@
           <pre class="cmd"><code>ls $HOME\.ssh</code></pre>
         </section>
         <section class="slide" data-title="把公鑰交給 GitHub">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>把公鑰交給 GitHub</h2>
           <p>第一次要多給 gh 一個權限，允許它上傳公鑰。</p>
           <pre class="cmd"><code>gh auth refresh -h github.com -s admin:public_key</code></pre>
@@ -734,7 +834,7 @@
           <p class="note">GitHub Settings → SSH and GPG keys → New SSH key → 貼上。兩種做法擇一即可。</p>
         </section>
         <section class="slide" data-title="測試連線">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>測試連線</h2>
           <pre class="cmd"><code>ssh -T git@github.com</code></pre>
           <p>第一次看到 Are you sure you want to continue connecting (yes/no)?，輸入：</p>
@@ -744,30 +844,32 @@
           <pre class="cmd"><code>gh config set git_protocol ssh</code></pre>
         </section>
         <section class="slide" data-title="把網站抓到電腦（clone）">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>把網站抓到電腦（clone）</h2>
           <p>PowerShell 依序執行；帳號與 repo 換成自己的。</p>
           <pre class="cmd"><code>cd $HOME\Documents</code></pre>
           <pre class="cmd"><code>git clone git@github.com:你的帳號/你的repo.git</code></pre>
           <pre class="cmd"><code>cd 你的repo</code></pre>
+          <pre class="cmd"><code>code . -r</code></pre>
+          <p>用目前的 VS Code 視窗打開這個網站資料夾（點代表「這裡」）。側邊欄就會列出網站所有檔案。</p>
           <p class="note">Lovable 的 GitHub 設定頁也有 SSH 網址可以直接複製。</p>
           <p>如果先前已經用 HTTPS 抓下來，不必重抓；在那個專案資料夾改連線地址：</p>
           <pre class="cmd"><code>git remote set-url origin git@github.com:你的帳號/你的repo.git</code></pre>
           <pre class="cmd"><code>git remote -v</code></pre>
         </section>
         <section class="slide" data-title="在本機預覽 Lovable 網站">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>在本機預覽 Lovable 網站</h2>
           <p>Lovable 專案使用 React + Vite。要先安裝 Node.js，才有執行網站的工具 npm。</p>
           <pre class="cmd"><code>winget install OpenJS.NodeJS.LTS</code></pre>
-          <p>裝完關掉並重開 PowerShell，再回到剛剛的網站資料夾。依序執行：</p>
+          <p>裝完把 VS Code 整個關掉重開，再回到剛剛的網站資料夾。依序執行：</p>
           <pre class="cmd"><code>npm install</code></pre>
           <pre class="cmd"><code>npm run dev</code></pre>
           <p>打開它顯示的 http://localhost:… 網址。這是自己電腦上的預覽。Ctrl+C 停止。</p>
           <p class="note">也可以直接請 Claude Code 幫你跑起來。</p>
         </section>
         <section class="slide sandbox-slide" data-title="練習：把新作品推上 GitHub">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>練習：把新作品推上 GitHub</h2>
           <div
             class="git-sandbox"
@@ -777,7 +879,7 @@
           ></div>
         </section>
         <section class="slide" data-title="每天的工作循環">
-          <p class="eyebrow">05 · Git 第三章：實戰</p>
+          <p class="eyebrow">06 · Git 第三章：實戰</p>
           <h2>每天的工作循環</h2>
           <ol class="step-list">
             <li>先拿最新版：你可能也在 Lovable 改過。</li>
@@ -796,7 +898,7 @@
 
       <section class="chapter" id="cheatsheet" data-title="小抄與課後練習">
         <section class="slide" data-title="Claude Code 小抄">
-          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <p class="eyebrow">07 · 小抄與課後練習</p>
           <h2>Claude Code 小抄</h2>
           <p>前兩個在 PowerShell；斜線指令在 Claude Code 裡。</p>
           <div class="cheat-grid">
@@ -832,7 +934,7 @@
           <p class="note">Esc 中斷；Shift+Tab 切權限模式，練習用 manual mode。</p>
         </section>
         <section class="slide" data-title="Git 小抄">
-          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <p class="eyebrow">07 · 小抄與課後練習</p>
           <h2>Git 小抄</h2>
           <div class="cheat-grid">
             <article class="card">
@@ -870,7 +972,7 @@
           </div>
         </section>
         <section class="slide" data-title="GitHub / SSH 小抄">
-          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <p class="eyebrow">07 · 小抄與課後練習</p>
           <h2>GitHub / SSH 小抄</h2>
           <div class="cheat-grid">
             <article class="card">
@@ -900,30 +1002,31 @@
           </div>
         </section>
         <section class="slide sandbox-slide" data-title="Git 練習場">
-          <p class="eyebrow">06 · 課後玩玩看</p>
+          <p class="eyebrow">07 · 課後玩玩看</p>
           <h2>Git 練習場</h2>
           <p>選一題、輸入指令、看圖怎麼變。進階題可以留到以後玩。</p>
           <div class="git-lab"></div>
         </section>
         <section class="slide sandbox-slide" data-title="自由練習">
-          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <p class="eyebrow">07 · 小抄與課後練習</p>
           <h2>自由練習</h2>
           <div class="git-sandbox" data-scenario="empty" data-mission="free" aria-label="自由練習"></div>
         </section>
         <section class="slide" data-title="下次見：收藏這些資源">
-          <p class="eyebrow">06 · 小抄與課後練習</p>
+          <p class="eyebrow">07 · 小抄與課後練習</p>
           <h2>下次見：收藏這些資源</h2>
           <p>課後試著更新一張作品照片，預覽後存檔。下次帶著你的網站和問題來。</p>
           <ul>
             <li><a href="https://git-scm.com/book/zh-tw">Pro Git 繁體中文版</a></li>
             <li><a href="https://learngitbranching.js.org/">Learn Git Branching</a></li>
+            <li><a href="https://code.visualstudio.com/docs">VS Code 文件</a></li>
             <li><a href="https://code.claude.com/docs">Claude Code 文件</a></li>
             <li><a href="https://cli.github.com/manual">GitHub CLI 手冊</a></li>
             <li><a href="https://docs.lovable.dev/integrations/github">Lovable GitHub 文件</a></li>
           </ul>
           <p class="next-links">
-            <a href="#/1/3">重看安裝</a><a href="#/3/7">重練 Git</a>
-            <a href="#/6/3">玩 Git 練習場</a><a href="#/2/0">再看網站流程</a>
+            <a href="#/1/5">重看 VS Code 畫面</a><a href="#/2/1">重看安裝</a><a href="#/4/7">重練 Git</a>
+            <a href="#/7/3">玩 Git 練習場</a><a href="#/3/0">再看網站流程</a>
           </p>
         </section>
       </section>
