@@ -8,10 +8,10 @@ test('all mounted scenarios and missions exist', () => {
   const scenarios = new Set(SCENARIOS.map(s => s.id));
   for (const match of html.matchAll(/data-scenario="([^"]+)"/g)) assert.ok(scenarios.has(match[1]), match[1]);
   for (const match of html.matchAll(/data-mission="([^"]+)"/g)) assert.ok(MISSIONS[match[1]], match[1]);
-  assert.equal([...html.matchAll(/class="chapter"/g)].length, 9);
+  assert.equal([...html.matchAll(/class="chapter"/g)].length, 10);
 });
 test('linked local assets exist and tabs reference unique panels', async () => {
-  for (const [, path] of html.matchAll(/(?:src|href)="((?:css|js)\/[^\"]+)"/g))
+  for (const [, path] of html.matchAll(/(?:src|href)="((?:css|js|img)\/[^\"]+)"/g))
     await access(new URL(`../${path}`, import.meta.url));
   const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
   assert.equal(ids.length, new Set(ids).size);

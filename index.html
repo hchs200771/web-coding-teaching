@@ -59,6 +59,15 @@
     </header>
     <main id="deck" aria-label="課程投影片">
       <section class="chapter" id="prep" data-title="上課前要準備">
+        <section class="slide why-slide" data-title="為什麼要學：上課前準備">
+          <p class="eyebrow">00 · 上課前要準備</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>上課前為什麼要先準備這麼多東西？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>裝軟體、收驗證信、綁信用卡最花時間，又常卡在等待。先準備好，上課的 3 小時才能拿來動手改你的網站，而不是一起盯著下載進度條。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：上課當天一打開電腦就能開始。</p>
+        </section>
         <section class="slide" data-title="Claude Code 訂閱">
           <p class="eyebrow">00 · 上課前要準備</p>
           <h2>Claude Code 訂閱</h2>
@@ -111,6 +120,15 @@
           <p class="keyboard-hint">
             <kbd>← →</kbd> 切換章節 <kbd>↑ ↓</kbd> 切換投影片 <kbd>Esc</kbd> 開啟或關閉章節總覽
           </p>
+        </section>
+        <section class="slide why-slide" data-title="為什麼要學：這堂課">
+          <p class="eyebrow">01 · 第一堂課</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>網站已經用 Lovable 做好了，為什麼還要學這些？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>Lovable 很方便，但每次修改都要花額度，網站裡面有什麼你也看不到。學會用 Claude Code 管理網站，你可以在自己電腦上改、隨時存檔、改壞了能回到上一版。網站真正握在你手上。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：知道今天 3 小時會做哪些事、投影片怎麼操作。</p>
         </section>
         <section class="slide" data-title="今天的流程">
           <p class="eyebrow">01 · 第一堂課</p>
@@ -171,6 +189,15 @@
       </section>
 
       <section class="chapter" id="vscode" data-title="VS Code 安裝與介紹">
+        <section class="slide why-slide" data-title="為什麼要學：VS Code">
+          <p class="eyebrow">02 · VS Code 安裝與介紹</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>為什麼要裝 VS Code？用記事本不行嗎？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>網站是幾十個檔案組成的。VS Code 像一張工作桌：左邊看到所有檔案、中間改內容、下面有終端機可以下指令，Claude Code 也在這裡工作。之後每一堂課都在這張桌子上進行。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：打開網站資料夾，並在 VS Code 裡用終端機。</p>
+        </section>
         <section class="slide" data-title="VS Code 是什麼">
           <p class="eyebrow">02 · VS Code 安裝與介紹</p>
           <h2>VS Code 是什麼</h2>
@@ -252,20 +279,61 @@
         <section class="slide" data-title="VS Code 畫面的五個區塊">
           <p class="eyebrow">02 · VS Code 安裝與介紹</p>
           <h2>VS Code 畫面的五個區塊</h2>
-          <div class="vscode-map" role="img" aria-label="VS Code 畫面配置：最左活動列、左邊側邊欄、中間編輯區、下方面板、最底狀態列">
-            <div class="vm-activity">1</div>
-            <div class="vm-side">2 側邊欄</div>
-            <div class="vm-editor">3 編輯區</div>
-            <div class="vm-panel">4 面板（終端機）</div>
-            <div class="vm-status">5 狀態列</div>
-          </div>
-          <ol class="step-list">
+          <figure class="shot shot-vscode">
+            <div class="shot-annotated">
+              <div class="shot-frame">
+                <img src="img/vscode/vscode-ui.png" alt="VS Code 英文介面的五個主要區塊" width="1897" height="1196" loading="lazy" />
+                <span class="shot-mark" data-color="1" style="left:0%;top:4.2%;width:3.2%;height:92.3%" aria-hidden="true"><b>1</b></span>
+                <span class="shot-mark" data-color="2" style="left:3.3%;top:4.2%;width:23.6%;height:91.8%" aria-hidden="true"><b>2</b></span>
+                <span class="shot-mark" data-color="3" style="left:27.4%;top:4.2%;width:72.5%;height:54.8%" aria-hidden="true"><b>3</b></span>
+                <span class="shot-mark" data-color="4" style="left:27.4%;top:59.6%;width:72.5%;height:36.5%" aria-hidden="true"><b>4</b></span>
+                <span class="shot-mark" data-color="5" style="left:0%;top:96.6%;width:100%;height:3.4%" aria-hidden="true"><b>5</b></span>
+              </div>
+              <svg class="shot-callouts" viewBox="0 0 1200 720" aria-hidden="true" focusable="false">
+                <defs>
+                  <marker id="shot-arrow-1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--shot-1)" /></marker>
+                  <marker id="shot-arrow-2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--shot-2)" /></marker>
+                  <marker id="shot-arrow-3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--shot-3)" /></marker>
+                  <marker id="shot-arrow-4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--shot-4)" /></marker>
+                  <marker id="shot-arrow-5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--shot-5)" /></marker>
+                </defs>
+                <g data-color="1">
+                  <path class="shot-arrow" d="M 155 151 H 180 V 290 H 213" marker-end="url(#shot-arrow-1)" />
+                  <rect x="0" y="115" width="155" height="70" rx="10" />
+                  <text x="12" y="142"><tspan x="12" dy="0">① 活動列</tspan><tspan x="12" dy="25">切換功能</tspan></text>
+                </g>
+                <g data-color="2">
+                  <path class="shot-arrow" d="M 175 380 H 190 V 440 H 320" marker-end="url(#shot-arrow-2)" />
+                  <rect x="0" y="344" width="175" height="70" rx="10" />
+                  <text x="12" y="371"><tspan x="12" dy="0">② 側邊欄</tspan><tspan x="12" dy="25">看所有檔案</tspan></text>
+                </g>
+                <g data-color="3">
+                  <path class="shot-arrow" d="M 1020 151 H 970 V 210 H 820" marker-end="url(#shot-arrow-3)" />
+                  <rect x="1020" y="115" width="180" height="70" rx="10" />
+                  <text x="1032" y="142"><tspan x="1032" dy="0">③ 編輯區</tspan><tspan x="1032" dy="25">改檔案內容</tspan></text>
+                </g>
+                <g data-color="4">
+                  <path class="shot-arrow" d="M 1020 410 H 970 V 450 H 820" marker-end="url(#shot-arrow-4)" />
+                  <rect x="1020" y="374" width="180" height="92" rx="10" />
+                  <text x="1032" y="401"><tspan x="1032" dy="0">④ 終端機</tspan><tspan x="1032" dy="25">下指令、跑</tspan><tspan x="1032" dy="25">Claude Code</tspan></text>
+                </g>
+                <g data-color="5">
+                  <path class="shot-arrow" d="M 600 620 V 525" marker-end="url(#shot-arrow-5)" />
+                  <rect x="470" y="620" width="260" height="70" rx="10" />
+                  <text x="482" y="647"><tspan x="482" dy="0">⑤ 狀態列</tspan><tspan x="482" dy="25">分支、行號</tspan></text>
+                </g>
+              </svg>
+            </div>
+            <figcaption>截圖是英文介面；換成中文後位置一樣，名字變中文。</figcaption>
+          </figure>
+          <ol class="step-list vscode-legend">
             <li><strong>活動列</strong>：最左邊一排圖示。檔案總管、搜尋、原始檔控制（Git）、延伸模組都從這裡切換。</li>
             <li><strong>側邊欄</strong>：點活動列的圖示就換內容。最常用檔案總管，看資料夾裡有哪些檔案。Ctrl+B 收起或打開。</li>
             <li><strong>編輯區</strong>：點檔名就在這裡打開，上方是分頁。分頁上有白點代表還沒存，按 Ctrl+S 存檔。</li>
             <li><strong>面板</strong>：終端機住在這裡。Ctrl+` 打開或收起。</li>
             <li><strong>狀態列</strong>：最底下一條。左邊顯示目前的 Git 分支，右邊顯示游標在第幾行。</li>
           </ol>
+          <p>最上面一條是選單列（File、Edit、View…），設定和開新視窗從這裡找。</p>
           <p class="note">忘記功能在哪：Ctrl+Shift+P 打開命令選擇區，直接打字搜尋。Ctrl+P 用檔名找檔案。</p>
         </section>
         <section class="slide" data-title="在 VS Code 打開終端機">
@@ -309,6 +377,15 @@
       </section>
 
       <section class="chapter" id="claude-code" data-title="Claude Code 安裝與試用">
+        <section class="slide why-slide" data-title="為什麼要學：Claude Code">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>Lovable 本身就是 AI，為什麼還要 Claude Code？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>Lovable 在網頁上幫你改，你只看得到結果。Claude Code 在你的電腦上直接打開網站的檔案：你用中文說要改什麼，它改給你看，你點頭了才算數。它也能做 Lovable 做不到的事，例如整理檔案、存檔、把網站放到你自己的網域。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：安裝並登入 Claude Code，用中文請它做事。</p>
+        </section>
         <section class="slide" data-title="Claude Code 是什麼">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
           <h2>Claude Code 是什麼</h2>
@@ -615,9 +692,108 @@ Installing Claude Code native build latest...</code></pre>
           </div>
           <p class="callout">先計畫、再確認、不刪除。熟練以後，再用同樣的說法整理真正的桌面。</p>
         </section>
+        <section class="slide why-slide" data-title="額外：為什麼要讓 Claude 用瀏覽器">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>Claude Code 已經能上網查資料，為什麼還要裝 Claude in Chrome？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>沒有它時，Claude 只能「搜尋」和「抓網頁的文字」，像請人幫你剪報：看不到畫面、不能按按鈕，也進不了要登入的頁面。裝了之後，它可以直接操作你的 Chrome：看到網站真正的樣子、會點會打字、能進你已登入的 GitHub 和 Lovable，還能截圖給你看。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：請 Claude 打開你的網站檢查、截圖，或幫你在網頁上找設定。</p>
+        </section>
+        <section class="slide" data-title="額外：有沒有 Claude in Chrome 差在哪">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>額外：有沒有 Claude in Chrome 差在哪</h2>
+          <p class="callout">額外項目，有時間再做。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col">比較</th><th scope="col">沒有（搜尋＋抓網頁文字）</th><th scope="col">有（操作你的 Chrome）</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">看到什麼</th><td>只有文字</td><td>真正的畫面，還能截圖</td></tr>
+                <tr><th scope="row">能不能操作</th><td>不能點、不能填</td><td>會點、會打字、會捲動</td></tr>
+                <tr><th scope="row">要登入的網站</th><td>進不去</td><td>用你已登入的帳號（GitHub、Lovable、Gmail）</td></tr>
+                <tr><th scope="row">Lovable 這類網站</th><td>常常只抓到空白</td><td>跟你看到的一樣</td></tr>
+                <tr><th scope="row">適合做什麼</th><td>查資料、讀文件</td><td>檢查網站、找設定、截圖教學</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">這份講義的 GitHub 截圖，就是 Claude 用 Chrome 打開設定頁截下來的。</p>
+        </section>
+        <section class="slide" data-title="額外：安裝 Claude in Chrome">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>額外：安裝 Claude in Chrome</h2>
+          <ol class="step-list">
+            <li>用 Chrome 或 Edge 打開 <a href="https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn">Chrome 線上應用程式商店的 Claude 擴充功能</a>，按 <strong>加到 Chrome</strong>。</li>
+            <li>點瀏覽器右上角的拼圖圖示，把 Claude 釘選在工具列。</li>
+            <li>點 Claude 圖示，用跟 Claude Code 同一個 claude.ai 帳號登入。</li>
+            <li>回到 VS Code 的終端機，加上 <code>--chrome</code> 啟動。第一次會跳出說明，按 Enter。
+              <pre class="cmd"><code>claude --chrome</code></pre>
+            </li>
+            <li>在 Claude Code 裡輸入：
+              <pre class="cmd"><code>/chrome</code></pre>
+              看到 <strong>Status: Enabled</strong> 和 <strong>Extension: Installed</strong> 就成功了。
+            </li>
+          </ol>
+          <p class="note">需要 Pro、Max、Team 或 Enterprise 方案，Claude Code 要用 /login 登入。想每次都自動連上：/chrome → Enabled by default；但每次對話會多佔一點空間，不常用就不用開。</p>
+          <p class="note">Claude 需要瀏覽器卻找不到擴充功能時，會跳出 Claude wants to use your browser，選 Install extension 也能照著裝。</p>
+        </section>
+        <section class="slide" data-title="額外：怎麼使用">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>額外：怎麼使用</h2>
+          <p>用中文直接說要它在瀏覽器做什麼。</p>
+          <div class="prompt-card">
+            <pre class="cmd"><code>打開 http://localhost:5173，用手機寬度看首頁有沒有跑版，截圖給我看。</code></pre>
+          </div>
+          <div class="prompt-card">
+            <pre class="cmd"><code>打開我 GitHub 上網站 repo 的 Settings → Pages，告訴我現在的設定。</code></pre>
+          </div>
+          <div class="prompt-card">
+            <pre class="cmd"><code>打開我的網站，看 Console 有沒有錯誤，有的話幫我找原因。</code></pre>
+          </div>
+          <h3>會發生什麼</h3>
+          <ol class="step-list">
+            <li>Claude 開一個新分頁，你看得到它在點什麼。</li>
+            <li>第一次去某個網站會先問你允不允許，可以選「這次對話都允許」。</li>
+            <li>遇到登入畫面或「我不是機器人」驗證，它會停下來，請你自己處理。</li>
+          </ol>
+          <p class="note">localhost 的數字以 npm run dev 顯示的為準。</p>
+        </section>
+        <section class="slide" data-title="額外：使用時要注意">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>額外：使用時要注意</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>它用的是你的帳號</h3>
+              <p>你登入的網站它都進得去。只讓它去你信任的網站。</p>
+            </article>
+            <article class="card">
+              <h3>重要動作先問你</h3>
+              <p>付款、刪除、送出、發布之前，它會先問。按允許前看清楚。</p>
+            </article>
+            <article class="card">
+              <h3>截圖會拍到帳號資訊</h3>
+              <p>分享截圖或錄影前，先看有沒有個人資料。</p>
+            </article>
+            <article class="card">
+              <h3>連不上的時候</h3>
+              <p>輸入 /chrome，選 Reconnect extension；不行就把 Chrome 和 Claude Code 都重開。</p>
+            </article>
+          </div>
+        </section>
       </section>
 
       <section class="chapter" id="web-basics" data-title="網站前端與後端">
+        <section class="slide why-slide" data-title="為什麼要學：前端與後端">
+          <p class="eyebrow">04 · 網站前端與後端</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>我又不寫程式，為什麼要懂前端和後端？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>跟 AI 溝通時，你要分得出要的是「畫面改一下」還是「要記住資料」（例如線上預約、會員）。分得清楚，才問得對，也才知道一個功能要花多少功夫和錢。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：判斷一個網站功能需不需要後端。</p>
+        </section>
         <section class="slide" data-title="打開網站時發生什麼">
           <p class="eyebrow">04 · 網站前端與後端</p>
           <h2>打開網站時發生什麼</h2>
@@ -702,6 +878,15 @@ Installing Claude Code native build latest...</code></pre>
       </section>
 
       <section class="chapter" id="git-basics" data-title="Git 第一章：存檔">
+        <section class="slide why-slide" data-title="為什麼要學：Git 存檔">
+          <p class="eyebrow">05 · Git 第一章：存檔</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>檔案存好不就好了，為什麼要學 Git？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>讓 AI 改網站，有時會改壞。Git 像遊戲的存檔點：每改好一次就存一個，改壞了隨時回到上一個好的版本，也看得到每次改了什麼。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：用 add、commit 幫網站存檔。</p>
+        </section>
         <section class="slide" data-title="Git 是什麼">
           <p class="eyebrow">05 · Git 第一章：存檔</p>
           <h2>Git 是什麼</h2>
@@ -851,6 +1036,15 @@ Installing Claude Code native build latest...</code></pre>
       </section>
 
       <section class="chapter" id="branches" data-title="Git 第二章：分支簡介">
+        <section class="slide why-slide" data-title="為什麼要學：分支">
+          <p class="eyebrow">06 · Git 第二章：分支簡介</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>為什麼需要分支？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>想試新設計（例如整個首頁換風格），又怕弄壞正在接客的網站。分支是另開一本草稿：滿意再合回正式版，不滿意就丟掉，客人看到的網站完全不受影響。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：開一個草稿分支，試完再合回來。</p>
+        </section>
         <section class="slide" data-title="分支是什麼：另開一本草稿">
           <p class="eyebrow">06 · Git 第二章：分支簡介</p>
           <h2>分支是什麼：另開一本草稿</h2>
@@ -899,6 +1093,15 @@ Installing Claude Code native build latest...</code></pre>
       </section>
 
       <section class="chapter" id="real-project" data-title="Git 第三章：實戰">
+        <section class="slide why-slide" data-title="為什麼要學：實戰">
+          <p class="eyebrow">07 · Git 第三章：實戰</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>為什麼要把網站抓到電腦、再推回 GitHub？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>前面練習用的是假資料，這章接上你真正的網站。GitHub 是雲端保險箱，你的電腦是工作桌：在電腦改好、推上去，Lovable 也跟著更新。從此網站由你自己管理。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：把自己的網站抓到電腦，改完推回 GitHub。</p>
+        </section>
         <section class="slide" data-title="整個流程一張圖">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
           <h2>整個流程一張圖</h2>
@@ -1050,6 +1253,15 @@ Installing Claude Code native build latest...</code></pre>
       </section>
 
       <section class="chapter" id="cheatsheet" data-title="小抄與課後練習">
+        <section class="slide why-slide" data-title="為什麼要學：小抄與練習">
+          <p class="eyebrow">08 · 小抄與課後練習</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>為什麼要留小抄和課後練習？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>今天學的指令，一週不用就會忘。小抄讓你需要時一眼查到；練習場是不怕弄壞的地方，多練幾次，下次上課才接得上。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：忘記指令時知道去哪裡查，也能自己練習。</p>
+        </section>
         <section class="slide" data-title="Claude Code 小抄">
           <p class="eyebrow">08 · 小抄與課後練習</p>
           <h2>Claude Code 小抄</h2>
@@ -1082,6 +1294,10 @@ Installing Claude Code native build latest...</code></pre>
             <article class="card">
               <p>建立專案說明。</p>
               <pre class="cmd"><code>/init</code></pre>
+            </article>
+            <article class="card">
+              <p>讓 Claude 用瀏覽器。</p>
+              <pre class="cmd"><code>/chrome</code></pre>
             </article>
           </div>
           <p class="note">Esc 中斷；Shift+Tab 切權限模式，練習用 manual mode。</p>
@@ -1176,11 +1392,319 @@ Installing Claude Code native build latest...</code></pre>
             <li><a href="https://code.claude.com/docs">Claude Code 文件</a></li>
             <li><a href="https://cli.github.com/manual">GitHub CLI 手冊</a></li>
             <li><a href="https://docs.lovable.dev/integrations/github">Lovable GitHub 文件</a></li>
+            <li><a href="https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自訂網域文件</a></li>
           </ul>
           <p class="next-links">
-            <a href="#/2/5">重看 VS Code 畫面</a><a href="#/3/1">重看安裝</a><a href="#/5/7">重練 Git</a>
-            <a href="#/8/3">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a>
+            <a href="#/2/6">重看 VS Code 畫面</a><a href="#/3/2">重看安裝</a><a href="#/5/8">重練 Git</a>
+            <a href="#/8/4">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/9/0">用自己的網域上線</a>
           </p>
+        </section>
+      </section>
+
+      <section class="chapter" id="custom-domain" data-title="課後：用自己的網域上線">
+        <section class="slide why-slide" data-title="為什麼要學：自己的網域">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>Lovable 已經給我一個網址，為什麼還要用自己的網域、自己部署？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>客人看到「你的名字.com」比一串 lovable.app 更專業、好記，名片和 Instagram 也放得下。學會自己部署，網站放在哪裡由你決定，不被單一平台綁住；GitHub Pages 放靜態網站本身不用錢，只要付網域的年費。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：讓客人打你自己的網域就看到網站，而且有 https 鎖頭。</p>
+        </section>
+        <section class="slide" data-title="先看整體：要設定三個地方">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>先看整體：要設定三個地方</h2>
+          <div class="diagram">
+            <span class="diagram-node">網域商（DNS）</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">GitHub Pages</span><span class="diagram-arrow">→</span>
+            <span class="diagram-node">你的網站</span>
+          </div>
+          <p>GitHub Actions 會在每次 push 到 main 時，自動把網站建置（build）並發布。網域商那邊的 DNS 負責把「你的網域」指到 GitHub。</p>
+          <ol class="step-list">
+            <li>驗證網域。</li>
+            <li>讓 GitHub 建置網站。</li>
+            <li>在 GitHub 填網域。</li>
+            <li>到網域商設定 DNS。</li>
+            <li>檢查並開 HTTPS。</li>
+          </ol>
+          <p class="callout">先決條件：Lovable 建立的 repo 是私人的；GitHub 免費方案只能用「公開」repo 開 Pages。二選一：把 repo 改成公開（Settings → General 最下面 Danger Zone → Change visibility；原始碼大家都看得到，不能放密碼或金鑰），或升級 GitHub Pro。</p>
+          <p class="note">Lovable 付費方案也能直接在 Lovable 綁網域；這章講 GitHub Pages 的做法，同一個網域只選一邊指過去。</p>
+        </section>
+        <section class="slide" data-title="步驟 1：先驗證網域（找到按鈕）">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 1：先驗證網域（找到按鈕）</h2>
+          <p>這裡是「個人設定」，不是 repo 設定。驗證可以防止別人把你的網域拿去用在他的 GitHub Pages。</p>
+          <p>先點右上角你的頭像 → <strong>Settings</strong>。</p>
+          <div class="shot-pair">
+            <figure class="shot">
+              <div class="shot-frame">
+                <img src="img/github/profile-sidebar-pages.png" alt="GitHub 個人設定左側的 Pages 選單" width="306" height="281" loading="lazy" />
+                <span class="shot-mark" style="left:2.5%;top:70.5%;width:93%;height:15%" aria-hidden="true"><b>1</b></span>
+              </div>
+              <figcaption>個人設定左邊選單往下捲，點 Pages</figcaption>
+            </figure>
+            <figure class="shot">
+              <div class="shot-frame">
+                <img src="img/github/profile-add-domain.png" alt="GitHub 個人 Pages 設定的新增網域按鈕" width="961" height="282" loading="lazy" />
+                <span class="shot-mark" style="left:85.3%;top:26%;width:13.2%;height:11.5%" aria-hidden="true"><b>2</b></span>
+              </div>
+              <figcaption>按綠色的 Add a domain</figcaption>
+            </figure>
+          </div>
+          <ol class="step-list">
+            <li>左邊選單往下捲到 <strong>Code, planning, and automation</strong>，點 <strong>Pages</strong>。</li>
+            <li>在 <strong>Verified domains</strong> 按綠色的 <strong>Add a domain</strong>。</li>
+          </ol>
+        </section>
+        <section class="slide" data-title="步驟 1：先驗證網域（加 TXT 紀錄）">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 1：先驗證網域（加 TXT 紀錄）</h2>
+          <ol class="step-list" start="3">
+            <li>輸入 <code>你的網域.com</code>（不要加 www、不要加 https://）→ <strong>Add domain</strong>。</li>
+            <li>畫面會出現一筆 TXT 紀錄，先不要關。名稱是 <code>_github-pages-challenge-你的帳號</code>，值照畫面複製。</li>
+            <li>到網域商的 DNS 設定新增這筆 TXT，等生效後回來按 <strong>Verify</strong>。</li>
+          </ol>
+          <p>有的網域商會自動接上網域，有的要打完整的 <code>_github-pages-challenge-你的帳號.你的網域.com</code>。</p>
+          <p class="note">這筆 TXT 驗證完也不要刪，刪了會失去驗證。生效最久可能要 24 小時；離開頁面後，可在網域旁的 <strong>⋯</strong> 選 <strong>Continue verifying</strong>。</p>
+        </section>
+        <section class="slide" data-title="步驟 2：讓 GitHub 幫你建置網站">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 2：讓 GitHub 幫你建置網站</h2>
+          <p>Lovable 網站要先 <code>npm run build</code>，才會變成瀏覽器看得懂的檔案（dist 資料夾），所以要用 GitHub Actions。</p>
+          <ol class="step-list">
+            <li>打開你的網站 repo → 上方最右邊的 <strong>⚙ Settings</strong> → 左邊 <strong>Pages</strong> → <strong>Build and deployment</strong> 底下的 <strong>Source</strong>，從 <strong>Deploy from a branch</strong> 改成 <strong>GitHub Actions</strong>（選了就生效，不用按儲存）。</li>
+          </ol>
+          <figure class="shot">
+            <div class="shot-frame">
+              <img src="img/github/pages-source-dropdown.png" alt="GitHub Pages 的 Source 選單選擇 GitHub Actions" width="674" height="294" loading="lazy" />
+              <span class="shot-mark" style="left:3%;top:36.7%;width:46.8%;height:28%" aria-hidden="true"><b>1</b></span>
+            </div>
+            <figcaption>Source 改選 GitHub Actions</figcaption>
+          </figure>
+        </section>
+        <section class="slide" data-title="步驟 2：請 Claude Code 寫自動發布設定">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 2：請 Claude Code 寫自動發布設定</h2>
+          <p>在專案新增 <code>.github/workflows/deploy.yml</code>，交給 Claude Code：</p>
+          <div class="prompt-card">
+            <pre class="cmd"><code>幫我把這個 Vite 網站設定成用 GitHub Actions 部署到 GitHub Pages：新增 .github/workflows/deploy.yml，push 到 main 時執行 npm ci 和 npm run build，上傳 dist 資料夾並發布。vite.config 的 base 保持 '/'，因為我會用自己的網域。build 完把 dist/index.html 複製一份成 dist/404.html，讓直接打開子頁面不會 404。改完讓我看，確認後 commit 並 push。</code></pre>
+          </div>
+          <p class="note">用自己的網域時 base 是 <code>'/'</code>；如果只用 帳號.github.io/repo名稱 網址，base 要改成 <code>'/repo名稱/'</code>。設好網域之前從 github.io 網址打開是白畫面，是正常的。</p>
+        </section>
+        <section class="slide" data-title="workflow 和 action 是什麼">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>workflow 和 action 是什麼</h2>
+          <p class="lead">GitHub Actions 是 GitHub 提供的「雲端自動化機器人」：你 push 之後，GitHub 借一台雲端電腦，照你寫好的步驟自動做事。</p>
+          <div class="card-grid">
+            <article class="card">
+              <h3>workflow（工作流程）</h3>
+              <p>一份工作清單，寫在 repo 裡的 .github/workflows/ 資料夾，副檔名 .yml。裡面寫「什麼時候做」（例如 push 到 main）和「依序做哪些步驟」。</p>
+            </article>
+            <article class="card">
+              <h3>action（現成的步驟）</h3>
+              <p>別人寫好、可以直接拿來用的一個步驟，像樂高積木。例如 actions/checkout 負責把你的程式碼下載到雲端電腦，actions/deploy-pages 負責發布到 GitHub Pages。@v7 這種寫法是指定版本。</p>
+            </article>
+            <article class="card">
+              <h3>run（自己下指令）</h3>
+              <p>不用現成積木，直接寫要執行的指令，就像你在終端機打 npm run build。</p>
+            </article>
+          </div>
+          <p>可以想成一張食譜：workflow 是整張食譜，每一步不是用現成調理包（action），就是自己動手（run）。</p>
+          <p class="note">每次跑完會在 repo 的 Actions 分頁留下紀錄；公開 repo 使用 GitHub Actions 免費，私人 repo 每月有免費額度，這種小網站通常用不完。</p>
+        </section>
+        <section class="slide" data-title="deploy.yml 長這樣（參考）">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>deploy.yml 長這樣（參考）</h2>
+          <p>Claude Code 寫的應該跟這份差不多，這是 Vite 官方範例加上 404.html 那一步。看得懂大概就好，不用背。</p>
+          <pre class="example"><code>name: Deploy to GitHub Pages
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+      - run: cp dist/index.html dist/404.html
+      - uses: actions/configure-pages@v6
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: './dist'
+      - id: deployment
+        uses: actions/deploy-pages@v5</code></pre>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">片段</th>
+                  <th scope="col">意思</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>on: push</code></td>
+                  <td>push 到 main 時開始。</td>
+                </tr>
+                <tr>
+                  <td><code>runs-on: ubuntu-latest</code></td>
+                  <td>借一台 Linux 雲端電腦。</td>
+                </tr>
+                <tr>
+                  <td><code>uses:</code></td>
+                  <td>用現成的 action。</td>
+                </tr>
+                <tr>
+                  <td><code>run:</code></td>
+                  <td>自己下指令。</td>
+                </tr>
+                <tr>
+                  <td><code>permissions</code></td>
+                  <td>允許這個流程發布到 Pages。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">push 之後到 repo 的 Actions 分頁看進度，綠色勾勾代表發布成功，紅色叉叉點進去看錯誤，可以整段貼給 Claude Code。</p>
+        </section>
+        <section class="slide" data-title="步驟 3：找到 repo 的 Pages 設定頁">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 3：找到 repo 的 Pages 設定頁</h2>
+          <figure class="shot shot-wide">
+            <div class="shot-frame">
+              <img src="img/github/repo-tabs.png" alt="GitHub repo 上方的 Settings 分頁" width="1053" height="93" loading="lazy" />
+              <span class="shot-mark" style="left:89.7%;top:54%;width:9.3%;height:40%" aria-hidden="true"><b>1</b></span>
+            </div>
+            <figcaption>repo 上方最右邊的 Settings</figcaption>
+          </figure>
+          <figure class="shot">
+            <div class="shot-frame">
+              <img src="img/github/repo-pages-custom-domain.png" alt="GitHub repo 設定左側的 Pages 與 Custom domain 區塊" width="1236" height="172" loading="lazy" />
+              <span class="shot-mark" style="left:0.8%;top:44%;width:21%;height:23.5%" aria-hidden="true"><b>2</b></span>
+              <span class="shot-mark" style="left:24.3%;top:2.5%;width:72.6%;height:56%" aria-hidden="true"><b>3</b></span>
+            </div>
+            <figcaption>左邊點 Pages，往下找到 Custom domain</figcaption>
+          </figure>
+          <ul class="step-list">
+            <li>① 打開你的網站 repo（右上角頭像 → <strong>Your repositories</strong> → 點網站的 repo），點上方最右邊的 <strong>⚙ Settings</strong>。看不到就點 <strong>⋯</strong> 找 Settings。</li>
+            <li>② 左邊選單找 <strong>Pages</strong>。</li>
+            <li>③ 往下找到 <strong>Custom domain</strong>，下一張教你填。</li>
+          </ul>
+          <p class="note">Lovable 建立的 repo 名稱通常和專案名稱相同。只有 repo 的擁有者看得到 Settings。</p>
+        </section>
+        <section class="slide" data-title="步驟 3：填上網域並儲存">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 3：填上網域並儲存</h2>
+          <ol class="step-list">
+            <li>在 <strong>Custom domain</strong> 的框框輸入 <code>www.你的網域.com</code>。</li>
+            <li>按 <strong>Save</strong>。</li>
+          </ol>
+          <div class="card-grid">
+            <article class="card">
+              <h3>這樣填 ✅</h3>
+              <p><code>www.mybrow.com</code></p>
+            </article>
+            <article class="card">
+              <h3>不要這樣填 ❌</h3>
+              <p><code>https://www.mybrow.com/</code></p>
+              <p>不要 https://、不要最後的斜線、不要空白。</p>
+            </article>
+          </div>
+          <h3>按完會看到什麼</h3>
+          <p>GitHub 會開始檢查 DNS。這時還沒設 DNS，出現檢查中或失敗都是正常的；做完步驟 4 再回來看就會變成綠色勾勾。</p>
+          <p class="callout">建議主網址用 www。下一步兩種紀錄都設，GitHub 會自動把 你的網域.com 轉到 www.你的網域.com。</p>
+          <p class="note">用 GitHub Actions 發布不需要 CNAME 檔案，有也會被忽略。先在 GitHub 填好，再去設 DNS，避免網域被別人搶先接走。</p>
+        </section>
+        <section class="slide" data-title="步驟 4：到網域商設定 DNS">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 4：到網域商設定 DNS</h2>
+          <p>登入買網域的網站，找 DNS 設定（可能叫 DNS 管理、DNS Records、Zone）。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">類型</th>
+                  <th scope="col">名稱</th>
+                  <th scope="col">值</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>A（四筆分開新增）</td>
+                  <td><code>@</code></td>
+                  <td><code>185.199.108.153</code><br><code>185.199.109.153</code><br><code>185.199.110.153</code><br><code>185.199.111.153</code></td>
+                </tr>
+                <tr>
+                  <td>AAAA（可省略）</td>
+                  <td><code>@</code></td>
+                  <td><code>2606:50c0:8000::153</code><br><code>2606:50c0:8001::153</code><br><code>2606:50c0:8002::153</code><br><code>2606:50c0:8003::153</code></td>
+                </tr>
+                <tr>
+                  <td>CNAME</td>
+                  <td><code>www</code></td>
+                  <td><code>你的帳號.github.io</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="callout">CNAME 只寫 你的帳號.github.io，不要加 repo 名稱。</p>
+          <p class="note">先刪掉網域商預設的紀錄（例如停車頁的 A 紀錄）。名稱欄有的網域商寫 @，有的留空代表網域本身。不要新增 * 開頭的萬用紀錄。</p>
+        </section>
+        <section class="slide" data-title="步驟 5：檢查，然後開 HTTPS">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 5：檢查，然後開 HTTPS</h2>
+          <p>在 PowerShell 檢查 DNS：</p>
+          <pre class="cmd"><code>Resolve-DnsName 你的網域.com -Type A</code></pre>
+          <pre class="cmd"><code>Resolve-DnsName www.你的網域.com -Type CNAME</code></pre>
+          <p>第一個要列出四個 185.199… 的 IP；第二個要看到 你的帳號.github.io。DNS 生效最久可能要 24 小時，沒出現先等。</p>
+          <p>生效後回到同一頁（repo <strong>Settings</strong> → <strong>Pages</strong>），在 <strong>Custom domain</strong> 下面勾選 <strong>Enforce HTTPS</strong>（網址前面會有鎖頭）。這個選項可能要等到 24 小時後才能勾。</p>
+          <figure class="shot">
+            <div class="shot-frame">
+              <img src="img/github/repo-pages-custom-domain.png" alt="GitHub Pages 設定頁的 Enforce HTTPS 核取方塊" width="1236" height="172" loading="lazy" />
+              <span class="shot-mark" style="left:24.5%;top:72%;width:43.5%;height:26%" aria-hidden="true"><b>✓</b></span>
+            </div>
+            <figcaption>Custom domain 下面的 Enforce HTTPS</figcaption>
+          </figure>
+          <p class="callout">之後照每天的工作循環 push 到 main，GitHub 就會自動重新發布，網站幾分鐘後更新。</p>
+        </section>
+        <section class="slide" data-title="卡關怎麼辦">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>卡關怎麼辦</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>網站一片白</h3>
+              <p>看 Actions 是不是紅叉；vite.config 的 base 要是 <code>'/'</code>。</p>
+            </article>
+            <article class="card">
+              <h3>打開子頁面出現 404</h3>
+              <p>檢查 workflow 有沒有複製 404.html。</p>
+            </article>
+            <article class="card">
+              <h3>出現 DNS check unsuccessful</h3>
+              <p>DNS 還沒生效或紀錄打錯，對照步驟 4 的表。</p>
+            </article>
+            <article class="card">
+              <h3>Enforce HTTPS 不能勾</h3>
+              <p>等憑證發好，最多 24 小時。</p>
+            </article>
+          </div>
+          <p class="note">如果之後不用 GitHub Pages 了，記得到網域商刪掉這些 A / CNAME 紀錄，免得網域被別人接走。</p>
         </section>
       </section>
     </main>
