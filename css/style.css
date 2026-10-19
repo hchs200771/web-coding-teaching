@@ -729,12 +729,14 @@ kbd {
   gap: 18px;
 }
 
+/* 範例畫面只是給人看的文字：自動換行、整段顯示，不做捲軸 */
 pre.example {
+  flex-shrink: 0;
   padding: 18px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--accent-soft);
-  overflow-x: auto;
+  white-space: pre-wrap;
   font-size: 0.9rem;
 }
 
@@ -768,13 +770,14 @@ pre.cmd {
   position: relative;
   flex-shrink: 0;
   margin: 12px 0;
-  padding: 18px 124px 18px 36px;
+  padding: 16px 52px 16px 36px;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--surface);
   line-height: 1.65;
-  white-space: pre;
-  overflow-x: auto;
+  /* 長指令換行而不是橫向捲動，右邊留給複製按鈕，永遠不會被蓋住；複製時取的是原始文字，不受換行影響 */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 /* 提示符號只是裝飾，用 CSS 畫，所以不會被複製到 */
@@ -789,22 +792,20 @@ pre.cmd code {
   font-size: 0.86rem;
 }
 
-/* 深色實心 + 複製圖示，跟淺色的指令框分得開；上下置中 */
+/* 跟一般 code block 一樣：右上角一小格圖示，不蓋住指令 */
 .copy-button {
   position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  background: var(--ink);
-  border-color: var(--ink);
-  border-radius: 10px;
-  color: var(--surface);
+  top: 8px;
+  right: 8px;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  background: var(--surface);
+  border-color: var(--border);
+  border-radius: 8px;
+  color: var(--muted);
 }
 
 .copy-button svg {
@@ -812,8 +813,9 @@ pre.cmd code {
 }
 
 .copy-button:hover {
-  background: var(--ink);
-  filter: brightness(1.25);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .copy-button.copied {
@@ -822,17 +824,37 @@ pre.cmd code {
   color: var(--surface);
 }
 
-/* 小抄頁：指令兩欄排，比較省空間 */
-.cheat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 4px 16px;
+.copy-button.failed {
+  color: var(--ink);
 }
 
-.cheat-grid pre.cmd {
-  margin: 4px 0;
-  padding-top: 12px;
-  padding-bottom: 12px;
+/* 一行一個指令：左邊說明，右邊指令；指令變長也不會被擠掉 */
+.cmd-list {
+  display: grid;
+  gap: 6px;
+  margin: 16px 0;
+}
+
+.cmd-list .card {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  align-items: center;
+  gap: 6px 20px;
+  padding: 6px 6px 6px 20px;
+}
+
+.cmd-list .card p {
+  margin: 0;
+}
+
+.cmd-list pre.cmd {
+  margin: 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.cmd-list .copy-button {
+  top: 5px;
 }
 
 /* ---- 作業系統分頁 ---- */
@@ -2238,7 +2260,7 @@ pre.cmd code {
     font-size: 13px;
   }
 
-  .cheat-grid {
+  .cmd-list .card {
     grid-template-columns: 1fr;
   }
 

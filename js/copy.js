@@ -45,6 +45,11 @@ const COPY_ICON =
   'stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/>' +
   '<path d="M15 9V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h4"/></svg>';
 
+// 複製成功時換成打勾
+const CHECK_ICON =
+  '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" ' +
+  'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+
 export function initCopy(root = document) {
   root.querySelectorAll('pre.cmd').forEach(pre => {
     if (pre.querySelector('.copy-button')) return;
@@ -52,22 +57,29 @@ export function initCopy(root = document) {
     const button = document.createElement('button');
     button.className = 'copy-button';
     button.type = 'button';
-    button.innerHTML = `${COPY_ICON}<span>複製</span>`;
-    button.setAttribute('aria-label', '複製指令');
-    const label = button.querySelector('span');
+    button.innerHTML = COPY_ICON;
+    // 只有圖示，文字放在 title（滑鼠停留提示）和 aria-label（螢幕閱讀器）
+    const setLabel = text => {
+      button.title = text;
+      button.setAttribute('aria-label', text);
+    };
+    setLabel('複製指令');
 
     button.addEventListener('click', async () => {
       try {
         await copyText(pre.querySelector('code').textContent);
-        label.textContent = '已複製';
+        button.innerHTML = CHECK_ICON;
         button.classList.add('copied');
+        setLabel('已複製');
       } catch {
-        label.textContent = '請手動選取';
+        button.classList.add('failed');
+        setLabel('請手動選取');
       }
       clearTimeout(button.resetTimer);
       button.resetTimer = setTimeout(() => {
-        label.textContent = '複製';
-        button.classList.remove('copied');
+        button.innerHTML = COPY_ICON;
+        button.classList.remove('copied', 'failed');
+        setLabel('複製指令');
       }, 1500);
     });
 
