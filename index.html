@@ -1213,6 +1213,16 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
             <pre class="cmd"><code>先 git pull 拿最新版。然後把首頁的價目表更新成：霧眉 8800、飄眉 9800。改完讓我預覽，確認後幫我 commit 並 push。</code></pre>
           </div>
         </section>
+        <section class="slide" data-title="額外：用 GitHub Pages 免費上線">
+          <p class="eyebrow">07 · Git 第三章：實戰</p>
+          <h2>額外：用 GitHub Pages 免費上線</h2>
+          <p>不用自己的網域，也能有一個公開網址：<code>你的帳號.github.io/repo名稱</code>。在專案資料夾打開 Claude Code，貼上：</p>
+          <div class="prompt-card">
+            <pre class="cmd"><code>幫我把這個網站用 GitHub Pages 發布。新增 .github/workflows/deploy.yml，push 到 main 時執行 npm ci 和 npm run build，上傳 dist 資料夾並發布。網址會是 帳號.github.io/repo名稱，所以 vite.config 的 base 要設成 '/repo名稱/'。build 完把 dist/index.html 複製一份成 dist/404.html，讓直接打開子頁面不會 404。用 gh 把這個 repo 的 Pages 來源設成 GitHub Actions。改完讓我看，確認後 commit 並 push，等部署完成後告訴我網址。</code></pre>
+          </div>
+          <p class="note">免費方案只能用公開 repo 開 Pages。Lovable 建的 repo 是私人的，要先改成公開（原始碼大家都看得到，不能放密碼或金鑰），或升級 GitHub Pro。</p>
+          <p class="note">第一次部署約 1～3 分鐘。之後每次 push，網站會自動更新。之後想換成自己的網域，看最後一章。</p>
+        </section>
         <section class="slide" data-title="額外：SSH key 是什麼">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
           <h2>額外：SSH key 是什麼</h2>
@@ -1485,6 +1495,20 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p>有的網域商會自動接上網域，有的要打完整的 <code>_github-pages-challenge-你的帳號.你的網域.com</code>。</p>
           <p class="note">這筆 TXT 驗證完也不要刪，刪了會失去驗證。生效最久可能要 24 小時；離開頁面後，可在網域旁的 <strong>⋯</strong> 選 <strong>Continue verifying</strong>。</p>
         </section>
+        <section class="slide" data-title="Namecheap：加 TXT 驗證紀錄">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>Namecheap：加 TXT 驗證紀錄</h2>
+          <p>網域在 Namecheap 買的，照這樣加。GitHub 那頁先不要關。</p>
+          <ol class="step-list">
+            <li>登入 <a href="https://www.namecheap.com">Namecheap</a> → 右上角帳號 → <strong>Domain List</strong>，在你的網域右邊按 <strong>Manage</strong>。</li>
+            <li>上方分頁切到 <strong>Advanced DNS</strong>。</li>
+            <li>在 <strong>Host Records</strong> 按 <strong>ADD NEW RECORD</strong>，類型選 <strong>TXT Record</strong>。</li>
+            <li><strong>Host</strong> 填 <code>_github-pages-challenge-你的帳號</code>，<strong>Value</strong> 貼上 GitHub 畫面上的值，<strong>TTL</strong> 用 Automatic。</li>
+            <li>按這一列右邊的綠色勾勾儲存。</li>
+          </ol>
+          <p class="callout">Host 只填前半段，不要加 .你的網域.com，Namecheap 會自動接上。</p>
+          <p class="note">在 <strong>Domain</strong> 分頁的 <strong>NAMESERVERS</strong> 要是 <strong>Namecheap BasicDNS</strong>，Advanced DNS 的紀錄才會生效。買網域時沒改過就是這個。</p>
+        </section>
         <section class="slide" data-title="步驟 2：讓 GitHub 幫你建置網站">
           <p class="eyebrow">09 · 課後：用自己的網域上線</p>
           <h2>步驟 2：讓 GitHub 幫你建置網站</h2>
@@ -1683,6 +1707,18 @@ jobs:
           </div>
           <p class="callout">CNAME 只寫 你的帳號.github.io，不要加 repo 名稱。</p>
           <p class="note">先刪掉網域商預設的紀錄（例如停車頁的 A 紀錄）。名稱欄有的網域商寫 @，有的留空代表網域本身。不要新增 * 開頭的萬用紀錄。</p>
+        </section>
+        <section class="slide" data-title="Namecheap：加 A 和 CNAME 紀錄">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>Namecheap：加 A 和 CNAME 紀錄</h2>
+          <p>一樣在你的網域 → <strong>Manage</strong> → <strong>Advanced DNS</strong> → <strong>Host Records</strong>。</p>
+          <ol class="step-list">
+            <li>先刪掉 Namecheap 預設的停車頁紀錄：<strong>CNAME Record</strong> www → parkingpage.namecheap.com，和 <strong>URL Redirect Record</strong> @。按每一列右邊的垃圾桶。</li>
+            <li>按 <strong>ADD NEW RECORD</strong> → <strong>A Record</strong>，Host 填 <code>@</code>，Value 填 <code>185.199.108.153</code>。再加三筆，Value 分別是 <code>185.199.109.153</code>、<code>185.199.110.153</code>、<code>185.199.111.153</code>。</li>
+            <li>再加一筆 <strong>CNAME Record</strong>，Host 填 <code>www</code>，Value 填 <code>你的帳號.github.io</code>。</li>
+            <li>每一列都按右邊的綠色勾勾，或最後按 <strong>SAVE ALL CHANGES</strong>。</li>
+          </ol>
+          <p class="note">TTL 都用 Automatic。剛才的 TXT 驗證紀錄留著不要刪。</p>
         </section>
         <section class="slide" data-title="步驟 5：檢查，然後開 HTTPS">
           <p class="eyebrow">09 · 課後：用自己的網域上線</p>
