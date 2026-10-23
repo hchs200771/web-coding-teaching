@@ -974,6 +974,31 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <pre class="cmd"><code>gh auth status</code></pre>
           <p class="note">代碼大約 15 分鐘後失效。輸入錯誤或過期就回 PowerShell 按 Ctrl+C，重新執行 gh auth login 拿新代碼。</p>
         </section>
+        <section class="slide" data-title="三個區域一張圖">
+          <p class="eyebrow">05 · Git 第一章：存檔</p>
+          <h2>三個區域一張圖</h2>
+          <p>Git 把檔案分成三個區域，用不同指令把檔案往下一區送：</p>
+          <div class="areas-diagram" role="img" aria-label="工作目錄用 git add 送到暫存區，暫存區用 git commit 送到儲存庫">
+            <svg class="areas-diagram__arrows" viewBox="0 0 80 312" width="80" height="312" aria-hidden="true">
+              <defs>
+                <marker id="areas-head-add" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--area-add)" />
+                </marker>
+                <marker id="areas-head-commit" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="12" markerHeight="12" markerUnits="userSpaceOnUse" orient="auto">
+                  <path d="M0 0 L10 5 L0 10 z" fill="var(--area-commit)" />
+                </marker>
+              </defs>
+              <path d="M76 40 C 8 56, 8 136, 70 150" fill="none" stroke="var(--area-add)" stroke-width="5" stroke-linecap="round" marker-end="url(#areas-head-add)" />
+              <path d="M76 166 C 8 182, 8 262, 70 274" fill="none" stroke="var(--area-commit)" stroke-width="5" stroke-linecap="round" marker-end="url(#areas-head-commit)" />
+            </svg>
+            <code class="areas-diagram__label areas-diagram__label--add">git add</code>
+            <code class="areas-diagram__label areas-diagram__label--commit">git commit</code>
+            <div class="areas-diagram__box areas-diagram__box--work"><strong>工作目錄</strong><span>Working Directory</span></div>
+            <div class="areas-diagram__box areas-diagram__box--stage"><strong>暫存區</strong><span>Staging Area</span></div>
+            <div class="areas-diagram__box areas-diagram__box--repo"><strong>儲存庫</strong><span>Repository</span></div>
+          </div>
+          <p class="note">工作目錄是你正在改的檔案；暫存區是這次要存檔的檔案；儲存庫是每一次的存檔紀錄。下一頁可以自己按按看。</p>
+        </section>
         <section class="slide" data-title="三個區域：拍照存檔">
           <p class="eyebrow">05 · Git 第一章：存檔</p>
           <h2>三個區域：拍照存檔</h2>
