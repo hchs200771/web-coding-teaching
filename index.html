@@ -571,9 +571,12 @@ Installing Claude Code native build latest...</code></pre>
         <section class="slide" data-title="設定 2：底下的狀態列">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
           <h2>設定 2：底下的狀態列</h2>
-          <p>狀態列（status line）像儀表板。在底下顯示目前模型、資料夾、Git 分支。</p>
+          <p>狀態列（status line）像儀表板。在底下顯示模型、專案、Git 分支、對話記憶與用量額度。</p>
           <p>在 Claude Code 裡貼上，讓它幫你設定：</p>
-          <pre class="cmd"><code>/statusline 顯示目前模型、資料夾名稱和 Git 分支</code></pre>
+          <pre class="cmd"><code>/statusline 用繁體中文分兩行顯示。第一行：模型名稱 · 專案 資料夾名稱 ↘ Git 分支 · 已跑 本次對話時間（例如 12分）。第二行：記憶剩 對話記憶剩餘百分比 · 5小時額度剩 百分比（幾時幾分後重置） · 7天額度剩 百分比（幾天幾時幾分後重置）。沒有的資料就整段不顯示。</code></pre>
+          <p>做出來會像這樣：</p>
+          <pre class="example"><code>Opus 5.5 (1M context) · 專案 web-coding-teaching ↘ main · 已跑 0分
+記憶剩 95% · 5小時額度剩 99%（4時38分後重置） · 7天額度剩 77%（4天22時58分後重置）</code></pre>
           <p class="note">
             它會把腳本放在 %USERPROFILE%\.claude\，並更新 %USERPROFILE%\.claude\settings.json。不用自己寫。
           </p>
@@ -951,10 +954,25 @@ Installing Claude Code native build latest...</code></pre>
             <li>連線協定選 HTTPS。</li>
             <li>問 Authenticate Git with your GitHub credentials? 選 Yes。</li>
             <li>選 Login with a web browser。</li>
-            <li>複製一次性代碼，到瀏覽器貼上並授權。</li>
           </ol>
+          <p>接著畫面會出現一組一次性代碼，下一頁教你怎麼用它授權。</p>
+        </section>
+        <section class="slide" data-title="在瀏覽器授權這台電腦">
+          <p class="eyebrow">05 · Git 第一章：存檔</p>
+          <h2>在瀏覽器授權這台電腦</h2>
+          <p>PowerShell 會顯示類似這樣的畫面（代碼每次都不一樣）：</p>
+          <pre class="example"><code>! First copy your one-time code: ABCD-1234
+Press Enter to open https://github.com/login/device in your browser...</code></pre>
+          <ol class="step-list">
+            <li>先記下那 8 碼代碼（例如 ABCD-1234），再按 Enter，瀏覽器會自動打開 GitHub。沒打開就自己到 <a href="https://github.com/login/device">github.com/login/device</a>。</li>
+            <li>還沒登入 GitHub 會先要你登入。登入後如果出現帳號選擇，確認是自己的帳號，按 Continue。</li>
+            <li>在 Device Activation 頁面輸入代碼，按 Continue。</li>
+            <li>出現 Authorize GitHub CLI 頁面，按綠色的 Authorize github。要密碼或兩步驟驗證碼就照著輸入。</li>
+            <li>看到 Congratulations, you're all set! 就完成了，可以關掉這個分頁回到 PowerShell。</li>
+          </ol>
+          <p>PowerShell 出現 ✓ Logged in as 你的帳號名稱 就代表成功。再確認一次：</p>
           <pre class="cmd"><code>gh auth status</code></pre>
-          <p>確認這台電腦已經登入你的帳號。</p>
+          <p class="note">代碼大約 15 分鐘後失效。輸入錯誤或過期就回 PowerShell 按 Ctrl+C，重新執行 gh auth login 拿新代碼。</p>
         </section>
         <section class="slide" data-title="三個區域：拍照存檔">
           <p class="eyebrow">05 · Git 第一章：存檔</p>
