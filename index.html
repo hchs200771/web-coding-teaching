@@ -327,6 +327,10 @@
             </div>
             <figcaption>截圖是英文介面；換成中文後位置一樣，名字變中文。</figcaption>
           </figure>
+        </section>
+        <section class="slide" data-title="VS Code 五個區塊：功能與快捷鍵">
+          <p class="eyebrow">02 · VS Code 安裝與介紹</p>
+          <h2>VS Code 五個區塊：功能與快捷鍵</h2>
           <ol class="step-list vscode-legend">
             <li><strong>活動列</strong>：最左邊一排圖示。檔案總管、搜尋、原始檔控制（Git）、延伸模組都從這裡切換。</li>
             <li><strong>側邊欄</strong>：點活動列的圖示就換內容。最常用檔案總管，看資料夾裡有哪些檔案。Ctrl+B 收起或打開。</li>
@@ -405,10 +409,22 @@
             </article>
           </div>
         </section>
-        <section class="slide" data-title="安裝 Claude Code">
+        <section class="slide" data-title="安裝 Claude Code：帳號與系統需求">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>安裝 Claude Code</h2>
-          <p>在 VS Code 的終端機（PowerShell）依序貼上這三步。一次貼一行，按 Enter 執行。</p>
+          <h2>安裝 Claude Code：帳號與系統需求</h2>
+          <p class="callout">
+            需要 Claude Pro / Max 訂閱或 Console 帳號（API 預付費）；Team / Enterprise 也可。
+            免費 claude.ai 帳號不含 Claude Code。
+          </p>
+          <p class="note">
+            Windows 10 1809 以上或 Windows 11、至少 4GB 記憶體與網路。
+            不用管理員權限，也不用先裝 Git，等一下的 Git 第一章才裝。原生安裝會自動更新。
+          </p>
+        </section>
+        <section class="slide" data-title="安裝 Claude Code：下載與安裝">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>安裝 Claude Code：下載與安裝</h2>
+          <p>在 VS Code 的終端機（PowerShell）先執行第 1 步。一次貼一行，按 Enter 執行。Windows 接著到下一張設定 PATH。</p>
           <div class="tabs">
             <div class="tab-buttons" aria-label="選擇作業系統">
               <button type="button" data-tab="claude-install-0">Windows（PowerShell）</button>
@@ -428,42 +444,41 @@
 Installing Claude Code native build latest...</code></pre>
                   <p>出現這兩行代表正在安裝，再等它跑完。</p>
                 </li>
-                <li>
-                  <strong>第 2 步：把 Claude 的資料夾記進 PATH。</strong>
-                  <p>下次打開終端機也找得到。重複執行也只會加一次。</p>
-                  <pre class="cmd"><code>$p = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;); if ($p -notlike &quot;*\.local\bin*&quot;) { [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, &quot;$p;$HOME\.local\bin&quot;, &#x27;User&#x27;) }</code></pre>
-                </li>
-                <li>
-                  <strong>第 3 步：讓現在這個終端機也馬上找得到。</strong>
-                  <pre class="cmd"><code>$env:Path += &quot;;$HOME\.local\bin&quot;</code></pre>
-                </li>
               </ol>
-              <p class="note">第 2、3 步執行後沒有任何訊息是正常的；貼錯或重複貼也沒關係。</p>
             </div>
             <div class="tab-panel" id="claude-install-1" hidden>
               <pre class="cmd"><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code></pre>
-              <p class="note">裝完請改用 PowerShell 分頁的第 2、3 步把路徑加好。</p>
+              <p class="note">裝完請改用 PowerShell，照下一張的第 2、3 步把路徑加好。</p>
             </div>
             <div class="tab-panel" id="claude-install-2" hidden>
               <pre class="cmd"><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
             </div>
           </div>
-          <p class="callout">
-            需要 Claude Pro / Max 訂閱或 Console 帳號（API 預付費）；Team / Enterprise 也可。
-            免費 claude.ai 帳號不含 Claude Code。
-          </p>
-          <p class="note">
-            Windows 10 1809 以上或 Windows 11、至少 4GB 記憶體與網路。
-            不用管理員權限，也不用先裝 Git，等一下的 Git 第一章才裝。原生安裝會自動更新。
-          </p>
+        </section>
+        <section class="slide" data-title="安裝 Claude Code：第 2、3 步">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>安裝 Claude Code：第 2、3 步</h2>
+          <p>Windows 安裝完成後，在 PowerShell 依序執行。macOS 安裝後可直接到「確認安裝成功」。</p>
+          <ol class="step-list" start="2">
+            <li>
+              <strong>第 2 步：把 Claude 的資料夾記進 PATH。</strong>
+              <p>下次打開終端機也找得到。重複執行也只會加一次。</p>
+              <pre class="cmd"><code>$p = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;); if ($p -notlike &quot;*\.local\bin*&quot;) { [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, &quot;$p;$HOME\.local\bin&quot;, &#x27;User&#x27;) }</code></pre>
+            </li>
+            <li>
+              <strong>第 3 步：讓現在這個終端機也馬上找得到。</strong>
+              <pre class="cmd"><code>$env:Path += &quot;;$HOME\.local\bin&quot;</code></pre>
+            </li>
+          </ol>
+          <p class="note">第 2、3 步執行後沒有任何訊息是正常的；貼錯或重複貼也沒關係。</p>
           <p class="note">
             看到「The token '&&' is not a valid statement separator」：把 CMD 指令貼進 PowerShell 了。
             看到「'irm' is not recognized」：把 PowerShell 指令貼進 CMD 了。
           </p>
         </section>
-        <section class="slide" data-title="剛剛那幾行指令在做什麼">
+        <section class="slide" data-title="安裝指令說明：下載與執行">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>剛剛那幾行指令在做什麼</h2>
+          <h2>安裝指令說明：下載與執行</h2>
           <p class="lead">第 1 步：下載安裝程式，然後直接執行它。</p>
           <div class="table-wrap">
             <table>
@@ -493,6 +508,13 @@ Installing Claude Code native build latest...</code></pre>
               </tbody>
             </table>
           </div>
+          <p class="callout">
+            irm … | iex 會直接執行網路上的程式碼。只用在信任的官方網址；來路不明的網站叫你貼這種指令，不要照做。
+          </p>
+        </section>
+        <section class="slide" data-title="安裝指令說明：PATH 通訊錄">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>安裝指令說明：PATH 通訊錄</h2>
           <h3>第 2、3 步：PATH 是電腦找程式的通訊錄</h3>
           <p>你打 <code>claude</code>，終端機就照 PATH 這本通訊錄，一個一個資料夾找 <code>claude.exe</code>。安裝程式把它放在 <code>%USERPROFILE%\.local\bin</code>，但有時沒把這個資料夾寫進通訊錄，所以我們自己寫。</p>
           <div class="table-wrap">
@@ -508,9 +530,6 @@ Installing Claude Code native build latest...</code></pre>
               </tbody>
             </table>
           </div>
-          <p class="callout">
-            irm … | iex 會直接執行網路上的程式碼。只用在信任的官方網址；來路不明的網站叫你貼這種指令，不要照做。
-          </p>
         </section>
         <section class="slide" data-title="確認安裝成功">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
@@ -519,6 +538,10 @@ Installing Claude Code native build latest...</code></pre>
           <p>看版本，例如 2.1.x（Claude Code）。</p>
           <pre class="cmd"><code>claude doctor</code></pre>
           <p>做唯讀檢查，不會修改你的專案。</p>
+        </section>
+        <section class="slide" data-title="找不到 claude：排除安裝問題">
+          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
+          <h2>找不到 claude：排除安裝問題</h2>
           <h3>還是找不到 claude？依序檢查</h3>
           <ol class="step-list">
             <li>確認是在 PowerShell，不是 CMD：提示字元開頭是 <code>PS</code>。</li>
@@ -990,6 +1013,10 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
             <li>出現 Authorize GitHub CLI 頁面，按綠色的 Authorize github。要密碼或兩步驟驗證碼就照著輸入。</li>
             <li>看到 Congratulations, you're all set! 就完成了，可以關掉這個分頁回到 PowerShell。</li>
           </ol>
+        </section>
+        <section class="slide" data-title="GitHub 授權完成：確認登入狀態">
+          <p class="eyebrow">05 · Git 第一章：存檔</p>
+          <h2>GitHub 授權完成：確認登入狀態</h2>
           <p>PowerShell 出現 ✓ Logged in as 你的帳號名稱 就代表成功。再確認一次：</p>
           <pre class="cmd"><code>gh auth status</code></pre>
           <p class="note">代碼大約 15 分鐘後失效。輸入錯誤或過期就回 PowerShell 按 Ctrl+C，重新執行 gh auth login 拿新代碼。</p>
@@ -1435,10 +1462,10 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </div>
           <p class="why-goal">學完這章，你可以：忘記說法時知道去哪裡查，也能自己練習。</p>
         </section>
-        <section class="slide" data-title="Claude Code 小抄">
+        <section class="slide" data-title="Claude Code 小抄：啟動與對話">
           <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>Claude Code 小抄</h2>
-          <p>前兩個在 PowerShell；斜線指令在 Claude Code 裡。</p>
+          <h2>Claude Code 小抄：啟動與對話</h2>
+          <p>前兩個在 PowerShell；/help、/clear 在 Claude Code 裡。</p>
           <div class="cmd-list">
             <article class="card">
               <p>啟動。</p>
@@ -1456,6 +1483,13 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
               <p>新對話。</p>
               <pre class="cmd"><code>/clear</code></pre>
             </article>
+          </div>
+        </section>
+        <section class="slide" data-title="Claude Code 小抄：設定與工具">
+          <p class="eyebrow">08 · 小抄與課後練習</p>
+          <h2>Claude Code 小抄：設定與工具</h2>
+          <p>以下斜線指令都在 Claude Code 裡輸入。</p>
+          <div class="cmd-list">
             <article class="card">
               <p>開設定。</p>
               <pre class="cmd"><code>/config</code></pre>
@@ -1475,9 +1509,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </div>
           <p class="note">Esc 中斷；Shift+Tab 切權限模式，練習用 manual mode。</p>
         </section>
-        <section class="slide" data-title="Git 說法小抄">
+        <section class="slide" data-title="Git 說法小抄：日常存檔與同步">
           <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>Git 說法小抄</h2>
+          <h2>Git 說法小抄：日常存檔與同步</h2>
           <div class="cmd-list">
             <article class="card">
               <p>存檔 commit</p>
@@ -1495,6 +1529,12 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
               <p>看狀況 status</p>
               <pre class="cmd"><code>現在有哪些改動還沒存檔？用中文跟我說。</code></pre>
             </article>
+          </div>
+        </section>
+        <section class="slide" data-title="Git 說法小抄：救援與分支">
+          <p class="eyebrow">08 · 小抄與課後練習</p>
+          <h2>Git 說法小抄：救援與分支</h2>
+          <div class="cmd-list">
             <article class="card">
               <p>救回來</p>
               <pre class="cmd"><code>網站壞了，幫我列出最近幾次存檔，回到最後一個正常的版本。先告訴我你要怎麼做，我說好再動。</code></pre>
@@ -1539,9 +1579,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
             </article>
           </div>
         </section>
-        <section class="slide" data-title="進階附錄：Claude 在背後跑什麼">
+        <section class="slide" data-title="進階附錄：查看與存檔指令">
           <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>進階附錄：Claude 在背後跑什麼</h2>
+          <h2>進階附錄：查看與存檔指令</h2>
           <p>這些是 Claude Code 幫你做事時實際執行的指令。不用背，好奇或想更懂時再來玩。</p>
           <div class="cmd-list">
             <article class="card">
@@ -1560,6 +1600,12 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
               <p>看紀錄。</p>
               <pre class="cmd"><code>git log --oneline</code></pre>
             </article>
+          </div>
+        </section>
+        <section class="slide" data-title="進階附錄：同步與分支指令">
+          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
+          <h2>進階附錄：同步與分支指令</h2>
+          <div class="cmd-list">
             <article class="card">
               <p>看修改。</p>
               <pre class="cmd"><code>git diff</code></pre>
@@ -1697,8 +1743,8 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
             <li><a href="https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自訂網域文件</a></li>
           </ul>
           <p class="next-links">
-            <a href="#/2/6">重看 VS Code 畫面</a><a href="#/3/2">重看安裝</a><a href="#/5/13">重練 Git</a>
-            <a href="#/8/12">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/9/0">用自己的網域上線</a>
+            <a href="#/2/6">重看 VS Code 畫面</a><a href="#/3/2">重看安裝</a><a href="#/5/14">重練 Git</a>
+            <a href="#/8/15">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/9/0">用自己的網域上線</a>
           </p>
         </section>
       </section>
@@ -1729,6 +1775,10 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
             <li>到網域商設定 DNS。</li>
             <li>檢查並開 HTTPS。</li>
           </ol>
+        </section>
+        <section class="slide" data-title="開始前：確認 GitHub Pages 的條件">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>開始前：確認 GitHub Pages 的條件</h2>
           <p class="callout">先決條件：Lovable 建立的 repo 是私人的；GitHub 免費方案只能用「公開」repo 開 Pages。二選一：把 repo 改成公開（Settings → General 最下面 Danger Zone → Change visibility；原始碼大家都看得到，不能放密碼或金鑰），或升級 GitHub Pro。</p>
           <p class="note">Lovable 付費方案也能直接在 Lovable 綁網域；這章講 GitHub Pages 的做法，同一個網域只選一邊指過去。</p>
         </section>
@@ -1790,6 +1840,10 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <ol class="step-list">
             <li>打開你的網站 repo → 上方最右邊的 <strong>⚙ Settings</strong> → 左邊 <strong>Pages</strong> → <strong>Build and deployment</strong> 底下的 <strong>Source</strong>，從 <strong>Deploy from a branch</strong> 改成 <strong>GitHub Actions</strong>（選了就生效，不用按儲存）。</li>
           </ol>
+        </section>
+        <section class="slide" data-title="步驟 2：Source 改選 GitHub Actions">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 2：Source 改選 GitHub Actions</h2>
           <figure class="shot">
             <div class="shot-frame">
               <img src="img/github/pages-source-dropdown.png" alt="GitHub Pages 的 Source 選單選擇 GitHub Actions" width="674" height="294" loading="lazy" />
@@ -1828,10 +1882,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p>可以想成一張食譜：workflow 是整張食譜，每一步不是用現成調理包（action），就是自己動手（run）。</p>
           <p class="note">每次跑完會在 repo 的 Actions 分頁留下紀錄；公開 repo 使用 GitHub Actions 免費，私人 repo 每月有免費額度，這種小網站通常用不完。</p>
         </section>
-        <section class="slide" data-title="deploy.yml 長這樣（參考）">
+        <section class="slide" data-title="deploy.yml：觸發條件與執行環境">
           <p class="eyebrow">09 · 課後：用自己的網域上線</p>
-          <h2>deploy.yml 長這樣（參考）</h2>
-          <p>Claude Code 寫的應該跟這份差不多，這是 Vite 官方範例加上 404.html 那一步。看得懂大概就好，不用背。</p>
+          <h2>deploy.yml：觸發條件與執行環境</h2>
           <pre class="example"><code>name: Deploy to GitHub Pages
 on:
   push:
@@ -1849,8 +1902,14 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
+    runs-on: ubuntu-latest</code></pre>
+          <p class="note">設定檔上半段；下一張接續同一個 deploy 工作的 steps。</p>
+        </section>
+        <section class="slide" data-title="deploy.yml：建置與發布步驟">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>deploy.yml：建置與發布步驟</h2>
+          <p>接在上一張的 runs-on 後面，保留縮排，仍在 jobs → deploy 裡。</p>
+          <pre class="example"><code>    steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
@@ -1865,6 +1924,11 @@ jobs:
           path: './dist'
       - id: deployment
         uses: actions/deploy-pages@v5</code></pre>
+        </section>
+        <section class="slide" data-title="deploy.yml 逐段說明">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>deploy.yml 逐段說明</h2>
+          <p>Claude Code 寫的應該跟這份差不多，這是 Vite 官方範例加上 404.html 那一步。看得懂大概就好，不用背。</p>
           <div class="table-wrap">
             <table>
               <thead>
@@ -1994,13 +2058,17 @@ jobs:
           </ol>
           <p class="note">TTL 都用 Automatic。剛才的 TXT 驗證紀錄留著不要刪。</p>
         </section>
-        <section class="slide" data-title="步驟 5：檢查，然後開 HTTPS">
+        <section class="slide" data-title="步驟 5：檢查 DNS 是否生效">
           <p class="eyebrow">09 · 課後：用自己的網域上線</p>
-          <h2>步驟 5：檢查，然後開 HTTPS</h2>
+          <h2>步驟 5：檢查 DNS 是否生效</h2>
           <p>在 PowerShell 檢查 DNS：</p>
           <pre class="cmd"><code>Resolve-DnsName 你的網域.com -Type A</code></pre>
           <pre class="cmd"><code>Resolve-DnsName www.你的網域.com -Type CNAME</code></pre>
           <p>第一個要列出四個 185.199… 的 IP；第二個要看到 你的帳號.github.io。DNS 生效最久可能要 24 小時，沒出現先等。</p>
+        </section>
+        <section class="slide" data-title="步驟 5：開啟 HTTPS">
+          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <h2>步驟 5：開啟 HTTPS</h2>
           <p>生效後回到同一頁（repo <strong>Settings</strong> → <strong>Pages</strong>），在 <strong>Custom domain</strong> 下面勾選 <strong>Enforce HTTPS</strong>（網址前面會有鎖頭）。這個選項可能要等到 24 小時後才能勾。</p>
           <figure class="shot">
             <div class="shot-frame">
