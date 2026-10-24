@@ -1939,18 +1939,6 @@ jobs:
           </figure>
           <p class="callout">之後照每天的工作循環 push 到 main，GitHub 就會自動重新發布，網站幾分鐘後更新。</p>
         </section>
-        <section class="slide" data-title="自學：改用 Lovable 綁網域">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>自學：改用 Lovable 綁網域</h2>
-          <p>不想自己部署，Lovable 付費方案也能直接綁網域。一樣是到 Namecheap 加紀錄，只是值換成 Lovable 給的。</p>
-          <ol class="step-list">
-            <li>Lovable 專案 → <strong>Settings</strong> → <strong>Domains</strong> → <strong>Connect Domain</strong>，輸入你的網域。</li>
-            <li>選 <strong>Go to our manual setup</strong>（手動設定），畫面會列出要加的紀錄（Type、Host、Value）。</li>
-            <li>到 Namecheap → <strong>Manage</strong> → <strong>Advanced DNS</strong>，照抄每一筆。通常是兩筆 A Record：Host <code>@</code> 和 <code>www</code>，Value 都是 Lovable 給的 IP（例如 <code>185.158.133.1</code>）；有 TXT 驗證紀錄也一起加。</li>
-            <li>回 Lovable 按完成，等幾個小時。網域旁邊閃爍的狀態點消失，就代表成功。</li>
-          </ol>
-          <p class="callout">值以 Lovable 畫面上顯示的為準。同一個網域只能指向一邊：用 Lovable 就不要再加 GitHub 的 A 紀錄，反過來也一樣。</p>
-        </section>
         <section class="slide" data-title="卡關怎麼辦">
           <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>卡關怎麼辦</h2>
