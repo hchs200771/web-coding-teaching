@@ -1584,6 +1584,18 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="callout">先決條件：Lovable 建立的 repo 是私人的；GitHub 免費方案只能用「公開」repo 開 Pages。二選一：把 repo 改成公開（Settings → General 最下面 Danger Zone → Change visibility；原始碼大家都看得到，不能放密碼或金鑰），或升級 GitHub Pro。</p>
           <p class="note">Lovable 付費方案也能直接在 Lovable 綁網域；這章講 GitHub Pages 的做法，同一個網域只選一邊指過去。</p>
         </section>
+        <section class="slide" data-title="還沒有網域：在 Namecheap 買一個">
+          <p class="eyebrow">08 · 用自己的網域上線</p>
+          <h2>還沒有網域：在 Namecheap 買一個</h2>
+          <p>網域要在「網域商」買，一年付一次。平台很多，原理都一樣，只是畫面不同；這份講義用 Namecheap 示範，因為便宜、介面好操作。</p>
+          <ol class="step-list">
+            <li>到 <a href="https://www.namecheap.com">Namecheap</a> 註冊帳號。</li>
+            <li>在首頁搜尋框輸入想要的網域，例如 <code>你的名字.com</code>，有空的才買得到。</li>
+            <li>加入購物車結帳。看清楚「第二年續約價」，有些網域第一年很便宜、之後變貴。</li>
+            <li>買完到右上角帳號 → <strong>Domain List</strong>，看得到這個網域就成功了。</li>
+          </ol>
+          <p class="note">不清楚購買流程，可以看這支教學影片：<a href="https://youtu.be/b9kRUc359VI">Namecheap 註冊網域教學</a>。</p>
+        </section>
         <section class="slide" data-title="步驟 1：先驗證網域（找到按鈕）">
           <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 1：先驗證網域（找到按鈕）</h2>
@@ -1848,6 +1860,52 @@ jobs:
           <p class="callout">CNAME 只寫 你的帳號.github.io，不要加 repo 名稱。</p>
           <p class="note">先刪掉網域商預設的紀錄（例如停車頁的 A 紀錄）。名稱欄有的網域商寫 @，有的留空代表網域本身。不要新增 * 開頭的萬用紀錄。</p>
         </section>
+        <section class="slide" data-title="看懂 DNS 紀錄的每一欄">
+          <p class="eyebrow">08 · 用自己的網域上線</p>
+          <h2>看懂 DNS 紀錄的每一欄</h2>
+          <p>DNS 就像網路上的通訊錄：把「網域」對到「伺服器的位置」。每一筆紀錄都有這幾欄：</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">欄位</th>
+                  <th scope="col">意思</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>類型：A</td>
+                  <td>把網域指到一個 IP 位址（伺服器的門牌號碼）。</td>
+                </tr>
+                <tr>
+                  <td>類型：CNAME</td>
+                  <td>把網域指到另一個網域，例如 <code>你的帳號.github.io</code>。</td>
+                </tr>
+                <tr>
+                  <td>類型：TXT</td>
+                  <td>一段文字，用來證明「這個網域是我的」，不影響網站能不能打開。</td>
+                </tr>
+                <tr>
+                  <td>Host：<code>@</code></td>
+                  <td>網域本身，例如 <code>example.com</code>（不加 www）。</td>
+                </tr>
+                <tr>
+                  <td>Host：<code>www</code></td>
+                  <td>子網域，例如 <code>www.example.com</code>。</td>
+                </tr>
+                <tr>
+                  <td>Value</td>
+                  <td>要指去的地方：IP 位址或另一個網域。</td>
+                </tr>
+                <tr>
+                  <td>TTL</td>
+                  <td>改了設定後，多久會更新到全世界。用 Automatic 就好。</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">所以 @ 和 www 要各設一次，兩種網址才都打得開。</p>
+        </section>
         <section class="slide" data-title="Namecheap：加 A 和 CNAME 紀錄">
           <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>Namecheap：加 A 和 CNAME 紀錄</h2>
@@ -1880,6 +1938,18 @@ jobs:
             <figcaption>Custom domain 下面的 Enforce HTTPS</figcaption>
           </figure>
           <p class="callout">之後照每天的工作循環 push 到 main，GitHub 就會自動重新發布，網站幾分鐘後更新。</p>
+        </section>
+        <section class="slide" data-title="自學：改用 Lovable 綁網域">
+          <p class="eyebrow">08 · 用自己的網域上線</p>
+          <h2>自學：改用 Lovable 綁網域</h2>
+          <p>不想自己部署，Lovable 付費方案也能直接綁網域。一樣是到 Namecheap 加紀錄，只是值換成 Lovable 給的。</p>
+          <ol class="step-list">
+            <li>Lovable 專案 → <strong>Settings</strong> → <strong>Domains</strong> → <strong>Connect Domain</strong>，輸入你的網域。</li>
+            <li>選 <strong>Go to our manual setup</strong>（手動設定），畫面會列出要加的紀錄（Type、Host、Value）。</li>
+            <li>到 Namecheap → <strong>Manage</strong> → <strong>Advanced DNS</strong>，照抄每一筆。通常是兩筆 A Record：Host <code>@</code> 和 <code>www</code>，Value 都是 Lovable 給的 IP（例如 <code>185.158.133.1</code>）；有 TXT 驗證紀錄也一起加。</li>
+            <li>回 Lovable 按完成，等幾個小時。網域旁邊閃爍的狀態點消失，就代表成功。</li>
+          </ol>
+          <p class="callout">值以 Lovable 畫面上顯示的為準。同一個網域只能指向一邊：用 Lovable 就不要再加 GitHub 的 A 紀錄，反過來也一樣。</p>
         </section>
         <section class="slide" data-title="卡關怎麼辦">
           <p class="eyebrow">08 · 用自己的網域上線</p>
