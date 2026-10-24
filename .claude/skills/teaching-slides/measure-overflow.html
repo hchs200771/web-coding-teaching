@@ -1,0 +1,31 @@
+<!doctype html>
+<!-- 量測哪些投影片在指定視窗大小下超出畫面。用法見同資料夾 SKILL.md 第 7 節。 -->
+<meta charset="utf-8" />
+<body>
+  <pre id="out">pending</pre>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const W = +params.get('w') || 1536;
+    const H = +params.get('h') || 864;
+    const page = params.get('page') || 'index.html';
+    const frame = document.createElement('iframe');
+    frame.width = W;
+    frame.height = H;
+    frame.src = page;
+    document.body.prepend(frame);
+    frame.onload = () =>
+      setTimeout(() => {
+        const doc = frame.contentDocument;
+        const rows = [];
+        [...doc.querySelectorAll('.chapter')].forEach((chapter, c) =>
+          [...chapter.querySelectorAll(':scope > .slide')].forEach((slide, s) => {
+            const over = slide.scrollHeight - slide.clientHeight;
+            if (over > 2) rows.push(`#/${c}/${s}\t+${over}px\t${slide.dataset.title ?? ''}`);
+          }),
+        );
+        const slideH = doc.querySelector('.slide')?.clientHeight;
+        document.getElementById('out').textContent =
+          `viewport ${W}x${H} slideH=${slideH}\n${rows.length} overflow\n${rows.join('\n')}`;
+      }, 2500);
+  </script>
+</body>
