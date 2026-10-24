@@ -408,7 +408,7 @@
         <section class="slide" data-title="安裝 Claude Code">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
           <h2>安裝 Claude Code</h2>
-          <p>在 VS Code 的終端機（PowerShell）貼上 Windows PowerShell 這一格。</p>
+          <p>在 VS Code 的終端機（PowerShell）依序貼上這三步。一次貼一行，按 Enter 執行。</p>
           <div class="tabs">
             <div class="tab-buttons" aria-label="選擇作業系統">
               <button type="button" data-tab="claude-install-0">Windows（PowerShell）</button>
@@ -416,10 +416,33 @@
               <button type="button" data-tab="claude-install-2">macOS</button>
             </div>
             <div class="tab-panel" id="claude-install-0">
-              <pre class="cmd"><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+              <ol class="step-list">
+                <li>
+                  <strong>第 1 步：下載並安裝。</strong>
+                  <pre class="cmd"><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+                  <p class="callout">
+                    這裡大概要等 5 到 10 分鐘。下載時畫面不會動、也沒有進度條，下載完才會出現下面的文字。不要關掉視窗。
+                  </p>
+                  <pre class="example"><code>Setting up Claude Code...
+
+Installing Claude Code native build latest...</code></pre>
+                  <p>出現這兩行代表正在安裝，再等它跑完。</p>
+                </li>
+                <li>
+                  <strong>第 2 步：把 Claude 的資料夾記進 PATH。</strong>
+                  <p>下次打開終端機也找得到。重複執行也只會加一次。</p>
+                  <pre class="cmd"><code>$p = [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;); if ($p -notlike &quot;*\.local\bin*&quot;) { [Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, &quot;$p;$HOME\.local\bin&quot;, &#x27;User&#x27;) }</code></pre>
+                </li>
+                <li>
+                  <strong>第 3 步：讓現在這個終端機也馬上找得到。</strong>
+                  <pre class="cmd"><code>$env:Path += &quot;;$HOME\.local\bin&quot;</code></pre>
+                </li>
+              </ol>
+              <p class="note">第 2、3 步執行後沒有任何訊息是正常的；貼錯或重複貼也沒關係。</p>
             </div>
             <div class="tab-panel" id="claude-install-1" hidden>
               <pre class="cmd"><code>curl -fsSL https://claude.ai/install.cmd -o install.cmd &amp;&amp; install.cmd &amp;&amp; del install.cmd</code></pre>
+              <p class="note">裝完請改用 PowerShell 分頁的第 2、3 步把路徑加好。</p>
             </div>
             <div class="tab-panel" id="claude-install-2" hidden>
               <pre class="cmd"><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
@@ -433,22 +456,15 @@
             Windows 10 1809 以上或 Windows 11、至少 4GB 記憶體與網路。
             不用管理員權限，也不用先裝 Git，等一下的 Git 第一章才裝。原生安裝會自動更新。
           </p>
-          <p class="callout">
-            這裡大概要等 5 到 10 分鐘。下載時畫面不會動、也沒有進度條，下載完才會出現下面的文字。不要關掉視窗。
-          </p>
-          <pre class="example"><code>Setting up Claude Code...
-
-Installing Claude Code native build latest...</code></pre>
-          <p>出現這兩行代表正在安裝，再等它跑完。完成後把 VS Code 整個關掉重開。</p>
           <p class="note">
             看到「The token '&&' is not a valid statement separator」：把 CMD 指令貼進 PowerShell 了。
             看到「'irm' is not recognized」：把 PowerShell 指令貼進 CMD 了。
           </p>
         </section>
-        <section class="slide" data-title="剛剛那行指令在做什麼">
+        <section class="slide" data-title="剛剛那幾行指令在做什麼">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>剛剛那行指令在做什麼</h2>
-          <p class="lead">下載安裝程式，然後直接執行它。</p>
+          <h2>剛剛那幾行指令在做什麼</h2>
+          <p class="lead">第 1 步：下載安裝程式，然後直接執行它。</p>
           <div class="table-wrap">
             <table>
               <thead>
@@ -477,9 +493,21 @@ Installing Claude Code native build latest...</code></pre>
               </tbody>
             </table>
           </div>
-          <p>
-            腳本會把 Claude Code 放到 <code>%USERPROFILE%\.local\bin</code>，並把這個資料夾加進 PATH 這本「電腦找程式的通訊錄」，重開 VS Code 才會讀到新清單。
-          </p>
+          <h3>第 2、3 步：PATH 是電腦找程式的通訊錄</h3>
+          <p>你打 <code>claude</code>，終端機就照 PATH 這本通訊錄，一個一個資料夾找 <code>claude.exe</code>。安裝程式把它放在 <code>%USERPROFILE%\.local\bin</code>，但有時沒把這個資料夾寫進通訊錄，所以我們自己寫。</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th scope="col">步驟與片段</th><th scope="col">意思</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>第 2 步：<code>GetEnvironmentVariable(&#x27;Path&#x27;,&#x27;User&#x27;)</code></td><td>讀出你帳號的通訊錄。</td></tr>
+                <tr><td>第 2 步：<code>-notlike &quot;*\.local\bin*&quot;</code></td><td>檢查裡面還沒有這個資料夾。</td></tr>
+                <tr><td>第 2 步：<code>SetEnvironmentVariable(…,&#x27;User&#x27;)</code></td><td>沒有才加上去存回。只改你自己的帳號，不需要管理員。</td></tr>
+                <tr><td>第 3 步：<code>$env:Path += …</code></td><td>終端機只在打開時抄一份通訊錄。這行直接改「現在手上這份」，所以不用關掉重開就能用。</td></tr>
+              </tbody>
+            </table>
+          </div>
           <p class="callout">
             irm … | iex 會直接執行網路上的程式碼。只用在信任的官方網址；來路不明的網站叫你貼這種指令，不要照做。
           </p>
@@ -491,91 +519,15 @@ Installing Claude Code native build latest...</code></pre>
           <p>看版本，例如 2.1.x（Claude Code）。</p>
           <pre class="cmd"><code>claude doctor</code></pre>
           <p>做唯讀檢查，不會修改你的專案。</p>
-          <p class="note">若顯示找不到 claude，先把 VS Code 整個關掉重開；只開新的終端機不夠。還是不行就看下一張。</p>
-        </section>
-        <section class="slide" data-title="卡關：為什麼找不到 claude">
-          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>卡關：為什麼找不到 claude</h2>
-          <pre class="example"><code>claude : 無法辨識 'claude' 詞彙是否為 Cmdlet、函數、指令檔或可執行程式的名稱。</code></pre>
-          <p class="lead">程式其實裝好了，只是終端機不知道去哪裡找它。</p>
-          <p>PATH 像「電腦找程式的通訊錄」。你打 <code>claude</code>，終端機就照通訊錄，一個一個資料夾找 <code>claude.exe</code>；資料夾不在通訊錄上，就說「無法辨識」。</p>
-          <p>安裝位置是 <code>%USERPROFILE%\.local\bin</code>，PowerShell 寫成 <code>$HOME\.local\bin</code>。兩個都是你帳號底下的同一個資料夾。</p>
-          <div class="diagram">
-            <div class="diagram-node">安裝程式把 <code>claude.exe</code><br>放進 <code>.local\bin</code></div>
-            <span class="diagram-arrow">→</span>
-            <div class="diagram-node">把 <code>.local\bin</code><br>寫進 PATH 通訊錄</div>
-            <span class="diagram-arrow">→</span>
-            <div class="diagram-node">終端機「打開時」<br>抄一份通訊錄</div>
-            <span class="diagram-arrow">→</span>
-            <div class="diagram-node">打 <code>claude</code> 時<br>照抄的那份找</div>
-          </div>
-          <div class="card-grid">
-            <article class="card">
-              <h3>情況 A：手上是舊的那份</h3>
-              <p>通訊錄更新了，但終端機只在打開那一刻讀一次 PATH。</p>
-              <p>VS Code 也在打開時記下 PATH。它開著時，新開的終端機也拿舊的那份。把 VS Code 所有視窗整個關掉重開就好。</p>
-            </article>
-            <article class="card">
-              <h3>情況 B：沒寫進通訊錄</h3>
-              <p>安裝程式沒有成功把資料夾加進 PATH。重開也沒用，要自己加。</p>
-              <p>下一張先檢查，再決定要不要加。</p>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="卡關：先檢查，再把路徑加進去">
-          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>卡關：先檢查，再把路徑加進去</h2>
-          <p>以下指令都貼在 PowerShell。一次貼一行，按 Enter 執行。</p>
+          <h3>還是找不到 claude？依序檢查</h3>
           <ol class="step-list">
+            <li>確認是在 PowerShell，不是 CMD：提示字元開頭是 <code>PS</code>。</li>
             <li>
-              <strong>檢查檔案在不在。</strong>
+              確認檔案在：
               <pre class="cmd"><code>Test-Path &quot;$HOME\.local\bin\claude.exe&quot;</code></pre>
-              <p><code>True</code>＝裝好了，繼續步驟 2。<code>False</code>＝安裝沒跑完，回「安裝 Claude Code」重裝；等它跑完，不要中途關掉。</p>
+              <p><code>False</code>＝第 1 步沒跑完。重跑第 1 步，等它跑完。</p>
             </li>
-            <li>
-              <strong>檢查通訊錄有沒有它。</strong>
-              <pre class="cmd"><code>[Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;) -split &#x27;;&#x27;</code></pre>
-              <p>在列出的清單裡，找有沒有一行以 <code>\.local\bin</code> 結尾。有＝情況 A，直接跳到下一張「整個關掉重開」；沒有＝做步驟 3。</p>
-            </li>
-            <li>
-              <strong>加進通訊錄。</strong>
-              <pre class="cmd"><code>[Environment]::SetEnvironmentVariable(&#x27;Path&#x27;, [Environment]::GetEnvironmentVariable(&#x27;Path&#x27;, &#x27;User&#x27;) + &quot;;$HOME\.local\bin&quot;, &#x27;User&#x27;)</code></pre>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr><th scope="col">片段</th><th scope="col">意思</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td><code>GetEnvironmentVariable('Path', 'User')</code></td><td>讀出你帳號目前的通訊錄。</td></tr>
-                    <tr><td><code>+ &quot;;$HOME\.local\bin&quot;</code></td><td>在最後加一個分號和 Claude 的資料夾。分號是資料夾之間的分隔符號。</td></tr>
-                    <tr><td><code>SetEnvironmentVariable(…, 'User')</code></td><td>存回去。只改你自己的帳號，不需要管理員。</td></tr>
-                  </tbody>
-                </table>
-              </div>
-              <p class="note">這行只要執行一次。重複執行會在通訊錄裡加好幾行一樣的，不會壞但沒必要。執行後畫面沒有任何訊息是正常的。</p>
-            </li>
-          </ol>
-          <p>想馬上用、不想等重開：用完整地址直接叫它。</p>
-          <pre class="cmd"><code>&amp; &quot;$HOME\.local\bin\claude.exe&quot;</code></pre>
-          <p class="note"><code>&amp;</code> 是「執行這個路徑的程式」。</p>
-        </section>
-        <section class="slide" data-title="卡關：整個關掉重開，再試一次">
-          <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>卡關：整個關掉重開，再試一次</h2>
-          <ol class="step-list">
-            <li>關掉 VS Code 的「所有」視窗（右上角 X，或「檔案 → 結束」）。只按終端機的垃圾桶、或開新終端機都不夠。</li>
-            <li>如果你是用 Windows Terminal / PowerShell 視窗，也要把所有分頁關掉。</li>
-            <li>重新打開 VS Code → 開終端機（<code>Ctrl+`</code>）→ 輸入：</li>
-          </ol>
-          <pre class="cmd"><code>claude --version</code></pre>
-          <p>成功會看到版本，例如：</p>
-          <pre class="example"><code>2.1.x (Claude Code)</code></pre>
-          <p>接著就能打 <code>claude</code> 啟動。</p>
-          <h3>還是不行？依序檢查</h3>
-          <ol class="step-list">
-            <li>確認是在 PowerShell，不是 CMD。終端機右上角的下拉選單可以看；提示字元開頭是 <code>PS</code> 才是 PowerShell。</li>
-            <li>重開電腦一次。極少數情況，Windows 要重新登入才會套用新的通訊錄。</li>
-            <li>也可以用圖形介面確認：開始 → 搜尋「編輯您帳戶的環境變數」→ 使用者變數的 Path → 編輯。看有沒有 <code>C:\Users\你的名字\.local\bin</code>；沒有就按「新增」，貼上你自己的完整路徑（把「你的名字」換成 Windows 帳號資料夾名稱）。</li>
+            <li>把 VS Code 所有視窗整個關掉重開；還不行就重開電腦。</li>
             <li>都不行就把錯誤畫面截圖給老師。</li>
           </ol>
         </section>
