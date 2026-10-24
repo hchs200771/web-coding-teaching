@@ -1561,21 +1561,20 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </div>
           <p class="why-goal">學完這章，你可以：讓客人打你自己的網域就看到網站，而且有 https 鎖頭。</p>
         </section>
-        <section class="slide" data-title="先看整體：要設定三個地方">
+        <section class="slide" data-title="先看整體：四個步驟">
           <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>先看整體：要設定三個地方</h2>
+          <h2>先看整體：四個步驟</h2>
           <div class="diagram">
             <span class="diagram-node">網域商（DNS）</span><span class="diagram-arrow">→</span>
             <span class="diagram-node">GitHub Pages</span><span class="diagram-arrow">→</span>
             <span class="diagram-node">你的網站</span>
           </div>
-          <p>GitHub Actions 會在每次 push 到 main 時，自動把網站建置（build）並發布。網域商那邊的 DNS 負責把「你的網域」指到 GitHub。</p>
+          <p>網域商的 DNS 負責把「你的網域」指到 GitHub；GitHub Pages 負責放網站，每次 push 都會自動更新。</p>
           <ol class="step-list">
             <li>驗證網域。</li>
-            <li>讓 GitHub 建置網站。</li>
-            <li>在 GitHub 填網域。</li>
+            <li>請 Claude Code 開好 Pages。</li>
             <li>到網域商設定 DNS。</li>
-            <li>檢查並開 HTTPS。</li>
+            <li>請 Claude Code 檢查並開 HTTPS。</li>
           </ol>
         </section>
         <section class="slide" data-title="開始前：確認 GitHub Pages 的條件">
@@ -1647,187 +1646,25 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="callout">Host 只填前半段，不要加 .你的網域.com，Namecheap 會自動接上。</p>
           <p class="note">在 <strong>Domain</strong> 分頁的 <strong>NAMESERVERS</strong> 要是 <strong>Namecheap BasicDNS</strong>，Advanced DNS 的紀錄才會生效。買網域時沒改過就是這個。</p>
         </section>
-        <section class="slide" data-title="步驟 2：讓 GitHub 幫你建置網站">
+        <section class="slide" data-title="步驟 2：請 Claude Code 開好 GitHub Pages">
           <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 2：讓 GitHub 幫你建置網站</h2>
-          <p>Lovable 網站要先 <code>npm run build</code>，才會變成瀏覽器看得懂的檔案（dist 資料夾），所以要用 GitHub Actions。</p>
-          <ol class="step-list">
-            <li>打開你的網站 repo → 上方最右邊的 <strong>⚙ Settings</strong> → 左邊 <strong>Pages</strong> → <strong>Build and deployment</strong> 底下的 <strong>Source</strong>，從 <strong>Deploy from a branch</strong> 改成 <strong>GitHub Actions</strong>（選了就生效，不用按儲存）。</li>
-          </ol>
-        </section>
-        <section class="slide" data-title="步驟 2：Source 改選 GitHub Actions">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 2：Source 改選 GitHub Actions</h2>
-          <figure class="shot">
-            <div class="shot-frame">
-              <img src="img/github/pages-source-dropdown.png" alt="GitHub Pages 的 Source 選單選擇 GitHub Actions" width="674" height="294" loading="lazy" />
-              <span class="shot-mark" style="left:3%;top:36.7%;width:46.8%;height:28%" aria-hidden="true"><b>1</b></span>
-            </div>
-            <figcaption>Source 改選 GitHub Actions</figcaption>
-          </figure>
-        </section>
-        <section class="slide" data-title="步驟 2：請 Claude Code 寫自動發布設定">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 2：請 Claude Code 寫自動發布設定</h2>
-          <p>在專案新增 <code>.github/workflows/deploy.yml</code>，交給 Claude Code：</p>
+          <h2>步驟 2：請 Claude Code 開好 GitHub Pages</h2>
+          <p>不用自己進 GitHub 設定頁。在網站的專案資料夾打開 Claude Code，貼上這段（把網域換成你的）：</p>
           <div class="prompt-card">
-            <pre class="cmd"><code>幫我把這個 Vite 網站設定成用 GitHub Actions 部署到 GitHub Pages：新增 .github/workflows/deploy.yml，push 到 main 時執行 npm ci 和 npm run build，上傳 dist 資料夾並發布。vite.config 的 base 保持 '/'，因為我會用自己的網域。build 完把 dist/index.html 複製一份成 dist/404.html，讓直接打開子頁面不會 404。改完讓我看，確認後 commit 並 push。</code></pre>
+            <pre class="cmd"><code>用 gh 幫我把這個 repo 發布到 GitHub Pages，網域是 www.你的網域.com。設定成每次 push 到 main 就自動 build 並更新網站，子頁面直接打開也不會 404。改完讓我看，確認後 commit 並 push，告訴我部署有沒有成功。</code></pre>
           </div>
-          <p class="note">用自己的網域時 base 是 <code>'/'</code>；如果只用 帳號.github.io/repo名稱 網址，base 要改成 <code>'/repo名稱/'</code>。設好網域之前從 github.io 網址打開是白畫面，是正常的。</p>
-        </section>
-        <section class="slide" data-title="workflow 和 action 是什麼">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>workflow 和 action 是什麼</h2>
-          <p class="lead">GitHub Actions 是 GitHub 提供的「雲端自動化機器人」：你 push 之後，GitHub 借一台雲端電腦，照你寫好的步驟自動做事。</p>
-          <div class="card-grid">
-            <article class="card">
-              <h3>workflow（工作流程）</h3>
-              <p>一份工作清單，寫在 repo 裡的 .github/workflows/ 資料夾，副檔名 .yml。裡面寫「什麼時候做」（例如 push 到 main）和「依序做哪些步驟」。</p>
-            </article>
-            <article class="card">
-              <h3>action（現成的步驟）</h3>
-              <p>別人寫好、可以直接拿來用的一個步驟，像樂高積木。例如 actions/checkout 負責把你的程式碼下載到雲端電腦，actions/deploy-pages 負責發布到 GitHub Pages。@v7 這種寫法是指定版本。</p>
-            </article>
-            <article class="card">
-              <h3>run（自己下指令）</h3>
-              <p>不用現成積木，直接寫要執行的指令，就像你在終端機打 npm run build。</p>
-            </article>
-          </div>
-          <p>可以想成一張食譜：workflow 是整張食譜，每一步不是用現成調理包（action），就是自己動手（run）。</p>
-          <p class="note">每次跑完會在 repo 的 Actions 分頁留下紀錄；公開 repo 使用 GitHub Actions 免費，私人 repo 每月有免費額度，這種小網站通常用不完。</p>
-        </section>
-        <section class="slide" data-title="deploy.yml：觸發條件與執行環境">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>deploy.yml：觸發條件與執行環境</h2>
-          <pre class="example"><code>name: Deploy to GitHub Pages
-on:
-  push:
-    branches: ['main']
-  workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: 'pages'
-  cancel-in-progress: true
-jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest</code></pre>
-          <p class="note">設定檔上半段；下一張接續同一個 deploy 工作的 steps。</p>
-        </section>
-        <section class="slide" data-title="deploy.yml：建置與發布步驟">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>deploy.yml：建置與發布步驟</h2>
-          <p>接在上一張的 runs-on 後面，保留縮排，仍在 jobs → deploy 裡。</p>
-          <pre class="example"><code>    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-node@v7
-        with:
-          node-version: lts/*
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build
-      - run: cp dist/index.html dist/404.html
-      - uses: actions/configure-pages@v6
-      - uses: actions/upload-pages-artifact@v5
-        with:
-          path: './dist'
-      - id: deployment
-        uses: actions/deploy-pages@v5</code></pre>
-        </section>
-        <section class="slide" data-title="deploy.yml 逐段說明">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>deploy.yml 逐段說明</h2>
-          <p>Claude Code 寫的應該跟這份差不多，這是 Vite 官方範例加上 404.html 那一步。看得懂大概就好，不用背。</p>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col">片段</th>
-                  <th scope="col">意思</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>on: push</code></td>
-                  <td>push 到 main 時開始。</td>
-                </tr>
-                <tr>
-                  <td><code>runs-on: ubuntu-latest</code></td>
-                  <td>借一台 Linux 雲端電腦。</td>
-                </tr>
-                <tr>
-                  <td><code>uses:</code></td>
-                  <td>用現成的 action。</td>
-                </tr>
-                <tr>
-                  <td><code>run:</code></td>
-                  <td>自己下指令。</td>
-                </tr>
-                <tr>
-                  <td><code>permissions</code></td>
-                  <td>允許這個流程發布到 Pages。</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="note">push 之後到 repo 的 Actions 分頁看進度，綠色勾勾代表發布成功，紅色叉叉點進去看錯誤，可以整段貼給 Claude Code。</p>
-        </section>
-        <section class="slide" data-title="步驟 3：找到 repo 的 Pages 設定頁">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 3：找到 repo 的 Pages 設定頁</h2>
-          <figure class="shot shot-wide">
-            <div class="shot-frame">
-              <img src="img/github/repo-tabs.png" alt="GitHub repo 上方的 Settings 分頁" width="1053" height="93" loading="lazy" />
-              <span class="shot-mark" style="left:89.7%;top:54%;width:9.3%;height:40%" aria-hidden="true"><b>1</b></span>
-            </div>
-            <figcaption>repo 上方最右邊的 Settings</figcaption>
-          </figure>
-          <figure class="shot">
-            <div class="shot-frame">
-              <img src="img/github/repo-pages-custom-domain.png" alt="GitHub repo 設定左側的 Pages 與 Custom domain 區塊" width="1236" height="172" loading="lazy" />
-              <span class="shot-mark" style="left:0.8%;top:44%;width:21%;height:23.5%" aria-hidden="true"><b>2</b></span>
-              <span class="shot-mark" style="left:24.3%;top:2.5%;width:72.6%;height:56%" aria-hidden="true"><b>3</b></span>
-            </div>
-            <figcaption>左邊點 Pages，往下找到 Custom domain</figcaption>
-          </figure>
+          <h3>Claude Code 會幫你做這三件事</h3>
           <ul class="step-list">
-            <li>① 打開你的網站 repo（右上角頭像 → <strong>Your repositories</strong> → 點網站的 repo），點上方最右邊的 <strong>⚙ Settings</strong>。看不到就點 <strong>⋯</strong> 找 Settings。</li>
-            <li>② 左邊選單找 <strong>Pages</strong>。</li>
-            <li>③ 往下找到 <strong>Custom domain</strong>，下一張教你填。</li>
+            <li>把 Pages 打開，改成「push 就自動發布」。</li>
+            <li>在專案裡加一個自動發布的設定檔，你不用看懂。</li>
+            <li>把你的網域填進 Pages 設定。</li>
           </ul>
-          <p class="note">Lovable 建立的 repo 名稱通常和專案名稱相同。只有 repo 的擁有者看得到 Settings。</p>
+          <p class="callout">之後只要照每天的工作循環 push 到 main，網站幾分鐘後就會自動更新。</p>
+          <p class="note">這時還沒設 DNS，GitHub 顯示網域檢查失敗是正常的，做完下一步就會好。</p>
         </section>
-        <section class="slide" data-title="步驟 3：填上網域並儲存">
+        <section class="slide" data-title="步驟 3：到網域商設定 DNS">
           <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 3：填上網域並儲存</h2>
-          <ol class="step-list">
-            <li>在 <strong>Custom domain</strong> 的框框輸入 <code>www.你的網域.com</code>。</li>
-            <li>按 <strong>Save</strong>。</li>
-          </ol>
-          <div class="card-grid">
-            <article class="card">
-              <h3>這樣填 ✅</h3>
-              <p><code>www.mybrow.com</code></p>
-            </article>
-            <article class="card">
-              <h3>不要這樣填 ❌</h3>
-              <p><code>https://www.mybrow.com/</code></p>
-              <p>不要 https://、不要最後的斜線、不要空白。</p>
-            </article>
-          </div>
-          <h3>按完會看到什麼</h3>
-          <p>GitHub 會開始檢查 DNS。這時還沒設 DNS，出現檢查中或失敗都是正常的；做完步驟 4 再回來看就會變成綠色勾勾。</p>
-          <p class="callout">建議主網址用 www。下一步兩種紀錄都設，GitHub 會自動把 你的網域.com 轉到 www.你的網域.com。</p>
-          <p class="note">用 GitHub Actions 發布不需要 CNAME 檔案，有也會被忽略。先在 GitHub 填好，再去設 DNS，避免網域被別人搶先接走。</p>
-        </section>
-        <section class="slide" data-title="步驟 4：到網域商設定 DNS">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 4：到網域商設定 DNS</h2>
+          <h2>步驟 3：到網域商設定 DNS</h2>
           <p>登入買網域的網站，找 DNS 設定（可能叫 DNS 管理、DNS Records、Zone）。</p>
           <div class="table-wrap">
             <table>
@@ -1918,46 +1755,35 @@ jobs:
           </ol>
           <p class="note">TTL 都用 Automatic。剛才的 TXT 驗證紀錄留著不要刪。</p>
         </section>
-        <section class="slide" data-title="步驟 5：檢查 DNS 是否生效">
+        <section class="slide" data-title="步驟 4：請 Claude Code 檢查並開 HTTPS">
           <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 5：檢查 DNS 是否生效</h2>
-          <p>在 PowerShell 檢查 DNS：</p>
-          <pre class="cmd"><code>Resolve-DnsName 你的網域.com -Type A</code></pre>
-          <pre class="cmd"><code>Resolve-DnsName www.你的網域.com -Type CNAME</code></pre>
-          <p>第一個要列出四個 185.199… 的 IP；第二個要看到 你的帳號.github.io。DNS 生效最久可能要 24 小時，沒出現先等。</p>
-        </section>
-        <section class="slide" data-title="步驟 5：開啟 HTTPS">
-          <p class="eyebrow">08 · 用自己的網域上線</p>
-          <h2>步驟 5：開啟 HTTPS</h2>
-          <p>生效後回到同一頁（repo <strong>Settings</strong> → <strong>Pages</strong>），在 <strong>Custom domain</strong> 下面勾選 <strong>Enforce HTTPS</strong>（網址前面會有鎖頭）。這個選項可能要等到 24 小時後才能勾。</p>
-          <figure class="shot">
-            <div class="shot-frame">
-              <img src="img/github/repo-pages-custom-domain.png" alt="GitHub Pages 設定頁的 Enforce HTTPS 核取方塊" width="1236" height="172" loading="lazy" />
-              <span class="shot-mark" style="left:24.5%;top:72%;width:43.5%;height:26%" aria-hidden="true"><b>✓</b></span>
-            </div>
-            <figcaption>Custom domain 下面的 Enforce HTTPS</figcaption>
-          </figure>
-          <p class="callout">之後照每天的工作循環 push 到 main，GitHub 就會自動重新發布，網站幾分鐘後更新。</p>
+          <h2>步驟 4：請 Claude Code 檢查並開 HTTPS</h2>
+          <p>DNS 設好後，回到 Claude Code 貼上：</p>
+          <div class="prompt-card">
+            <pre class="cmd"><code>用 gh 檢查我的 GitHub Pages：網域 DNS 有沒有生效、最近一次部署有沒有成功。都正常的話幫我開啟 Enforce HTTPS；還不行就告訴我卡在哪裡、要等多久。</code></pre>
+          </div>
+          <p>看到網址前面有鎖頭，就完成了。</p>
+          <p class="note">DNS 生效最久可能要 24 小時，HTTPS 憑證也要等它生效後才能開。還沒好就隔幾小時再貼一次。</p>
         </section>
         <section class="slide" data-title="卡關怎麼辦">
           <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>卡關怎麼辦</h2>
           <div class="card-grid">
             <article class="card">
-              <h3>網站一片白</h3>
-              <p>看 Actions 是不是紅叉；vite.config 的 base 要是 <code>'/'</code>。</p>
-            </article>
-            <article class="card">
-              <h3>打開子頁面出現 404</h3>
-              <p>檢查 workflow 有沒有複製 404.html。</p>
+              <h3>網站一片白或子頁面 404</h3>
+              <p>把網址和看到的畫面告訴 Claude Code，請它用 gh 查最近一次部署。</p>
             </article>
             <article class="card">
               <h3>出現 DNS check unsuccessful</h3>
-              <p>DNS 還沒生效或紀錄打錯，對照步驟 4 的表。</p>
+              <p>DNS 還沒生效或紀錄打錯，對照步驟 3 的表。</p>
             </article>
             <article class="card">
-              <h3>Enforce HTTPS 不能勾</h3>
-              <p>等憑證發好，最多 24 小時。</p>
+              <h3>HTTPS 還開不了</h3>
+              <p>等憑證發好，最多 24 小時，再貼一次步驟 4 的指令。</p>
+            </article>
+            <article class="card">
+              <h3>部署失敗</h3>
+              <p>請 Claude Code 用 gh 看失敗的原因並修好。</p>
             </article>
           </div>
           <p class="note">如果之後不用 GitHub Pages 了，記得到網域商刪掉這些 A / CNAME 紀錄，免得網域被別人接走。</p>
@@ -1966,10 +1792,10 @@ jobs:
           <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>本章重點：自己的網域</h2>
           <ul>
-            <li>先驗證網域，再設定自動發布。</li>
-            <li>Actions 負責建置，Pages 提供網站。</li>
-            <li>DNS 把網域指向網站，HTTPS 保護連線。</li>
-            <li>設定後要等待生效，再檢查網址與子頁面。</li>
+            <li>先驗證網域，再請 Claude Code 用 gh 開好 Pages。</li>
+            <li>DNS 把網域指向 GitHub，HTTPS 保護連線。</li>
+            <li>之後每次 push 到 main，網站就自動更新。</li>
+            <li>設定後要等生效，卡住就請 Claude Code 檢查。</li>
           </ul>
           <div class="cmd-list">
             <article class="card"><p>查部署</p><pre class="cmd"><code>檢查最近一次 Pages 部署，告訴我是否成功。</code></pre></article>
