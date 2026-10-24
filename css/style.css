@@ -32,6 +32,7 @@
   --area-ink: #1f2a2a;
   --area-add: #d09a10;
   --area-commit: #4c9a32;
+  --area-branch: #995900;
   --area-push: #2874b2;
   --area-pull: #8751b2;
   font-family:
@@ -64,6 +65,7 @@
   --area-remote: #79b3df;
   --area-add: #f0c94a;
   --area-commit: #8fd46f;
+  --area-branch: #ffc267;
   --area-push: #83c4f5;
   --area-pull: #c5a0ed;
 }
@@ -749,6 +751,71 @@ kbd {
 .areas-diagram__box--repo {
   grid-row: 3;
   background: var(--area-repo);
+}
+
+.branch-diagram {
+  display: grid;
+  flex-shrink: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.branch-diagram__panel {
+  min-width: 0;
+  border: 2px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.branch-diagram__panel h3 {
+  margin: 18px 12px 0;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.branch-diagram__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--ink);
+}
+
+.branch-diagram__main,
+.branch-diagram__branch {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.branch-diagram__main {
+  stroke: var(--area-commit);
+}
+
+.branch-diagram__branch {
+  stroke: var(--area-branch);
+}
+
+.branch-diagram__commits {
+  fill: var(--surface);
+}
+
+.branch-diagram__discarded {
+  opacity: 0.5;
+}
+
+.branch-diagram__draft {
+  stroke-dasharray: 10 10;
+}
+
+.branch-diagram__labels {
+  fill: currentColor;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .diagram-node {
@@ -2349,6 +2416,15 @@ pre.cmd code {
   .areas-diagram__box span,
   .areas-diagram__box small {
     font-size: 0.67rem;
+  }
+
+  .branch-diagram {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .branch-diagram__panel {
+    border-radius: 12px;
   }
 
   .deck-footer {

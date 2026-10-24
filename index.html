@@ -1177,6 +1177,68 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="callout">一個人做網站，大多時候直接在 main 上存檔就好。想大改版、不確定要不要時才開分支。</p>
         </section>
 
+        <section class="slide" data-title="分支一張圖">
+          <p class="eyebrow">06 · Git 第二章：分支簡介</p>
+          <h2>分支一張圖</h2>
+          <p>每個圓點是一次存檔（commit）。main 是客人看到的正式版，草稿分支在旁邊另外試。</p>
+          <div class="branch-diagram">
+            <div class="branch-diagram__panel">
+              <h3>滿意：合回 main</h3>
+              <svg class="branch-diagram__svg" viewBox="0 0 420 260" role="img" aria-label="滿意時合回 main：下方綠色 main 線由左到右有五個存檔圓點。從第二個點往上開出橘色 new-design 草稿分支，依序存檔「試新首頁」和「調顏色」，最後彎回 main 的第四個點，merge 合回來；main 繼續往右延伸。">
+                <path class="branch-diagram__main" d="M30 190 H395" />
+                <path class="branch-diagram__branch" d="M95 190 C120 190 120 90 165 90 H265 C310 90 335 125 335 190" />
+                <g class="branch-diagram__commits branch-diagram__main">
+                  <circle cx="30" cy="190" r="9" />
+                  <circle cx="95" cy="190" r="9" />
+                  <circle cx="190" cy="190" r="9" />
+                  <circle cx="335" cy="190" r="9" />
+                  <circle cx="380" cy="190" r="9" />
+                </g>
+                <g class="branch-diagram__commits branch-diagram__branch">
+                  <circle cx="165" cy="90" r="9" />
+                  <circle cx="265" cy="90" r="9" />
+                </g>
+                <g class="branch-diagram__labels">
+                  <text x="265" y="55" text-anchor="end">new-design</text>
+                  <text x="165" y="125" text-anchor="middle">試新首頁</text>
+                  <text x="265" y="125" text-anchor="middle">調顏色</text>
+                  <text x="295" y="165" text-anchor="middle">merge 合回來</text>
+                  <text x="395" y="228" text-anchor="end">main</text>
+                </g>
+              </svg>
+            </div>
+            <div class="branch-diagram__panel">
+              <h3>不滿意：丟掉草稿</h3>
+              <svg class="branch-diagram__svg" viewBox="0 0 420 260" role="img" aria-label="不滿意時丟掉草稿：下方綠色 main 線由左到右有五個存檔圓點。從第二個點往上開出淡橘色虛線 new-design 草稿分支，有「試新首頁」和「調顏色」兩個存檔圓點，末端打叉並標示丟掉，沒有合回 main；main 仍照常往右延伸，不受影響。">
+                <path class="branch-diagram__main" d="M30 190 H395" />
+                <g class="branch-diagram__discarded">
+                  <path class="branch-diagram__branch branch-diagram__draft" d="M95 190 C120 190 120 90 165 90 H335" />
+                  <g class="branch-diagram__commits branch-diagram__branch">
+                    <circle cx="165" cy="90" r="9" />
+                    <circle cx="265" cy="90" r="9" />
+                  </g>
+                </g>
+                <path class="branch-diagram__branch" d="M328 80 L348 100 M348 80 L328 100" />
+                <g class="branch-diagram__commits branch-diagram__main">
+                  <circle cx="30" cy="190" r="9" />
+                  <circle cx="95" cy="190" r="9" />
+                  <circle cx="190" cy="190" r="9" />
+                  <circle cx="335" cy="190" r="9" />
+                  <circle cx="380" cy="190" r="9" />
+                </g>
+                <g class="branch-diagram__labels">
+                  <text x="338" y="55" text-anchor="end">new-design</text>
+                  <text x="165" y="125" text-anchor="middle">試新首頁</text>
+                  <text x="265" y="125" text-anchor="middle">調顏色</text>
+                  <text x="338" y="135" text-anchor="middle">丟掉</text>
+                  <text x="395" y="228" text-anchor="end">main</text>
+                </g>
+              </svg>
+            </div>
+          </div>
+          <p class="callout">不管哪一種，main 上的網站都不受影響。開分支、合回來、丟掉，都交給 Claude Code 說一句話就好（下一頁）。</p>
+        </section>
+
         <section class="slide" data-title="開分支，也能交給 Claude Code">
           <p class="eyebrow">06 · Git 第二章：分支簡介</p>
           <h2>開分支，也能交給 Claude Code</h2>
