@@ -58,13 +58,13 @@
       <button id="theme-toggle" type="button" aria-label="切換色彩主題">切換主題</button>
     </header>
     <main id="deck" aria-label="課程投影片">
-      <section class="chapter" id="prep" data-title="上課前要準備">
+      <section class="chapter" id="prep" data-title="上課前要準備" data-lesson="第一堂">
         <section class="slide why-slide" data-title="為什麼要學：上課前準備">
           <p class="eyebrow">00 · 上課前要準備</p>
           <h2>為什麼我需要學這個？</h2>
           <div class="qa">
             <p class="qa-q"><span class="qa-tag">問</span>上課前為什麼要先準備這麼多東西？</p>
-            <p class="qa-a"><span class="qa-tag">答</span>裝軟體、收驗證信、綁信用卡最花時間，又常卡在等待。先準備好，上課的 3 小時才能拿來動手改你的網站，而不是一起盯著下載進度條。</p>
+            <p class="qa-a"><span class="qa-tag">答</span>裝軟體、收驗證信、綁信用卡最花時間，又常卡在等待。先準備好，三堂課才能把時間留給動手練習。</p>
           </div>
           <p class="why-goal">學完這章，你可以：上課當天一打開電腦就能開始。</p>
         </section>
@@ -104,77 +104,41 @@
             <li>VS Code 安裝與介紹。</li>
             <li>網站前端與後端。</li>
             <li>Git 第一章的安裝、設定、登入 GitHub 那幾張。</li>
-            <li>小抄章附錄的 Git 沙盒練習。</li>
+            <li>第 11 章「附錄：小抄、自學與練習場」的 Git 沙盒練習。</li>
           </ol>
           <p class="note">拿到訂閱後，再做 Claude Code 章、Git 第一章的練習、第二章：分支簡介、第三章：實戰。</p>
         </section>
       </section>
 
-      <section class="chapter" id="top" data-title="課程介紹">
-        <section class="slide cover" data-title="用 Claude Code 管理你的網站">
+      <section class="chapter" id="top" data-title="課程介紹" data-lesson="第一堂">
+        <section class="slide cover why-slide" data-title="為什麼要學：用 Claude Code 管理你的網站">
+          <p class="tag">第一堂課開始</p>
           <p class="eyebrow">01 · 課程介紹</p>
           <h1>用 Claude Code 管理你的網站</h1>
-          <p class="lead">今天裝好 VS Code 與 Claude Code、搞懂網站前後端、用 Git / GitHub 幫網站存檔。</p>
-          <div class="tag-row">
-            <span class="tag">3 小時</span><span class="tag">零基礎</span><span class="tag">Windows</span>
-          </div>
-          <p class="keyboard-hint">
-            <kbd>← →</kbd> 切換章節 <kbd>↑ ↓</kbd> 切換投影片 <kbd>Esc</kbd> 開啟或關閉章節總覽
-          </p>
-        </section>
-        <section class="slide why-slide" data-title="為什麼要學：這堂課">
-          <p class="eyebrow">01 · 課程介紹</p>
-          <h2>為什麼我需要學這個？</h2>
           <div class="qa">
-            <p class="qa-q"><span class="qa-tag">問</span>網站已經用 Lovable 做好了，為什麼還要學這些？</p>
-            <p class="qa-a"><span class="qa-tag">答</span>Lovable 很方便，但每次修改都要花額度，網站裡面有什麼你也看不到。學會用 Claude Code 管理網站，你可以在自己電腦上改、隨時存檔、改壞了能回到上一版。網站真正握在你手上。</p>
+            <p class="qa-q"><span class="qa-tag">問</span>網站用 Lovable 做好了，為什麼還要學？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>自己改網站、隨時存檔，改壞了能救回來。</p>
           </div>
-          <p class="why-goal">學完這章，你可以：知道今天 3 小時會做哪些事、投影片怎麼操作。</p>
+          <p>第一堂：裝好工具，用練習資料夾試用 Claude Code。<br />第二堂：懂前後端，用 Git 存檔、救回與上傳網站。<br />第三堂：用自己的網域上線，學 Claude 進階用法與省 token。</p>
+          <p class="why-goal">這堂課結束時，你可以：用 VS Code 與 Claude Code 在練習資料夾動手試用。</p>
+          <p class="note">這份講義會持續修改。有疑問歡迎寫信給我：<a href="mailto:hchs200771@gmail.com">hchs200771@gmail.com</a></p>
+          <p class="keyboard-hint"><kbd>← →</kbd> 切換章節 <kbd>↑ ↓</kbd> 切換投影片 <kbd>Esc</kbd> 開啟或關閉章節總覽</p>
         </section>
-        <section class="slide" data-title="今天的流程">
+        <section class="slide" data-title="三堂課的安排">
           <p class="eyebrow">01 · 課程介紹</p>
-          <h2>今天的流程</h2>
+          <h2>三堂課的安排</h2>
           <div class="table-wrap">
             <table class="agenda">
-              <thead>
-                <tr>
-                  <th scope="col">時間</th>
-                  <th scope="col">一起做什麼</th>
-                </tr>
-              </thead>
+              <thead><tr><th scope="col">堂次與章節</th><th scope="col">大約時間</th><th scope="col">結束時能做到什麼</th></tr></thead>
               <tbody>
-                <tr>
-                  <td>0:00–0:20</td>
-                  <td>VS Code 安裝與介紹（編輯器、終端機）</td>
-                </tr>
-                <tr>
-                  <td>0:20–1:05</td>
-                  <td>Claude Code 安裝、設定與試用</td>
-                </tr>
-                <tr>
-                  <td>1:05–1:20</td>
-                  <td>網站前端與後端</td>
-                </tr>
-                <tr>
-                  <td>1:20–1:30</td>
-                  <td>休息</td>
-                </tr>
-                <tr>
-                  <td>1:30–2:10</td>
-                  <td>Git 第一章：環境設定、五個名詞、用口語存檔與救回來</td>
-                </tr>
-                <tr>
-                  <td>2:10–2:25</td>
-                  <td>Git 第二章：分支簡介</td>
-                </tr>
-                <tr>
-                  <td>2:25–3:00</td>
-                  <td>Git 第三章：實戰（Lovable → GitHub → 本機修改 → 存檔上傳）</td>
-                </tr>
+                <tr><td>第一堂・01–03</td><td>約 2.5 小時</td><td>裝好 VS Code 與 Claude Code，用練習資料夾試用。00 請課前自己完成。</td></tr>
+                <tr><td>第二堂・04–07</td><td>約 3 小時</td><td>懂前後端，用一句話請 Claude 存檔、救回、開分支，把 Lovable 網站抓到電腦再推回 GitHub。</td></tr>
+                <tr><td>第三堂・08–10</td><td>約 3 小時</td><td>網站用自己的網域上線，學會 CLAUDE.md、Skill、Hook 等進階用法與省 token 習慣。</td></tr>
+                <tr><td>附錄・11</td><td>自學</td><td>查小抄、手打 Git 指令、玩練習場。</td></tr>
               </tbody>
             </table>
           </div>
-          <p class="note">時間不夠時先跳過：Claude Code 狀態列設定、SEO、Git 第二章，以及實戰章最後的 SSH 額外項目。第 10 章「Claude 進階使用」與最後一章「省 token」是課後延伸，不在 3 小時內。</p>
+          <p class="note">標「自學」的投影片課堂上跳過，回家有興趣再看。時間不夠時，SEO、狀態列設定與附錄練習也留到課後。</p>
         </section>
         <section class="slide" data-title="怎麼使用這份投影片">
           <p class="eyebrow">01 · 課程介紹</p>
@@ -189,7 +153,7 @@
         </section>
       </section>
 
-      <section class="chapter" id="vscode" data-title="VS Code 安裝與介紹">
+      <section class="chapter" id="vscode" data-title="VS Code 安裝與介紹" data-lesson="第一堂">
         <section class="slide why-slide" data-title="為什麼要學：VS Code">
           <p class="eyebrow">02 · VS Code 安裝與介紹</p>
           <h2>為什麼我需要學這個？</h2>
@@ -381,7 +345,7 @@
         </section>
       </section>
 
-      <section class="chapter" id="claude-code" data-title="Claude Code 安裝與試用">
+      <section class="chapter" id="claude-code" data-title="Claude Code 安裝與試用" data-lesson="第一堂">
         <section class="slide why-slide" data-title="為什麼要學：Claude Code">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
           <h2>為什麼我需要學這個？</h2>
@@ -738,7 +702,7 @@ Installing Claude Code native build latest...</code></pre>
           </div>
           <p class="callout">先計畫、再確認、不刪除。熟練以後，再用同樣的說法整理真正的桌面。</p>
         </section>
-        <section class="slide why-slide" data-title="額外：為什麼要讓 Claude 用瀏覽器">
+        <section class="slide why-slide" data-title="自學：為什麼要讓 Claude 用瀏覽器">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
           <h2>為什麼我需要學這個？</h2>
           <div class="qa">
@@ -747,9 +711,9 @@ Installing Claude Code native build latest...</code></pre>
           </div>
           <p class="why-goal">學完這章，你可以：請 Claude 打開你的網站檢查、截圖，或幫你在網頁上找設定。</p>
         </section>
-        <section class="slide" data-title="額外：有沒有 Claude in Chrome 差在哪">
+        <section class="slide" data-title="自學：有沒有 Claude in Chrome 差在哪">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>額外：有沒有 Claude in Chrome 差在哪</h2>
+          <h2>自學：有沒有 Claude in Chrome 差在哪</h2>
           <p class="callout">額外項目，有時間再做。</p>
           <div class="table-wrap">
             <table>
@@ -767,9 +731,9 @@ Installing Claude Code native build latest...</code></pre>
           </div>
           <p class="note">這份講義的 GitHub 截圖，就是 Claude 用 Chrome 打開設定頁截下來的。</p>
         </section>
-        <section class="slide" data-title="額外：安裝 Claude in Chrome">
+        <section class="slide" data-title="自學：安裝 Claude in Chrome">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>額外：安裝 Claude in Chrome</h2>
+          <h2>自學：安裝 Claude in Chrome</h2>
           <ol class="step-list">
             <li>用 Chrome 或 Edge 打開 <a href="https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn">Chrome 線上應用程式商店的 Claude 擴充功能</a>，按 <strong>加到 Chrome</strong>。</li>
             <li>點瀏覽器右上角的拼圖圖示，把 Claude 釘選在工具列。</li>
@@ -785,9 +749,9 @@ Installing Claude Code native build latest...</code></pre>
           <p class="note">需要 Pro、Max、Team 或 Enterprise 方案，Claude Code 要用 /login 登入。想每次都自動連上：/chrome → Enabled by default；但每次對話會多佔一點空間，不常用就不用開。</p>
           <p class="note">Claude 需要瀏覽器卻找不到擴充功能時，會跳出 Claude wants to use your browser，選 Install extension 也能照著裝。</p>
         </section>
-        <section class="slide" data-title="額外：怎麼使用">
+        <section class="slide" data-title="自學：怎麼使用">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>額外：怎麼使用</h2>
+          <h2>自學：怎麼使用</h2>
           <p>用中文直接說要它在瀏覽器做什麼。</p>
           <div class="prompt-card">
             <pre class="cmd"><code>打開 http://localhost:5173，用手機寬度看首頁有沒有跑版，截圖給我看。</code></pre>
@@ -806,9 +770,9 @@ Installing Claude Code native build latest...</code></pre>
           </ol>
           <p class="note">localhost 的數字以 npm run dev 顯示的為準。</p>
         </section>
-        <section class="slide" data-title="額外：使用時要注意">
+        <section class="slide" data-title="自學：使用時要注意">
           <p class="eyebrow">03 · Claude Code 安裝與試用</p>
-          <h2>額外：使用時要注意</h2>
+          <h2>自學：使用時要注意</h2>
           <div class="card-grid">
             <article class="card">
               <h3>它用的是你的帳號</h3>
@@ -830,8 +794,10 @@ Installing Claude Code native build latest...</code></pre>
         </section>
       </section>
 
-      <section class="chapter" id="web-basics" data-title="網站前端與後端">
+      <section class="chapter" id="web-basics" data-title="網站前端與後端" data-lesson="第二堂">
         <section class="slide why-slide" data-title="為什麼要學：前端與後端">
+          <p class="tag">第二堂課開始</p>
+          <p class="note">這堂課結束時，你可以：懂前後端，用 Claude 存檔、救回與開分支，把 Lovable 網站抓到電腦再推回 GitHub。</p>
           <p class="eyebrow">04 · 網站前端與後端</p>
           <h2>為什麼我需要學這個？</h2>
           <div class="qa">
@@ -923,7 +889,7 @@ Installing Claude Code native build latest...</code></pre>
         </section>
       </section>
 
-      <section class="chapter" id="git-basics" data-title="Git 第一章：存檔">
+      <section class="chapter" id="git-basics" data-title="Git 第一章：存檔" data-lesson="第二堂">
         <section class="slide why-slide" data-title="為什麼要學：Git 存檔">
           <p class="eyebrow">05 · Git 第一章：存檔</p>
           <h2>為什麼我需要學這個？</h2>
@@ -1206,7 +1172,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
         </section>
       </section>
 
-      <section class="chapter" id="branches" data-title="Git 第二章：分支簡介">
+      <section class="chapter" id="branches" data-title="Git 第二章：分支簡介" data-lesson="第二堂">
         <section class="slide why-slide" data-title="為什麼要學：分支">
           <p class="eyebrow">06 · Git 第二章：分支簡介</p>
           <h2>為什麼我需要學這個？</h2>
@@ -1296,7 +1262,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
         </section>
       </section>
 
-      <section class="chapter" id="real-project" data-title="Git 第三章：實戰">
+      <section class="chapter" id="real-project" data-title="Git 第三章：實戰" data-lesson="第二堂">
         <section class="slide why-slide" data-title="為什麼要學：實戰">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
           <h2>為什麼我需要學這個？</h2>
@@ -1385,9 +1351,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
             <pre class="cmd"><code>先幫我從 GitHub 拿最新版。然後把首頁的價目表更新成：霧眉 8800、飄眉 9800。改完讓我預覽，確認後幫我 commit 並 push。</code></pre>
           </div>
         </section>
-        <section class="slide" data-title="額外：用 GitHub Pages 免費上線">
+        <section class="slide" data-title="自學：用 GitHub Pages 免費上線">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
-          <h2>額外：用 GitHub Pages 免費上線</h2>
+          <h2>自學：用 GitHub Pages 免費上線</h2>
           <p>不用自己的網域，也能有一個公開網址：<code>你的帳號.github.io/repo名稱</code>。在專案資料夾打開 Claude Code，貼上：</p>
           <div class="prompt-card">
             <pre class="cmd"><code>幫我把這個網站用 GitHub Pages 發布。新增 .github/workflows/deploy.yml，push 到 main 時執行 npm ci 和 npm run build，上傳 dist 資料夾並發布。網址會是 帳號.github.io/repo名稱，所以 vite.config 的 base 要設成 '/repo名稱/'。build 完把 dist/index.html 複製一份成 dist/404.html，讓直接打開子頁面不會 404。用 gh 把這個 repo 的 Pages 來源設成 GitHub Actions。改完讓我看，確認後 commit 並 push，等部署完成後告訴我網址。</code></pre>
@@ -1395,9 +1361,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="note">免費方案只能用公開 repo 開 Pages。Lovable 建的 repo 是私人的，要先改成公開（原始碼大家都看得到，不能放密碼或金鑰），或升級 GitHub Pro。</p>
           <p class="note">第一次部署約 1～3 分鐘。之後每次 push，網站會自動更新。之後想換成自己的網域，看最後一章。</p>
         </section>
-        <section class="slide" data-title="額外：SSH key 是什麼">
+        <section class="slide" data-title="自學：SSH key 是什麼">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
-          <h2>額外：SSH key 是什麼</h2>
+          <h2>自學：SSH key 是什麼</h2>
           <p class="callout">額外項目，有時間再做。gh 登入後已經能 clone 和 push，不做也沒關係。</p>
           <p>SSH 是安全連線的方式。SSH 金鑰（key）像鑰匙與門鎖：</p>
           <div class="card-grid">
@@ -1415,9 +1381,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </p>
           <pre class="cmd"><code>gh auth login -p ssh</code></pre>
         </section>
-        <section class="slide" data-title="額外：產生 SSH key">
+        <section class="slide" data-title="自學：產生 SSH key">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
-          <h2>額外：產生 SSH key</h2>
+          <h2>自學：產生 SSH key</h2>
           <p>Windows 10 1809 以上與 Windows 11 已內建 OpenSSH 用戶端。把信箱換成自己的：</p>
           <pre class="cmd"><code>ssh-keygen -t ed25519 -C &quot;你的 GitHub 信箱&quot;</code></pre>
           <ol class="step-list">
@@ -1427,9 +1393,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </ol>
           <pre class="cmd"><code>ls $HOME\.ssh</code></pre>
         </section>
-        <section class="slide" data-title="額外：把公鑰交給 GitHub">
+        <section class="slide" data-title="自學：把公鑰交給 GitHub">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
-          <h2>額外：把公鑰交給 GitHub</h2>
+          <h2>自學：把公鑰交給 GitHub</h2>
           <p>第一次要多給 gh 一個權限，允許它上傳公鑰。</p>
           <pre class="cmd"><code>gh auth refresh -h github.com -s admin:public_key</code></pre>
           <pre class="cmd"><code>gh ssh-key add $HOME\.ssh\id_ed25519.pub --title &quot;我的筆電&quot;</code></pre>
@@ -1437,9 +1403,9 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <pre class="cmd"><code>Get-Content $HOME\.ssh\id_ed25519.pub | Set-Clipboard</code></pre>
           <p class="note">GitHub Settings → SSH and GPG keys → New SSH key → 貼上。兩種做法擇一即可。</p>
         </section>
-        <section class="slide" data-title="額外：測試 SSH 連線">
+        <section class="slide" data-title="自學：測試 SSH 連線">
           <p class="eyebrow">07 · Git 第三章：實戰</p>
-          <h2>額外：測試 SSH 連線</h2>
+          <h2>自學：測試 SSH 連線</h2>
           <pre class="cmd"><code>ssh -T git@github.com</code></pre>
           <p>第一次看到 Are you sure you want to continue connecting (yes/no)?，輸入：</p>
           <pre class="cmd"><code>yes</code></pre>
@@ -1452,306 +1418,11 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
         </section>
       </section>
 
-      <section class="chapter" id="cheatsheet" data-title="小抄與課後練習">
-        <section class="slide why-slide" data-title="為什麼要學：小抄與練習">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>為什麼我需要學這個？</h2>
-          <div class="qa">
-            <p class="qa-q"><span class="qa-tag">問</span>為什麼要留小抄和課後練習？</p>
-            <p class="qa-a"><span class="qa-tag">答</span>今天學的說法一週不用就會忘，小抄讓你一眼查到；想知道 Claude 在背後跑什麼指令，附錄可以自己動手玩。</p>
-          </div>
-          <p class="why-goal">學完這章，你可以：忘記說法時知道去哪裡查，也能自己練習。</p>
-        </section>
-        <section class="slide" data-title="Claude Code 小抄：啟動與對話">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>Claude Code 小抄：啟動與對話</h2>
-          <p>前兩個在 PowerShell；/help、/clear 在 Claude Code 裡。</p>
-          <div class="cmd-list">
-            <article class="card">
-              <p>啟動。</p>
-              <pre class="cmd"><code>claude</code></pre>
-            </article>
-            <article class="card">
-              <p>繼續上次。</p>
-              <pre class="cmd"><code>claude -c</code></pre>
-            </article>
-            <article class="card">
-              <p>查說明。</p>
-              <pre class="cmd"><code>/help</code></pre>
-            </article>
-            <article class="card">
-              <p>新對話。</p>
-              <pre class="cmd"><code>/clear</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="Claude Code 小抄：設定與工具">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>Claude Code 小抄：設定與工具</h2>
-          <p>以下斜線指令都在 Claude Code 裡輸入。</p>
-          <div class="cmd-list">
-            <article class="card">
-              <p>開設定。</p>
-              <pre class="cmd"><code>/config</code></pre>
-            </article>
-            <article class="card">
-              <p>設定狀態列。</p>
-              <pre class="cmd"><code>/statusline</code></pre>
-            </article>
-            <article class="card">
-              <p>建立專案說明。</p>
-              <pre class="cmd"><code>/init</code></pre>
-            </article>
-            <article class="card">
-              <p>讓 Claude 用瀏覽器。</p>
-              <pre class="cmd"><code>/chrome</code></pre>
-            </article>
-          </div>
-          <p class="note">Esc 中斷；Shift+Tab 切權限模式，練習用 manual mode。</p>
-        </section>
-        <section class="slide" data-title="Git 說法小抄：日常存檔與同步">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>Git 說法小抄：日常存檔與同步</h2>
-          <div class="cmd-list">
-            <article class="card">
-              <p>存檔 commit</p>
-              <pre class="cmd"><code>這個改好了，幫我存一個檔，存檔訊息用一句中文寫這次改了什麼。</code></pre>
-            </article>
-            <article class="card">
-              <p>上傳 push</p>
-              <pre class="cmd"><code>幫我把存檔上傳到 GitHub。</code></pre>
-            </article>
-            <article class="card">
-              <p>拿最新版 pull</p>
-              <pre class="cmd"><code>先幫我從 GitHub 拿最新版。</code></pre>
-            </article>
-            <article class="card">
-              <p>看狀況 status</p>
-              <pre class="cmd"><code>現在有哪些改動還沒存檔？用中文跟我說。</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="Git 說法小抄：救援與分支">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>Git 說法小抄：救援與分支</h2>
-          <div class="cmd-list">
-            <article class="card">
-              <p>救回來</p>
-              <pre class="cmd"><code>網站壞了，幫我列出最近幾次存檔，回到最後一個正常的版本。先告訴我你要怎麼做，我說好再動。</code></pre>
-            </article>
-            <article class="card">
-              <p>開草稿 branch</p>
-              <pre class="cmd"><code>我想試一個新的首頁設計，請幫我開一個分支再改，改完讓我預覽，我說好再合回 main。</code></pre>
-            </article>
-            <article class="card">
-              <p>合回來 merge</p>
-              <pre class="cmd"><code>我很滿意，幫我合回 main 並上傳。</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="GitHub / SSH 小抄">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>GitHub / SSH 小抄</h2>
-          <div class="cmd-list">
-            <article class="card">
-              <p>登入。</p>
-              <pre class="cmd"><code>gh auth login</code></pre>
-            </article>
-            <article class="card">
-              <p>檢查登入。</p>
-              <pre class="cmd"><code>gh auth status</code></pre>
-            </article>
-            <article class="card">
-              <p>額外：產生鑰匙。</p>
-              <pre class="cmd"><code>ssh-keygen -t ed25519 -C &quot;你的 GitHub 信箱&quot;</code></pre>
-            </article>
-            <article class="card">
-              <p>額外：上傳公鑰。第一次需先授權，見實戰章。</p>
-              <pre class="cmd"><code>gh ssh-key add $HOME\.ssh\id_ed25519.pub --title &quot;我的筆電&quot;</code></pre>
-            </article>
-            <article class="card">
-              <p>額外：測試 SSH 連線。</p>
-              <pre class="cmd"><code>ssh -T git@github.com</code></pre>
-            </article>
-            <article class="card">
-              <p>抓到本機。</p>
-              <pre class="cmd"><code>gh repo clone 帳號/repo</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="進階附錄：查看與存檔指令">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>進階附錄：查看與存檔指令</h2>
-          <p>這些是 Claude Code 幫你做事時實際執行的指令。不用背，好奇或想更懂時再來玩。</p>
-          <div class="cmd-list">
-            <article class="card">
-              <p>看狀況。</p>
-              <pre class="cmd"><code>git status</code></pre>
-            </article>
-            <article class="card">
-              <p>放上拍照台。</p>
-              <pre class="cmd"><code>git add .</code></pre>
-            </article>
-            <article class="card">
-              <p>存一個檔，訊息換成這次做的事。</p>
-              <pre class="cmd"><code>git commit -m &quot;更新作品照片&quot;</code></pre>
-            </article>
-            <article class="card">
-              <p>看紀錄。</p>
-              <pre class="cmd"><code>git log --oneline</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="進階附錄：同步與分支指令">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>進階附錄：同步與分支指令</h2>
-          <div class="cmd-list">
-            <article class="card">
-              <p>看修改。</p>
-              <pre class="cmd"><code>git diff</code></pre>
-            </article>
-            <article class="card">
-              <p>拿最新版。</p>
-              <pre class="cmd"><code>git pull</code></pre>
-            </article>
-            <article class="card">
-              <p>送上雲端。</p>
-              <pre class="cmd"><code>git push</code></pre>
-            </article>
-            <article class="card">
-              <p>開草稿。</p>
-              <pre class="cmd"><code>git switch -c new-design</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide" data-title="三個區域：拍照存檔">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>三個區域：拍照存檔</h2>
-          <p>第一章的四個區域裡，前三個都在你的電腦上。改好檔案 → 放上拍照台 → 拍成一張存檔照片。先按修改，再按 add 與 commit。</p>
-          <div class="stage-demo"></div>
-        </section>
-        <section class="slide" data-title="四個每天用的指令">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>四個每天用的指令</h2>
-          <p>新專案先初始化一次：</p>
-          <pre class="cmd"><code>git init</code></pre>
-          <div class="cmd-list">
-            <article class="card">
-              <p>現在狀況如何？</p>
-              <pre class="cmd"><code>git status</code></pre>
-            </article>
-            <article class="card">
-              <p>把改好的檔案放上拍照台（暫存區）。</p>
-              <pre class="cmd"><code>git add .</code></pre>
-            </article>
-            <article class="card">
-              <p>按下快門，存一個檔。</p>
-              <pre class="cmd"><code>git commit -m &quot;新增作品集頁面&quot;</code></pre>
-            </article>
-            <article class="card">
-              <p>看存檔紀錄。</p>
-              <pre class="cmd"><code>git log --oneline</code></pre>
-            </article>
-          </div>
-          <p class="note">想看改了哪幾行，也可以用：</p>
-          <pre class="cmd"><code>git diff</code></pre>
-        </section>
-        <section class="slide sandbox-slide" data-title="練習：第一次存檔">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>練習：第一次存檔</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="fresh-files"
-            data-mission="first-commit"
-            aria-label="練習：第一次存檔"
-          ></div>
-        </section>
-        <section class="slide sandbox-slide" data-title="練習：修改後再存檔">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>練習：修改後再存檔</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="has-history"
-            data-mission="next-commit"
-            aria-label="練習：修改後再存檔"
-          ></div>
-        </section>
-        <section class="slide" data-title="只要認得這四個">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>只要認得這四個</h2>
-          <div class="cmd-list">
-            <article class="card">
-              <p>看有哪些分支。</p>
-              <pre class="cmd"><code>git branch</code></pre>
-            </article>
-            <article class="card">
-              <p>開草稿，並切過去。</p>
-              <pre class="cmd"><code>git switch -c new-design</code></pre>
-            </article>
-            <article class="card">
-              <p>回到正式版。</p>
-              <pre class="cmd"><code>git switch main</code></pre>
-            </article>
-            <article class="card">
-              <p>在 main 把草稿合回來。</p>
-              <pre class="cmd"><code>git merge new-design</code></pre>
-            </article>
-          </div>
-        </section>
-        <section class="slide sandbox-slide" data-title="練習：開草稿再合回來">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>練習：開草稿再合回來</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="branching"
-            data-mission="branch"
-            aria-label="練習：開草稿再合回來"
-          ></div>
-        </section>
-        <section class="slide sandbox-slide" data-title="練習：把新作品推上 GitHub">
-          <p class="eyebrow">08 · 進階附錄：自己打 Git 指令</p>
-          <h2>練習：把新作品推上 GitHub</h2>
-          <div
-            class="git-sandbox"
-            data-scenario="has-history"
-            data-mission="push"
-            aria-label="練習：把新作品推上 GitHub"
-          ></div>
-        </section>
-        <section class="slide sandbox-slide" data-title="Git 練習場">
-          <p class="eyebrow">08 · 課後玩玩看</p>
-          <h2>Git 練習場</h2>
-          <p>選一題、輸入指令、看圖怎麼變。進階題可以留到以後玩。</p>
-          <div class="git-lab"></div>
-        </section>
-        <section class="slide sandbox-slide" data-title="自由練習">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>自由練習</h2>
-          <div class="git-sandbox" data-scenario="empty" data-mission="free" aria-label="自由練習"></div>
-        </section>
-        <section class="slide" data-title="下次見：收藏這些資源">
-          <p class="eyebrow">08 · 小抄與課後練習</p>
-          <h2>下次見：收藏這些資源</h2>
-          <p>課後試著更新一張作品照片，預覽後存檔。下次帶著你的網站和問題來。</p>
-          <ul>
-            <li><a href="https://git-scm.com/book/zh-tw">Pro Git 繁體中文版</a></li>
-            <li><a href="https://learngitbranching.js.org/">Learn Git Branching</a></li>
-            <li><a href="https://code.visualstudio.com/docs">VS Code 文件</a></li>
-            <li><a href="https://code.claude.com/docs">Claude Code 文件</a></li>
-            <li><a href="https://cli.github.com/manual">GitHub CLI 手冊</a></li>
-            <li><a href="https://docs.lovable.dev/integrations/github">Lovable GitHub 文件</a></li>
-            <li><a href="https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自訂網域文件</a></li>
-          </ul>
-          <p class="next-links">
-            <a href="#/2/6">重看 VS Code 畫面</a><a href="#/3/2">重看安裝</a><a href="#/5/14">重練 Git</a>
-            <a href="#/8/15">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/9/0">用自己的網域上線</a><a href="#/10/0">Claude 進階使用</a><a href="#/11/0">省 token</a>
-          </p>
-        </section>
-      </section>
-
-      <section class="chapter" id="custom-domain" data-title="課後：用自己的網域上線">
+      <section class="chapter" id="custom-domain" data-title="用自己的網域上線" data-lesson="第三堂">
         <section class="slide why-slide" data-title="為什麼要學：自己的網域">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="tag">第三堂課開始</p>
+          <p class="note">這堂課結束時，你可以：用自己的網域上線，學會 Claude 進階用法與省 token 習慣。</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>為什麼我需要學這個？</h2>
           <div class="qa">
             <p class="qa-q"><span class="qa-tag">問</span>Lovable 已經給我一個網址，為什麼還要用自己的網域、自己部署？</p>
@@ -1760,7 +1431,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="why-goal">學完這章，你可以：讓客人打你自己的網域就看到網站，而且有 https 鎖頭。</p>
         </section>
         <section class="slide" data-title="先看整體：要設定三個地方">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>先看整體：要設定三個地方</h2>
           <div class="diagram">
             <span class="diagram-node">網域商（DNS）</span><span class="diagram-arrow">→</span>
@@ -1777,13 +1448,13 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </ol>
         </section>
         <section class="slide" data-title="開始前：確認 GitHub Pages 的條件">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>開始前：確認 GitHub Pages 的條件</h2>
           <p class="callout">先決條件：Lovable 建立的 repo 是私人的；GitHub 免費方案只能用「公開」repo 開 Pages。二選一：把 repo 改成公開（Settings → General 最下面 Danger Zone → Change visibility；原始碼大家都看得到，不能放密碼或金鑰），或升級 GitHub Pro。</p>
           <p class="note">Lovable 付費方案也能直接在 Lovable 綁網域；這章講 GitHub Pages 的做法，同一個網域只選一邊指過去。</p>
         </section>
         <section class="slide" data-title="步驟 1：先驗證網域（找到按鈕）">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 1：先驗證網域（找到按鈕）</h2>
           <p>這裡是「個人設定」，不是 repo 設定。驗證可以防止別人把你的網域拿去用在他的 GitHub Pages。</p>
           <p>先點右上角你的頭像 → <strong>Settings</strong>。</p>
@@ -1809,7 +1480,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </ol>
         </section>
         <section class="slide" data-title="步驟 1：先驗證網域（加 TXT 紀錄）">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 1：先驗證網域（加 TXT 紀錄）</h2>
           <ol class="step-list" start="3">
             <li>輸入 <code>你的網域.com</code>（不要加 www、不要加 https://）→ <strong>Add domain</strong>。</li>
@@ -1820,7 +1491,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="note">這筆 TXT 驗證完也不要刪，刪了會失去驗證。生效最久可能要 24 小時；離開頁面後，可在網域旁的 <strong>⋯</strong> 選 <strong>Continue verifying</strong>。</p>
         </section>
         <section class="slide" data-title="Namecheap：加 TXT 驗證紀錄">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>Namecheap：加 TXT 驗證紀錄</h2>
           <p>網域在 Namecheap 買的，照這樣加。GitHub 那頁先不要關。</p>
           <ol class="step-list">
@@ -1834,7 +1505,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="note">在 <strong>Domain</strong> 分頁的 <strong>NAMESERVERS</strong> 要是 <strong>Namecheap BasicDNS</strong>，Advanced DNS 的紀錄才會生效。買網域時沒改過就是這個。</p>
         </section>
         <section class="slide" data-title="步驟 2：讓 GitHub 幫你建置網站">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 2：讓 GitHub 幫你建置網站</h2>
           <p>Lovable 網站要先 <code>npm run build</code>，才會變成瀏覽器看得懂的檔案（dist 資料夾），所以要用 GitHub Actions。</p>
           <ol class="step-list">
@@ -1842,7 +1513,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </ol>
         </section>
         <section class="slide" data-title="步驟 2：Source 改選 GitHub Actions">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 2：Source 改選 GitHub Actions</h2>
           <figure class="shot">
             <div class="shot-frame">
@@ -1853,7 +1524,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </figure>
         </section>
         <section class="slide" data-title="步驟 2：請 Claude Code 寫自動發布設定">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 2：請 Claude Code 寫自動發布設定</h2>
           <p>在專案新增 <code>.github/workflows/deploy.yml</code>，交給 Claude Code：</p>
           <div class="prompt-card">
@@ -1862,7 +1533,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="note">用自己的網域時 base 是 <code>'/'</code>；如果只用 帳號.github.io/repo名稱 網址，base 要改成 <code>'/repo名稱/'</code>。設好網域之前從 github.io 網址打開是白畫面，是正常的。</p>
         </section>
         <section class="slide" data-title="workflow 和 action 是什麼">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>workflow 和 action 是什麼</h2>
           <p class="lead">GitHub Actions 是 GitHub 提供的「雲端自動化機器人」：你 push 之後，GitHub 借一台雲端電腦，照你寫好的步驟自動做事。</p>
           <div class="card-grid">
@@ -1883,7 +1554,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           <p class="note">每次跑完會在 repo 的 Actions 分頁留下紀錄；公開 repo 使用 GitHub Actions 免費，私人 repo 每月有免費額度，這種小網站通常用不完。</p>
         </section>
         <section class="slide" data-title="deploy.yml：觸發條件與執行環境">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>deploy.yml：觸發條件與執行環境</h2>
           <pre class="example"><code>name: Deploy to GitHub Pages
 on:
@@ -1906,7 +1577,7 @@ jobs:
           <p class="note">設定檔上半段；下一張接續同一個 deploy 工作的 steps。</p>
         </section>
         <section class="slide" data-title="deploy.yml：建置與發布步驟">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>deploy.yml：建置與發布步驟</h2>
           <p>接在上一張的 runs-on 後面，保留縮排，仍在 jobs → deploy 裡。</p>
           <pre class="example"><code>    steps:
@@ -1926,7 +1597,7 @@ jobs:
         uses: actions/deploy-pages@v5</code></pre>
         </section>
         <section class="slide" data-title="deploy.yml 逐段說明">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>deploy.yml 逐段說明</h2>
           <p>Claude Code 寫的應該跟這份差不多，這是 Vite 官方範例加上 404.html 那一步。看得懂大概就好，不用背。</p>
           <div class="table-wrap">
@@ -1964,7 +1635,7 @@ jobs:
           <p class="note">push 之後到 repo 的 Actions 分頁看進度，綠色勾勾代表發布成功，紅色叉叉點進去看錯誤，可以整段貼給 Claude Code。</p>
         </section>
         <section class="slide" data-title="步驟 3：找到 repo 的 Pages 設定頁">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 3：找到 repo 的 Pages 設定頁</h2>
           <figure class="shot shot-wide">
             <div class="shot-frame">
@@ -1989,7 +1660,7 @@ jobs:
           <p class="note">Lovable 建立的 repo 名稱通常和專案名稱相同。只有 repo 的擁有者看得到 Settings。</p>
         </section>
         <section class="slide" data-title="步驟 3：填上網域並儲存">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 3：填上網域並儲存</h2>
           <ol class="step-list">
             <li>在 <strong>Custom domain</strong> 的框框輸入 <code>www.你的網域.com</code>。</li>
@@ -2012,7 +1683,7 @@ jobs:
           <p class="note">用 GitHub Actions 發布不需要 CNAME 檔案，有也會被忽略。先在 GitHub 填好，再去設 DNS，避免網域被別人搶先接走。</p>
         </section>
         <section class="slide" data-title="步驟 4：到網域商設定 DNS">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 4：到網域商設定 DNS</h2>
           <p>登入買網域的網站，找 DNS 設定（可能叫 DNS 管理、DNS Records、Zone）。</p>
           <div class="table-wrap">
@@ -2047,7 +1718,7 @@ jobs:
           <p class="note">先刪掉網域商預設的紀錄（例如停車頁的 A 紀錄）。名稱欄有的網域商寫 @，有的留空代表網域本身。不要新增 * 開頭的萬用紀錄。</p>
         </section>
         <section class="slide" data-title="Namecheap：加 A 和 CNAME 紀錄">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>Namecheap：加 A 和 CNAME 紀錄</h2>
           <p>一樣在你的網域 → <strong>Manage</strong> → <strong>Advanced DNS</strong> → <strong>Host Records</strong>。</p>
           <ol class="step-list">
@@ -2059,7 +1730,7 @@ jobs:
           <p class="note">TTL 都用 Automatic。剛才的 TXT 驗證紀錄留著不要刪。</p>
         </section>
         <section class="slide" data-title="步驟 5：檢查 DNS 是否生效">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 5：檢查 DNS 是否生效</h2>
           <p>在 PowerShell 檢查 DNS：</p>
           <pre class="cmd"><code>Resolve-DnsName 你的網域.com -Type A</code></pre>
@@ -2067,7 +1738,7 @@ jobs:
           <p>第一個要列出四個 185.199… 的 IP；第二個要看到 你的帳號.github.io。DNS 生效最久可能要 24 小時，沒出現先等。</p>
         </section>
         <section class="slide" data-title="步驟 5：開啟 HTTPS">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>步驟 5：開啟 HTTPS</h2>
           <p>生效後回到同一頁（repo <strong>Settings</strong> → <strong>Pages</strong>），在 <strong>Custom domain</strong> 下面勾選 <strong>Enforce HTTPS</strong>（網址前面會有鎖頭）。這個選項可能要等到 24 小時後才能勾。</p>
           <figure class="shot">
@@ -2080,7 +1751,7 @@ jobs:
           <p class="callout">之後照每天的工作循環 push 到 main，GitHub 就會自動重新發布，網站幾分鐘後更新。</p>
         </section>
         <section class="slide" data-title="卡關怎麼辦">
-          <p class="eyebrow">09 · 課後：用自己的網域上線</p>
+          <p class="eyebrow">08 · 用自己的網域上線</p>
           <h2>卡關怎麼辦</h2>
           <div class="card-grid">
             <article class="card">
@@ -2105,9 +1776,9 @@ jobs:
       </section>
 
 
-      <section class="chapter" id="claude-advanced" data-title="Claude 進階使用">
+      <section class="chapter" id="claude-advanced" data-title="Claude 進階使用" data-lesson="第三堂">
         <section class="slide why-slide" data-title="為什麼要學：Claude 進階使用">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>為什麼要學：Claude 進階使用</h2>
           <div class="qa">
           <p class="qa-q"><span class="qa-tag">問</span>每次開新對話都要重講一次「用繁體中文」「改完要存檔上傳」，有辦法讓 Claude 記住嗎？</p>
@@ -2116,7 +1787,7 @@ jobs:
           <p class="why-goal">學完這章，你可以：分清楚這六種東西，知道什麼時候用哪一個，並用一句話請 Claude 幫你設定。</p>
         </section>
         <section class="slide" data-title="六種東西一張表">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>六種東西一張表</h2>
           <div class="table-wrap">
           <table>
@@ -2170,7 +1841,7 @@ jobs:
           </div>
         </section>
         <section class="slide" data-title="CLAUDE.md：三個放的位置">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>CLAUDE.md：三個放的位置</h2>
           <div class="card-grid">
           <article class="card">
@@ -2188,14 +1859,14 @@ jobs:
           </div>
         </section>
         <section class="slide" data-title="CLAUDE.md：怎麼用、什麼時候用">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>CLAUDE.md：怎麼用、什麼時候用</h2>
           <p>讓 Claude 讀整個專案，自動寫一份專案 CLAUDE.md。</p><pre class="cmd"><code>/init</code></pre><p>打開 CLAUDE.md 和記憶檔來看或修改。</p><pre class="cmd"><code>/memory</code></pre><div class="prompt-card"><pre class="cmd"><code>幫我在全域 CLAUDE.md 加一條規則：一律用繁體中文回答，回答要精簡。</code></pre></div><pre class="example"><code># 全域規則
 - 一律用繁體中文回答。
 - 精簡，不要開場白。</code></pre><p class="callout">使用時機：同一句話你講了第二次，就該寫進 CLAUDE.md。</p>
         </section>
         <section class="slide" data-title="MEMORY.md：Claude 自己的筆記本">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>MEMORY.md：Claude 自己的筆記本</h2>
           <p>Claude 會把學到的事記成一則一則的小檔，MEMORY.md 是目錄。放在 <code>~/.claude/projects/專案名稱/memory/</code>，每個專案各一本，不會跟著 Git 上傳。</p>
           <p>本講義專案真的有這則筆記：</p><pre class="example"><code>- [Push after edits](push-after-edits.md) — commit + push to main after every change so GitHub Pages stays in sync</code></pre><div class="prompt-card"><pre class="cmd"><code>記住：這個專案每次改完都要 commit 並 push。</code></pre></div>
@@ -2204,7 +1875,7 @@ jobs:
           <p class="note">CLAUDE.md 是你寫給它的規則，可以分享給別人；MEMORY.md 是它自己記的筆記，只在你這台電腦。重要、要分享的規則寫 CLAUDE.md。</p>
         </section>
         <section class="slide" data-title="Skill：一份做事 SOP">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Skill：一份做事 SOP</h2>
           <p class="lead">Skill 是一個資料夾，裡面一定有 SKILL.md。開頭寫名稱（name）和一句說明（description），下面是做法；也可以附上工具檔。</p>
           <p>平常 Claude 只看那一句說明；遇到相關工作才打開全文，所以放很多 skill 也不會把全文都塞進對話記憶。</p>
@@ -2221,7 +1892,7 @@ jobs:
           <p class="callout">使用時機：會重複做、有固定規則或步驟的工作，例如做投影片、寫週報、整理發票。</p>
         </section>
         <section class="slide" data-title="Skill 範例：teaching-slides 的檔案">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Skill 範例：teaching-slides 的檔案</h2>
           <p>這份講義的做法：把投影片規則和量測工具放在一起。</p><pre class="example"><code>.claude/skills/teaching-slides/
 ├── SKILL.md               ← 做投影片的重點
@@ -2236,7 +1907,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
 ……</code></pre>
         </section>
         <section class="slide" data-title="Skill 範例：整理成手冊，下次直接用">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Skill 範例：整理成手冊，下次直接用</h2>
           <p>怎麼做出來的：</p>
           <div class="prompt-card"><pre class="cmd"><code>把我們今天做投影片的重點整理成一個 skill，放在這個專案的 .claude/skills，之後做投影片時可以參考。</code></pre></div>
@@ -2245,7 +1916,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="note">這個 skill 在本講義 repo 的 <code>.claude/skills/teaching-slides/</code>，可以打開來看全文。</p>
         </section>
         <section class="slide" data-title="Hook：不靠記憶的自動開關">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Hook：不靠記憶的自動開關</h2>
           <p class="lead">CLAUDE.md 和 Skill 是「請 Claude 記得做」；Hook 是「時間到一定做」，由 Claude Code 程式執行，Claude 忘了也沒關係。</p>
           <div class="table-wrap">
@@ -2294,13 +1965,13 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="note">設定寫在 settings.json：全域 <code>~/.claude/settings.json</code>、專案 <code>.claude/settings.json</code>。在 Claude Code 打 <code>/hooks</code> 可以查看。</p>
         </section>
         <section class="slide" data-title="Hook 範例：需要你時發出提示音">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Hook 範例：需要你時發出提示音</h2>
           <div class="prompt-card"><pre class="cmd"><code>幫我在全域設定加一個 hook：你需要我回覆或授權時，用 PowerShell 發出提示音。</code></pre></div>
           <p class="callout">使用時機：「每次都一定要發生」的事，例如提示音、改完自動排版、擋掉刪除指令。</p>
         </section>
         <section class="slide" data-title="Hook 範例：設定內容與權限">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Hook 範例：設定內容與權限</h2>
           <p>它會寫進 <code>~/.claude/settings.json</code>，大概長這樣：</p><pre class="example"><code>{
   &quot;hooks&quot;: {
@@ -2315,7 +1986,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
 }</code></pre><p class="callout">Hook 會用你的權限自動跑指令。只加看得懂的；別人給的 hook 先問 Claude「這會做什麼？」。</p>
         </section>
         <section class="slide" data-title="Workflow：把固定流程串起來">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Workflow：把固定流程串起來</h2>
           <p class="lead">Workflow 不是某個設定檔，是「做某類工作的固定步驟」。把它寫進 CLAUDE.md 或 Skill，Claude 就會照著走；其中一定要發生的步驟，再用 Hook 自動化。</p>
           <p>先規劃再動手：<kbd>Shift+Tab</kbd> 切到 plan mode，Claude 只看、只提計畫，你同意後才開始改。</p>
@@ -2330,7 +2001,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <div class="prompt-card"><pre class="cmd"><code>幫我在這個專案的 CLAUDE.md 寫下工作流程：每次改網站都先列計畫讓我確認，改完自己預覽檢查，再存檔並上傳。</code></pre></div>
         </section>
         <section class="slide" data-title="Multi-agent：派分身助理">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Multi-agent：派分身助理</h2>
           <p class="lead">主 Claude 可以派出子代理（subagent）。子代理有自己的一份對話記憶，去讀一大堆檔案或資料，回來只交一份摘要，主對話就不會被塞滿。</p>
           <div class="card-grid">
@@ -2346,14 +2017,14 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="note">總用量不一定比較少（每個分身都要花 token），省的是主對話的記憶，讓主對話撐比較久、比較不會變笨。</p>
         </section>
         <section class="slide" data-title="Multi-agent：怎麼用、範例">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>Multi-agent：怎麼用、範例</h2>
           <div class="prompt-card"><pre class="cmd"><code>用 subagent 去讀 logs 資料夾裡所有紀錄，只回報最常出現的三個錯誤和原因。</code></pre></div>
           <div class="prompt-card"><pre class="cmd"><code>開三個 subagent 分頭查：Vercel、Netlify、GitHub Pages 各自的免費方案限制，最後整理成一張比較表。</code></pre></div><pre class="cmd"><code>/agents</code></pre><p>建立或管理自訂子代理，例如專門檢查錯字的「校對員」。設定會存在 <code>.claude/agents/</code>。</p>
           <p class="callout">本講義的實例：這份講義是「Claude 規劃與檢查、另一個 AI（Codex）負責動手改」做出來的。這也是一種 multi-agent：讓貴的腦袋做決定，便宜的手做苦工，額度就用得久。</p>
         </section>
         <section class="slide" data-title="怎麼選：遇到這些情況用哪個">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>怎麼選：遇到這些情況用哪個</h2>
           <div class="table-wrap">
           <table>
@@ -2398,7 +2069,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="callout">不確定就直接問 Claude：「這件事我應該寫成 CLAUDE.md、skill 還是 hook？」</p>
         </section>
         <section class="slide" data-title="課後練習：幫你的 Claude 升級">
-          <p class="eyebrow">10 · Claude 進階使用</p>
+          <p class="eyebrow">09 · Claude 進階使用</p>
           <h2>課後練習：幫你的 Claude 升級</h2>
           <ol class="step-list">
           <li>加一條全域規則（用繁體中文）。<div class="prompt-card"><pre class="cmd"><code>幫我在全域 CLAUDE.md 加一條規則：一律用繁體中文回答。</code></pre></div></li>
@@ -2408,9 +2079,9 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
         </section>
       </section>
 
-      <section class="chapter" id="save-tokens" data-title="省 token：讓額度用更久">
+      <section class="chapter" id="save-tokens" data-title="省 token：讓額度用更久" data-lesson="第三堂">
         <section class="slide why-slide" data-title="為什麼要學：讓額度用更久">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>為什麼要學：讓額度用更久</h2>
           <div class="qa">
           <p class="qa-q"><span class="qa-tag">問</span>為什麼才用一下午，就看到 5 小時額度快用完？</p>
@@ -2419,7 +2090,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="why-goal">學完這章，你可以：看懂狀態列的記憶與額度，用幾個習慣讓額度用更久。</p>
         </section>
         <section class="slide" data-title="核心觀念：對話記憶（context）">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>核心觀念：對話記憶（context）</h2>
           <p class="lead">對話記憶像一張白板。你說的話、它讀過的檔案、跑過的指令結果，全都寫在白板上；每次回答前，它都要把整張白板看一遍。</p>
           <div class="card-grid">
@@ -2439,13 +2110,13 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="note">狀態列的「記憶剩 xx%」就是白板還剩多少空間；「5 小時額度剩 xx%」是你的用量。對應第 03 章設定的狀態列。</p>
         </section>
         <section class="slide" data-title="習慣 1：換工作就擦白板">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>習慣 1：換工作就擦白板</h2>
           <pre class="cmd"><code>/clear</code></pre><p>開新對話，白板清空。做完一件事、要換不相干的事時用。</p><pre class="cmd"><code>/compact</code></pre><p>把目前對話濃縮成摘要再繼續。同一件事還沒做完、但記憶快滿時用。</p><pre class="cmd"><code>/compact 只保留網站價目表修改的重點</code></pre><p>可以告訴它要保留什麼。</p><pre class="cmd"><code>/context</code></pre><p>看白板現在被什麼佔掉。</p>
           <p class="callout">清掉之前，先把重要的東西寫進檔案（下一張）。</p>
         </section>
         <section class="slide" data-title="習慣 2：把進度寫進檔案，當交接單">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>習慣 2：把進度寫進檔案，當交接單</h2>
           <p class="lead">對話記憶換個對話（session）就不見了，換另一個 AI 也帶不走。把任務進度寫進一個實體檔案，例如 <code>progress.md</code>，下次開新對話、甚至換一個 AI，請它先讀這個檔案就能接著做。</p>
           <p>像值班交接單。下一班的人不用聽上一班從頭講一遍，看交接單就知道做到哪。</p>
@@ -2461,7 +2132,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           </div>
         </section>
         <section class="slide" data-title="習慣 2：交接單範例與開工、收工">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>習慣 2：交接單範例與開工、收工</h2>
           <pre class="example"><code># 網站改版進度
 ## 已完成
@@ -2477,7 +2148,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="note">CLAUDE.md 放「永遠的規則」，記憶放「你的習慣」，progress.md 放「這個任務做到哪」。任務做完就可以刪掉或封存。</p>
         </section>
         <section class="slide" data-title="習慣 3：CLAUDE.md 要精簡">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>習慣 3：CLAUDE.md 要精簡</h2>
           <p class="lead">CLAUDE.md 每次對話都會整份讀進來，寫一頁就每句話都多付一頁的錢。</p>
           <div class="card-grid">
@@ -2493,7 +2164,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <div class="prompt-card"><pre class="cmd"><code>幫我檢查 CLAUDE.md，刪掉重複和用不到的內容，只有特定工作才用到的部分移到 skill。</code></pre></div>
         </section>
         <section class="slide" data-title="習慣 4：說清楚，少繞路">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>習慣 4：說清楚，少繞路</h2>
           <div class="table-wrap">
           <table>
@@ -2526,13 +2197,13 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           <p class="note">可以用 @ 指定檔案，例如 <code>@src/pages/Index.tsx</code>，它就不用到處找。</p>
         </section>
         <section class="slide" data-title="習慣 5：用對模型、派對分身">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>習慣 5：用對模型、派對分身</h2>
           <pre class="cmd"><code>/model</code></pre><p>切換模型。簡單的事（改錯字、改文字）用輕量模型；需要想很多的設計和除錯才用最強的模型。最強的模型同樣的工作會用掉比較多額度。</p>
-          <p class="callout">派 subagent 讀大量資料，主對話只收摘要（見第 10 章 Multi-agent）。</p><pre class="cmd"><code>/mcp</code></pre><p>看裝了哪些外掛工具（MCP）。每個開著的工具說明都會佔白板，用不到的就關掉。</p>
+          <p class="callout">派 subagent 讀大量資料，主對話只收摘要（見第 09 章 Multi-agent）。</p><pre class="cmd"><code>/mcp</code></pre><p>看裝了哪些外掛工具（MCP）。每個開著的工具說明都會佔白板，用不到的就關掉。</p>
         </section>
         <section class="slide" data-title="省 token 小抄：交接與清理">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>省 token 小抄：交接與清理</h2>
           <div class="cmd-list">
           <article class="card">
@@ -2548,7 +2219,7 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           </div>
         </section>
         <section class="slide" data-title="省 token 小抄：模型與操作">
-          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <p class="eyebrow">10 · 省 token：讓額度用更久</p>
           <h2>省 token 小抄：模型與操作</h2>
           <div class="cmd-list">
           <article class="card">
@@ -2566,7 +2237,304 @@ description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋�
           </div>
           <p class="callout">該記的寫進檔案（CLAUDE.md、記憶、progress.md、Skill），對話本身大方地清。</p>
         </section>
+      </section>      <section class="chapter" id="cheatsheet" data-title="附錄：小抄、自學與練習場" data-lesson="附錄">
+        <section class="slide why-slide" data-title="為什麼要學：小抄與練習">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>為什麼我需要學這個？</h2>
+          <div class="qa">
+            <p class="qa-q"><span class="qa-tag">問</span>為什麼要留小抄和課後練習？</p>
+            <p class="qa-a"><span class="qa-tag">答</span>今天學的說法一週不用就會忘，小抄讓你一眼查到；想知道 Claude 在背後跑什麼指令，附錄可以自己動手玩。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：忘記說法時知道去哪裡查，也能自己練習。</p>
+        </section>
+        <section class="slide" data-title="Claude Code 小抄：啟動與對話">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>Claude Code 小抄：啟動與對話</h2>
+          <p>前兩個在 PowerShell；/help、/clear 在 Claude Code 裡。</p>
+          <div class="cmd-list">
+            <article class="card">
+              <p>啟動。</p>
+              <pre class="cmd"><code>claude</code></pre>
+            </article>
+            <article class="card">
+              <p>繼續上次。</p>
+              <pre class="cmd"><code>claude -c</code></pre>
+            </article>
+            <article class="card">
+              <p>查說明。</p>
+              <pre class="cmd"><code>/help</code></pre>
+            </article>
+            <article class="card">
+              <p>新對話。</p>
+              <pre class="cmd"><code>/clear</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="Claude Code 小抄：設定與工具">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>Claude Code 小抄：設定與工具</h2>
+          <p>以下斜線指令都在 Claude Code 裡輸入。</p>
+          <div class="cmd-list">
+            <article class="card">
+              <p>開設定。</p>
+              <pre class="cmd"><code>/config</code></pre>
+            </article>
+            <article class="card">
+              <p>設定狀態列。</p>
+              <pre class="cmd"><code>/statusline</code></pre>
+            </article>
+            <article class="card">
+              <p>建立專案說明。</p>
+              <pre class="cmd"><code>/init</code></pre>
+            </article>
+            <article class="card">
+              <p>讓 Claude 用瀏覽器。</p>
+              <pre class="cmd"><code>/chrome</code></pre>
+            </article>
+          </div>
+          <p class="note">Esc 中斷；Shift+Tab 切權限模式，練習用 manual mode。</p>
+        </section>
+        <section class="slide" data-title="Git 說法小抄：日常存檔與同步">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>Git 說法小抄：日常存檔與同步</h2>
+          <div class="cmd-list">
+            <article class="card">
+              <p>存檔 commit</p>
+              <pre class="cmd"><code>這個改好了，幫我存一個檔，存檔訊息用一句中文寫這次改了什麼。</code></pre>
+            </article>
+            <article class="card">
+              <p>上傳 push</p>
+              <pre class="cmd"><code>幫我把存檔上傳到 GitHub。</code></pre>
+            </article>
+            <article class="card">
+              <p>拿最新版 pull</p>
+              <pre class="cmd"><code>先幫我從 GitHub 拿最新版。</code></pre>
+            </article>
+            <article class="card">
+              <p>看狀況 status</p>
+              <pre class="cmd"><code>現在有哪些改動還沒存檔？用中文跟我說。</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="Git 說法小抄：救援與分支">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>Git 說法小抄：救援與分支</h2>
+          <div class="cmd-list">
+            <article class="card">
+              <p>救回來</p>
+              <pre class="cmd"><code>網站壞了，幫我列出最近幾次存檔，回到最後一個正常的版本。先告訴我你要怎麼做，我說好再動。</code></pre>
+            </article>
+            <article class="card">
+              <p>開草稿 branch</p>
+              <pre class="cmd"><code>我想試一個新的首頁設計，請幫我開一個分支再改，改完讓我預覽，我說好再合回 main。</code></pre>
+            </article>
+            <article class="card">
+              <p>合回來 merge</p>
+              <pre class="cmd"><code>我很滿意，幫我合回 main 並上傳。</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="GitHub / SSH 小抄">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>GitHub / SSH 小抄</h2>
+          <div class="cmd-list">
+            <article class="card">
+              <p>登入。</p>
+              <pre class="cmd"><code>gh auth login</code></pre>
+            </article>
+            <article class="card">
+              <p>檢查登入。</p>
+              <pre class="cmd"><code>gh auth status</code></pre>
+            </article>
+            <article class="card">
+              <p>額外：產生鑰匙。</p>
+              <pre class="cmd"><code>ssh-keygen -t ed25519 -C &quot;你的 GitHub 信箱&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>額外：上傳公鑰。第一次需先授權，見實戰章。</p>
+              <pre class="cmd"><code>gh ssh-key add $HOME\.ssh\id_ed25519.pub --title &quot;我的筆電&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>額外：測試 SSH 連線。</p>
+              <pre class="cmd"><code>ssh -T git@github.com</code></pre>
+            </article>
+            <article class="card">
+              <p>抓到本機。</p>
+              <pre class="cmd"><code>gh repo clone 帳號/repo</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="進階附錄：查看與存檔指令">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>進階附錄：查看與存檔指令</h2>
+          <p>這些是 Claude Code 幫你做事時實際執行的指令。不用背，好奇或想更懂時再來玩。</p>
+          <div class="cmd-list">
+            <article class="card">
+              <p>看狀況。</p>
+              <pre class="cmd"><code>git status</code></pre>
+            </article>
+            <article class="card">
+              <p>放上拍照台。</p>
+              <pre class="cmd"><code>git add .</code></pre>
+            </article>
+            <article class="card">
+              <p>存一個檔，訊息換成這次做的事。</p>
+              <pre class="cmd"><code>git commit -m &quot;更新作品照片&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>看紀錄。</p>
+              <pre class="cmd"><code>git log --oneline</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="進階附錄：同步與分支指令">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>進階附錄：同步與分支指令</h2>
+          <div class="cmd-list">
+            <article class="card">
+              <p>看修改。</p>
+              <pre class="cmd"><code>git diff</code></pre>
+            </article>
+            <article class="card">
+              <p>拿最新版。</p>
+              <pre class="cmd"><code>git pull</code></pre>
+            </article>
+            <article class="card">
+              <p>送上雲端。</p>
+              <pre class="cmd"><code>git push</code></pre>
+            </article>
+            <article class="card">
+              <p>開草稿。</p>
+              <pre class="cmd"><code>git switch -c new-design</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide" data-title="三個區域：拍照存檔">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>三個區域：拍照存檔</h2>
+          <p>第一章的四個區域裡，前三個都在你的電腦上。改好檔案 → 放上拍照台 → 拍成一張存檔照片。先按修改，再按 add 與 commit。</p>
+          <div class="stage-demo"></div>
+        </section>
+        <section class="slide" data-title="四個每天用的指令">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>四個每天用的指令</h2>
+          <p>新專案先初始化一次：</p>
+          <pre class="cmd"><code>git init</code></pre>
+          <div class="cmd-list">
+            <article class="card">
+              <p>現在狀況如何？</p>
+              <pre class="cmd"><code>git status</code></pre>
+            </article>
+            <article class="card">
+              <p>把改好的檔案放上拍照台（暫存區）。</p>
+              <pre class="cmd"><code>git add .</code></pre>
+            </article>
+            <article class="card">
+              <p>按下快門，存一個檔。</p>
+              <pre class="cmd"><code>git commit -m &quot;新增作品集頁面&quot;</code></pre>
+            </article>
+            <article class="card">
+              <p>看存檔紀錄。</p>
+              <pre class="cmd"><code>git log --oneline</code></pre>
+            </article>
+          </div>
+          <p class="note">想看改了哪幾行，也可以用：</p>
+          <pre class="cmd"><code>git diff</code></pre>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：第一次存檔">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>練習：第一次存檔</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="fresh-files"
+            data-mission="first-commit"
+            aria-label="練習：第一次存檔"
+          ></div>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：修改後再存檔">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>練習：修改後再存檔</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="has-history"
+            data-mission="next-commit"
+            aria-label="練習：修改後再存檔"
+          ></div>
+        </section>
+        <section class="slide" data-title="只要認得這四個">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>只要認得這四個</h2>
+          <div class="cmd-list">
+            <article class="card">
+              <p>看有哪些分支。</p>
+              <pre class="cmd"><code>git branch</code></pre>
+            </article>
+            <article class="card">
+              <p>開草稿，並切過去。</p>
+              <pre class="cmd"><code>git switch -c new-design</code></pre>
+            </article>
+            <article class="card">
+              <p>回到正式版。</p>
+              <pre class="cmd"><code>git switch main</code></pre>
+            </article>
+            <article class="card">
+              <p>在 main 把草稿合回來。</p>
+              <pre class="cmd"><code>git merge new-design</code></pre>
+            </article>
+          </div>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：開草稿再合回來">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>練習：開草稿再合回來</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="branching"
+            data-mission="branch"
+            aria-label="練習：開草稿再合回來"
+          ></div>
+        </section>
+        <section class="slide sandbox-slide" data-title="練習：把新作品推上 GitHub">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>練習：把新作品推上 GitHub</h2>
+          <div
+            class="git-sandbox"
+            data-scenario="has-history"
+            data-mission="push"
+            aria-label="練習：把新作品推上 GitHub"
+          ></div>
+        </section>
+        <section class="slide sandbox-slide" data-title="Git 練習場">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>Git 練習場</h2>
+          <p>選一題、輸入指令、看圖怎麼變。進階題可以留到以後玩。</p>
+          <div class="git-lab"></div>
+        </section>
+        <section class="slide sandbox-slide" data-title="自由練習">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>自由練習</h2>
+          <div class="git-sandbox" data-scenario="empty" data-mission="free" aria-label="自由練習"></div>
+        </section>
+        <section class="slide" data-title="下次見：收藏這些資源">
+          <p class="eyebrow">11 · 附錄：小抄、自學與練習場</p>
+          <h2>下次見：收藏這些資源</h2>
+          <p>課後試著更新一張作品照片，預覽後存檔。下次帶著你的網站和問題來。</p>
+          <ul>
+            <li><a href="https://git-scm.com/book/zh-tw">Pro Git 繁體中文版</a></li>
+            <li><a href="https://learngitbranching.js.org/">Learn Git Branching</a></li>
+            <li><a href="https://code.visualstudio.com/docs">VS Code 文件</a></li>
+            <li><a href="https://code.claude.com/docs">Claude Code 文件</a></li>
+            <li><a href="https://cli.github.com/manual">GitHub CLI 手冊</a></li>
+            <li><a href="https://docs.lovable.dev/integrations/github">Lovable GitHub 文件</a></li>
+            <li><a href="https://docs.github.com/zh/pages/configuring-a-custom-domain-for-your-github-pages-site">GitHub Pages 自訂網域文件</a></li>
+          </ul>
+          <p class="next-links">
+            <a href="#/2/6">重看 VS Code 畫面</a><a href="#/3/2">重看安裝</a><a href="#/5/14">重練 Git</a>
+            <a href="#/11/15">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/8/0">用自己的網域上線</a><a href="#/9/0">Claude 進階使用</a><a href="#/10/0">省 token</a>
+          </p>
+        </section>
       </section>
+
+
     </main>
     <footer class="deck-footer">
       <p id="position-label" aria-live="polite">第 1 張</p>

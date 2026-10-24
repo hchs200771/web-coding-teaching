@@ -4,6 +4,36 @@ import { readFile, access } from 'node:fs/promises';
 import { SCENARIOS, createSimulator } from '../js/git-sim.js';
 import { MISSIONS } from '../js/missions.js';
 const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+const chapters = html.split(/(?=<section class="chapter")/).slice(1);
+test('chapters follow the three lessons and self-study appendix', () => {
+  const expected = [
+    ['prep', '第一堂'], ['top', '第一堂'], ['vscode', '第一堂'], ['claude-code', '第一堂'],
+    ['web-basics', '第二堂'], ['git-basics', '第二堂'], ['branches', '第二堂'], ['real-project', '第二堂'],
+    ['custom-domain', '第三堂'], ['claude-advanced', '第三堂'], ['save-tokens', '第三堂'], ['cheatsheet', '附錄'],
+  ];
+  assert.equal(chapters.length, 12);
+  chapters.forEach((chapter, index) => {
+    const opening = chapter.slice(0, chapter.indexOf('>'));
+    assert.match(opening, new RegExp(`id="${expected[index][0]}"`));
+    assert.match(opening, new RegExp(`data-lesson="${expected[index][1]}"`));
+    assert.match(chapter.match(/<section class="slide[^>]*>/)[0], /why-slide/);
+    for (const [, eyebrow] of chapter.matchAll(/class="eyebrow">([^<]+)</g))
+      assert.ok(eyebrow.startsWith(`${String(index).padStart(2, '0')} · `), eyebrow);
+  });
+});
+test('internal slide links point to the intended resources', () => {
+  const titles = chapters.map(chapter => [...chapter.matchAll(/<section class="slide[^>]*data-title="([^"]+)"/g)].map(m => m[1]));
+  for (const [, c, s] of html.matchAll(/href="#\/(\d+)\/(\d+)"/g))
+    assert.ok(titles[+c]?.[+s], `#/${c}/${s}`);
+  for (const [, c, s, label] of html.matchAll(/href="#\/(\d+)\/(\d+)">([^<]+)<\/a>/g)) {
+    const expected = {
+      '玩 Git 練習場': 'Git 練習場',
+      '用自己的網域上線': '為什麼要學：自己的網域',
+      'Claude 進階使用': '為什麼要學：Claude 進階使用',
+    }[label];
+    if (expected) assert.equal(titles[+c][+s], expected);
+  }
+});
 test('all mounted scenarios and missions exist', () => {
   const scenarios = new Set(SCENARIOS.map(s => s.id));
   for (const match of html.matchAll(/data-scenario="([^"]+)"/g)) assert.ok(scenarios.has(match[1]), match[1]);

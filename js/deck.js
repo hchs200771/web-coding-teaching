@@ -33,9 +33,10 @@ function render() {
       element.classList.toggle('current', c === chapter && s === slide);
     });
   });
-  document.getElementById('chapter-label').textContent = chapters[chapter].dataset.title;
+  const { lesson, title } = chapters[chapter].dataset;
+  document.getElementById('chapter-label').textContent = `${lesson} · ${title}`;
   document.getElementById('position-label').textContent =
-    `第 ${chapter + 1} 章・${slide + 1}/${slides[chapter].length}`;
+    `${lesson}・${String(chapter).padStart(2, '0')} 章・${slide + 1}/${slides[chapter].length}`;
   const total = slides.flat().length;
   const before = slides.slice(0, chapter).reduce((n, list) => n + list.length, 0);
   const percent = ((before + slide + 1) / total) * 100;
@@ -92,11 +93,23 @@ function toggleOverview(force) {
     else document.getElementById('overview-toggle').focus();
   }
 }
+let overviewGroup;
+let overviewColumns;
 chapters.forEach((c, ci) => {
+  if (c.dataset.lesson !== chapters[ci - 1]?.dataset.lesson) {
+    overviewGroup = document.createElement('section');
+    overviewGroup.className = 'overview-group';
+    const heading = document.createElement('h2');
+    heading.textContent = c.dataset.lesson === '附錄' ? '附錄（自學）' : `${c.dataset.lesson}課`;
+    overviewColumns = document.createElement('div');
+    overviewColumns.className = 'overview-columns';
+    overviewGroup.append(heading, overviewColumns);
+    overview.append(overviewGroup);
+  }
   const column = document.createElement('div');
   column.className = 'overview-column';
-  const title = document.createElement('h2');
-  title.textContent = `${ci + 1}. ${c.dataset.title}`;
+  const title = document.createElement('h3');
+  title.textContent = `${String(ci).padStart(2, '0')} · ${c.dataset.title}`;
   column.append(title);
   slides[ci].forEach((s, si) => {
     const button = document.createElement('button');
@@ -109,7 +122,7 @@ chapters.forEach((c, ci) => {
     });
     column.append(button);
   });
-  overview.append(column);
+  overviewColumns.append(column);
 });
 document.addEventListener('keydown', e => {
   if (editable(e.target)) return;
