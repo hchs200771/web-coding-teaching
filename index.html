@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f5f3ee" />
-    <meta name="description" content="第一堂 3 小時：Windows 零基礎，從安裝 VS Code 開始，用 Claude Code 管理紋繡網站，認識前後端與 Git / GitHub。" />
-    <title>第二堂：用 Claude Code 管理你的網站</title>
+    <meta name="description" content="Windows 零基礎，從安裝 VS Code 開始，用 Claude Code 管理網站，認識前後端、Git / GitHub，以及 Claude 進階使用。" />
+    <title>用 Claude Code 管理你的網站</title>
     <script>
       // 每次開頁都在 CSS / JS 網址後面加上新的版本號，避免瀏覽器拿到「新的 HTML + 舊的 JS」。
       // （GitHub Pages 會讓瀏覽器快取檔案 10 分鐘，更新網站後可能新舊混在一起而壞掉。）
@@ -110,10 +110,10 @@
         </section>
       </section>
 
-      <section class="chapter" id="top" data-title="第一堂課">
-        <section class="slide cover" data-title="第一堂：用 Claude Code 管理你的網站">
-          <p class="eyebrow">01 · 第一堂課</p>
-          <h1>第一堂：用 Claude Code 管理你的網站</h1>
+      <section class="chapter" id="top" data-title="課程介紹">
+        <section class="slide cover" data-title="用 Claude Code 管理你的網站">
+          <p class="eyebrow">01 · 課程介紹</p>
+          <h1>用 Claude Code 管理你的網站</h1>
           <p class="lead">今天裝好 VS Code 與 Claude Code、搞懂網站前後端、用 Git / GitHub 幫網站存檔。</p>
           <div class="tag-row">
             <span class="tag">3 小時</span><span class="tag">零基礎</span><span class="tag">Windows</span>
@@ -123,7 +123,7 @@
           </p>
         </section>
         <section class="slide why-slide" data-title="為什麼要學：這堂課">
-          <p class="eyebrow">01 · 第一堂課</p>
+          <p class="eyebrow">01 · 課程介紹</p>
           <h2>為什麼我需要學這個？</h2>
           <div class="qa">
             <p class="qa-q"><span class="qa-tag">問</span>網站已經用 Lovable 做好了，為什麼還要學這些？</p>
@@ -132,7 +132,7 @@
           <p class="why-goal">學完這章，你可以：知道今天 3 小時會做哪些事、投影片怎麼操作。</p>
         </section>
         <section class="slide" data-title="今天的流程">
-          <p class="eyebrow">01 · 第一堂課</p>
+          <p class="eyebrow">01 · 課程介紹</p>
           <h2>今天的流程</h2>
           <div class="table-wrap">
             <table class="agenda">
@@ -174,10 +174,10 @@
               </tbody>
             </table>
           </div>
-          <p class="note">時間不夠時先跳過：Claude Code 狀態列設定、SEO、Git 第二章，以及實戰章最後的 SSH 額外項目。</p>
+          <p class="note">時間不夠時先跳過：Claude Code 狀態列設定、SEO、Git 第二章，以及實戰章最後的 SSH 額外項目。第 10 章「Claude 進階使用」與最後一章「省 token」是課後延伸，不在 3 小時內。</p>
         </section>
         <section class="slide" data-title="怎麼使用這份投影片">
-          <p class="eyebrow">01 · 第一堂課</p>
+          <p class="eyebrow">01 · 課程介紹</p>
           <h2>怎麼使用這份投影片</h2>
           <ol class="step-list">
             <li>左右方向鍵切章節；上下方向鍵切投影片。</li>
@@ -1744,7 +1744,7 @@ Press Enter to open https://github.com/login/device in your browser...</code></p
           </ul>
           <p class="next-links">
             <a href="#/2/6">重看 VS Code 畫面</a><a href="#/3/2">重看安裝</a><a href="#/5/14">重練 Git</a>
-            <a href="#/8/15">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/9/0">用自己的網域上線</a>
+            <a href="#/8/15">玩 Git 練習場</a><a href="#/4/0">再看網站流程</a><a href="#/9/0">用自己的網域上線</a><a href="#/10/0">Claude 進階使用</a><a href="#/11/0">省 token</a>
           </p>
         </section>
       </section>
@@ -2101,6 +2101,470 @@ jobs:
             </article>
           </div>
           <p class="note">如果之後不用 GitHub Pages 了，記得到網域商刪掉這些 A / CNAME 紀錄，免得網域被別人接走。</p>
+        </section>
+      </section>
+
+
+      <section class="chapter" id="claude-advanced" data-title="Claude 進階使用">
+        <section class="slide why-slide" data-title="為什麼要學：Claude 進階使用">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>為什麼要學：Claude 進階使用</h2>
+          <div class="qa">
+          <p class="qa-q"><span class="qa-tag">問</span>每次開新對話都要重講一次「用繁體中文」「改完要存檔上傳」，有辦法讓 Claude 記住嗎？</p>
+          <p class="qa-a"><span class="qa-tag">答</span>有。可以給新來的助理一本員工手冊（CLAUDE.md）、讓它自己記筆記（MEMORY.md）、交給它做事手冊（Skill）、設好自動開關（Hook），再把固定流程串起來（Workflow）。還能派分身助理分頭做事（Multi-agent）。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：分清楚這六種東西，知道什麼時候用哪一個，並用一句話請 Claude 幫你設定。</p>
+        </section>
+        <section class="slide" data-title="六種東西一張表">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>六種東西一張表</h2>
+          <div class="table-wrap">
+          <table>
+          <thead>
+          <tr>
+          <th scope="col">名稱</th>
+          <th scope="col">比喻</th>
+          <th scope="col">誰寫</th>
+          <th scope="col">什麼時候生效</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>CLAUDE.md</td>
+          <td>員工手冊</td>
+          <td>你</td>
+          <td>每次開對話自動讀</td>
+          </tr>
+          <tr>
+          <td>MEMORY.md（自動記憶）</td>
+          <td>助理自己的筆記本</td>
+          <td>Claude</td>
+          <td>每次開對話自動讀索引</td>
+          </tr>
+          <tr>
+          <td>Skill</td>
+          <td>某件工作的 SOP 手冊</td>
+          <td>你（或請 Claude 寫）</td>
+          <td>用到時才拿出來讀</td>
+          </tr>
+          <tr>
+          <td>Hook</td>
+          <td>自動門、定時開關</td>
+          <td>你（或請 Claude 設）</td>
+          <td>特定時間點一定執行，不靠 Claude 記得</td>
+          </tr>
+          <tr>
+          <td>Workflow</td>
+          <td>一張工作流程表</td>
+          <td>你和 Claude 一起定</td>
+          <td>做固定類型的工作時照著走</td>
+          </tr>
+          <tr>
+          <td>Multi-agent（子代理）</td>
+          <td>派分身助理去查、回來只報告結論</td>
+          <td>Claude 自己派，或你指定</td>
+          <td>工作很大、要讀很多東西時</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+        </section>
+        <section class="slide" data-title="CLAUDE.md：三個放的位置">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>CLAUDE.md：三個放的位置</h2>
+          <div class="card-grid">
+          <article class="card">
+          <h3>全域</h3>
+          <p><code>~/.claude/CLAUDE.md</code><br>Windows：<code>C:\Users\你的名字\.claude\CLAUDE.md</code><br>所有專案都適用，例如「一律用繁體中文回答」。</p>
+          </article>
+          <article class="card">
+          <h3>專案</h3>
+          <p><code>專案資料夾\CLAUDE.md</code><br>只對這個專案，會跟著 Git 上傳，別人 clone 也拿得到。<br>例如「這是 Vite 網站，預覽用 npm run dev」。</p>
+          </article>
+          <article class="card">
+          <h3>規則衝突時</h3>
+          <p>越靠近專案的越優先；你在對話裡直接說的話最優先。</p>
+          </article>
+          </div>
+        </section>
+        <section class="slide" data-title="CLAUDE.md：怎麼用、什麼時候用">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>CLAUDE.md：怎麼用、什麼時候用</h2>
+          <p>讓 Claude 讀整個專案，自動寫一份專案 CLAUDE.md。</p><pre class="cmd"><code>/init</code></pre><p>打開 CLAUDE.md 和記憶檔來看或修改。</p><pre class="cmd"><code>/memory</code></pre><div class="prompt-card"><pre class="cmd"><code>幫我在全域 CLAUDE.md 加一條規則：一律用繁體中文回答，回答要精簡。</code></pre></div><pre class="example"><code># 全域規則
+- 一律用繁體中文回答。
+- 精簡，不要開場白。</code></pre><p class="callout">使用時機：同一句話你講了第二次，就該寫進 CLAUDE.md。</p>
+        </section>
+        <section class="slide" data-title="MEMORY.md：Claude 自己的筆記本">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>MEMORY.md：Claude 自己的筆記本</h2>
+          <p>Claude 會把學到的事記成一則一則的小檔，MEMORY.md 是目錄。放在 <code>~/.claude/projects/專案名稱/memory/</code>，每個專案各一本，不會跟著 Git 上傳。</p>
+          <p>本講義專案真的有這則筆記：</p><pre class="example"><code>- [Push after edits](push-after-edits.md) — commit + push to main after every change so GitHub Pages stays in sync</code></pre><div class="prompt-card"><pre class="cmd"><code>記住：這個專案每次改完都要 commit 並 push。</code></pre></div>
+          <div class="prompt-card"><pre class="cmd"><code>你記得哪些關於這個專案的事？</code></pre></div>
+          <div class="prompt-card"><pre class="cmd"><code>忘掉剛剛那條關於 push 的記憶。</code></pre></div>
+          <p class="note">CLAUDE.md 是你寫給它的規則，可以分享給別人；MEMORY.md 是它自己記的筆記，只在你這台電腦。重要、要分享的規則寫 CLAUDE.md。</p>
+        </section>
+        <section class="slide" data-title="Skill：一份做事 SOP">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Skill：一份做事 SOP</h2>
+          <p class="lead">Skill 是一個資料夾，裡面一定有 SKILL.md。開頭寫名稱（name）和一句說明（description），下面是做法；也可以附上工具檔。</p>
+          <p>平常 Claude 只看那一句說明；遇到相關工作才打開全文，所以放很多 skill 也不會把全文都塞進對話記憶。</p>
+          <div class="card-grid">
+          <article class="card">
+          <h3>放的位置</h3>
+          <p>全域 <code>~/.claude/skills/名稱/</code>：所有專案。<br>專案 <code>.claude/skills/名稱/</code>：跟著 Git。</p>
+          </article>
+          <article class="card">
+          <h3>使用方式</h3>
+          <p>Claude 判斷相關時自動用；也可以直接打 <code>/名稱</code> 叫它。</p>
+          </article>
+          </div>
+          <p class="callout">使用時機：會重複做、有固定規則或步驟的工作，例如做投影片、寫週報、整理發票。</p>
+        </section>
+        <section class="slide" data-title="Skill 範例：teaching-slides 的檔案">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Skill 範例：teaching-slides 的檔案</h2>
+          <p>這份講義的做法：把投影片規則和量測工具放在一起。</p><pre class="example"><code>.claude/skills/teaching-slides/
+├── SKILL.md               ← 做投影片的重點
+└── measure-overflow.html  ← 量哪幾張超出畫面的工具</code></pre><p>SKILL.md 開頭：</p><pre class="example"><code>---
+name: teaching-slides
+description: 製作給零基礎學員的網頁投影片講義時使用。涵蓋導覽操作、一頁一畫面的尺寸規則、投影片版型、文案與教學原則……
+---
+# 教學投影片製作重點
+## 1. 導覽操作
+- 章節左右排，同一章的投影片上下排……
+## 2. 頁面尺寸：一張就是一個畫面
+……</code></pre>
+        </section>
+        <section class="slide" data-title="Skill 範例：整理成手冊，下次直接用">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Skill 範例：整理成手冊，下次直接用</h2>
+          <p>怎麼做出來的：</p>
+          <div class="prompt-card"><pre class="cmd"><code>把我們今天做投影片的重點整理成一個 skill，放在這個專案的 .claude/skills，之後做投影片時可以參考。</code></pre></div>
+          <p>之後怎麼用：</p>
+          <div class="prompt-card"><pre class="cmd"><code>/teaching-slides 幫我做一份教長輩用 LINE 的投影片。</code></pre></div>
+          <p class="note">這個 skill 在本講義 repo 的 <code>.claude/skills/teaching-slides/</code>，可以打開來看全文。</p>
+        </section>
+        <section class="slide" data-title="Hook：不靠記憶的自動開關">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Hook：不靠記憶的自動開關</h2>
+          <p class="lead">CLAUDE.md 和 Skill 是「請 Claude 記得做」；Hook 是「時間到一定做」，由 Claude Code 程式執行，Claude 忘了也沒關係。</p>
+          <div class="table-wrap">
+          <table>
+          <thead>
+          <tr>
+          <th scope="col">時間點</th>
+          <th scope="col">什麼時候</th>
+          <th scope="col">可以拿來</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>SessionStart</td>
+          <td>開始一段對話</td>
+          <td>提醒今天的注意事項</td>
+          </tr>
+          <tr>
+          <td>UserPromptSubmit</td>
+          <td>你按下 Enter 送出訊息</td>
+          <td>補上固定資訊</td>
+          </tr>
+          <tr>
+          <td>PreToolUse</td>
+          <td>Claude 要執行工具（改檔、跑指令）之前</td>
+          <td>擋掉危險指令</td>
+          </tr>
+          <tr>
+          <td>PostToolUse</td>
+          <td>工具執行完之後</td>
+          <td>改完檔自動排版、跑檢查</td>
+          </tr>
+          <tr>
+          <td>Notification</td>
+          <td>Claude 需要你回覆或授權</td>
+          <td>發出提示音</td>
+          </tr>
+          <tr>
+          <td>Stop</td>
+          <td>Claude 回答完畢</td>
+          <td>通知你做完了</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          <p class="note">設定寫在 settings.json：全域 <code>~/.claude/settings.json</code>、專案 <code>.claude/settings.json</code>。在 Claude Code 打 <code>/hooks</code> 可以查看。</p>
+        </section>
+        <section class="slide" data-title="Hook 範例：需要你時發出提示音">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Hook 範例：需要你時發出提示音</h2>
+          <div class="prompt-card"><pre class="cmd"><code>幫我在全域設定加一個 hook：你需要我回覆或授權時，用 PowerShell 發出提示音。</code></pre></div>
+          <p class="callout">使用時機：「每次都一定要發生」的事，例如提示音、改完自動排版、擋掉刪除指令。</p>
+        </section>
+        <section class="slide" data-title="Hook 範例：設定內容與權限">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Hook 範例：設定內容與權限</h2>
+          <p>它會寫進 <code>~/.claude/settings.json</code>，大概長這樣：</p><pre class="example"><code>{
+  &quot;hooks&quot;: {
+    &quot;Notification&quot;: [
+      {
+        &quot;hooks&quot;: [
+          { &quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;powershell -c \&quot;[console]::beep(800, 300)\&quot;&quot; }
+        ]
+      }
+    ]
+  }
+}</code></pre><p class="callout">Hook 會用你的權限自動跑指令。只加看得懂的；別人給的 hook 先問 Claude「這會做什麼？」。</p>
+        </section>
+        <section class="slide" data-title="Workflow：把固定流程串起來">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Workflow：把固定流程串起來</h2>
+          <p class="lead">Workflow 不是某個設定檔，是「做某類工作的固定步驟」。把它寫進 CLAUDE.md 或 Skill，Claude 就會照著走；其中一定要發生的步驟，再用 Hook 自動化。</p>
+          <p>先規劃再動手：<kbd>Shift+Tab</kbd> 切到 plan mode，Claude 只看、只提計畫，你同意後才開始改。</p>
+          <p>本講義的實際流程：</p>
+          <ol class="step-list">
+          <li>說要改什麼。</li>
+          <li>Claude 規劃、列出要改哪些投影片。</li>
+          <li>動手改。</li>
+          <li>跑測試、截圖檢查畫面。</li>
+          <li>存檔並上傳（這一步寫在記憶裡，每次都會做）。</li>
+          </ol>
+          <div class="prompt-card"><pre class="cmd"><code>幫我在這個專案的 CLAUDE.md 寫下工作流程：每次改網站都先列計畫讓我確認，改完自己預覽檢查，再存檔並上傳。</code></pre></div>
+        </section>
+        <section class="slide" data-title="Multi-agent：派分身助理">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Multi-agent：派分身助理</h2>
+          <p class="lead">主 Claude 可以派出子代理（subagent）。子代理有自己的一份對話記憶，去讀一大堆檔案或資料，回來只交一份摘要，主對話就不會被塞滿。</p>
+          <div class="card-grid">
+          <article class="card">
+          <h3>適合</h3>
+          <p>讀很多檔案找東西、看很長的錯誤紀錄、同時查好幾件不相干的事、請另一個角度幫忙檢查（review）。</p>
+          </article>
+          <article class="card">
+          <h3>不適合</h3>
+          <p>小事、一兩個檔案就能做完的。派人來回反而更花額度。</p>
+          </article>
+          </div>
+          <p class="note">總用量不一定比較少（每個分身都要花 token），省的是主對話的記憶，讓主對話撐比較久、比較不會變笨。</p>
+        </section>
+        <section class="slide" data-title="Multi-agent：怎麼用、範例">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>Multi-agent：怎麼用、範例</h2>
+          <div class="prompt-card"><pre class="cmd"><code>用 subagent 去讀 logs 資料夾裡所有紀錄，只回報最常出現的三個錯誤和原因。</code></pre></div>
+          <div class="prompt-card"><pre class="cmd"><code>開三個 subagent 分頭查：Vercel、Netlify、GitHub Pages 各自的免費方案限制，最後整理成一張比較表。</code></pre></div><pre class="cmd"><code>/agents</code></pre><p>建立或管理自訂子代理，例如專門檢查錯字的「校對員」。設定會存在 <code>.claude/agents/</code>。</p>
+          <p class="callout">本講義的實例：這份講義是「Claude 規劃與檢查、另一個 AI（Codex）負責動手改」做出來的。這也是一種 multi-agent：讓貴的腦袋做決定，便宜的手做苦工，額度就用得久。</p>
+        </section>
+        <section class="slide" data-title="怎麼選：遇到這些情況用哪個">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>怎麼選：遇到這些情況用哪個</h2>
+          <div class="table-wrap">
+          <table>
+          <thead>
+          <tr>
+          <th scope="col">情況</th>
+          <th scope="col">用</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>每次都要提醒同一件事（例如用繁體中文）</td>
+          <td>CLAUDE.md</td>
+          </tr>
+          <tr>
+          <td>只有這個專案的規矩（例如預覽指令）</td>
+          <td>專案 CLAUDE.md</td>
+          </tr>
+          <tr>
+          <td>希望它自己記住你的習慣</td>
+          <td>跟它說「記住…」（MEMORY.md）</td>
+          </tr>
+          <tr>
+          <td>一件會重複做、步驟很多的工作</td>
+          <td>Skill</td>
+          </tr>
+          <tr>
+          <td>一定要自動發生、不能忘的事</td>
+          <td>Hook</td>
+          </tr>
+          <tr>
+          <td>一整套做事順序</td>
+          <td>Workflow（寫進 CLAUDE.md 或 Skill）</td>
+          </tr>
+          <tr>
+          <td>工作很大、要讀很多資料</td>
+          <td>Multi-agent（請它用 subagent）</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          <p class="callout">不確定就直接問 Claude：「這件事我應該寫成 CLAUDE.md、skill 還是 hook？」</p>
+        </section>
+        <section class="slide" data-title="課後練習：幫你的 Claude 升級">
+          <p class="eyebrow">10 · Claude 進階使用</p>
+          <h2>課後練習：幫你的 Claude 升級</h2>
+          <ol class="step-list">
+          <li>加一條全域規則（用繁體中文）。<div class="prompt-card"><pre class="cmd"><code>幫我在全域 CLAUDE.md 加一條規則：一律用繁體中文回答。</code></pre></div></li>
+          <li>請它記住一件專案的事，再問它記得什麼。<div class="prompt-card"><pre class="cmd"><code>記住：這個專案預覽用 npm run dev。你記得哪些關於這個專案的事？</code></pre></div></li>
+          <li>請它設定提示音 hook，然後故意讓它問你問題，聽聽看。<div class="prompt-card"><pre class="cmd"><code>幫我設定需要我回覆或授權時的 PowerShell 提示音 hook。設好後，請問我下一步想做什麼，讓我測試提示音。</code></pre></div></li>
+          </ol>
+        </section>
+      </section>
+
+      <section class="chapter" id="save-tokens" data-title="省 token：讓額度用更久">
+        <section class="slide why-slide" data-title="為什麼要學：讓額度用更久">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>為什麼要學：讓額度用更久</h2>
+          <div class="qa">
+          <p class="qa-q"><span class="qa-tag">問</span>為什麼才用一下午，就看到 5 小時額度快用完？</p>
+          <p class="qa-a"><span class="qa-tag">答</span>Claude 每回答一次，都要把整段對話「從頭重讀一遍」。對話越長、帶的資料越多，每一句話就越貴。學會管理它的記憶，同樣的額度可以多做好幾倍的事。重要的進度寫進檔案，換對話也不會忘。</p>
+          </div>
+          <p class="why-goal">學完這章，你可以：看懂狀態列的記憶與額度，用幾個習慣讓額度用更久。</p>
+        </section>
+        <section class="slide" data-title="核心觀念：對話記憶（context）">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>核心觀念：對話記憶（context）</h2>
+          <p class="lead">對話記憶像一張白板。你說的話、它讀過的檔案、跑過的指令結果，全都寫在白板上；每次回答前，它都要把整張白板看一遍。</p>
+          <div class="card-grid">
+          <article class="card">
+          <h3>白板越滿</h3>
+          <p>每句話越花 token。</p>
+          </article>
+          <article class="card">
+          <h3>白板太滿</h3>
+          <p>它開始忘記前面的事、變笨。</p>
+          </article>
+          <article class="card">
+          <h3>白板會自動整理</h3>
+          <p>auto-compact 會濃縮對話，但整理時可能丟掉細節。</p>
+          </article>
+          </div>
+          <p class="note">狀態列的「記憶剩 xx%」就是白板還剩多少空間；「5 小時額度剩 xx%」是你的用量。對應第 03 章設定的狀態列。</p>
+        </section>
+        <section class="slide" data-title="習慣 1：換工作就擦白板">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>習慣 1：換工作就擦白板</h2>
+          <pre class="cmd"><code>/clear</code></pre><p>開新對話，白板清空。做完一件事、要換不相干的事時用。</p><pre class="cmd"><code>/compact</code></pre><p>把目前對話濃縮成摘要再繼續。同一件事還沒做完、但記憶快滿時用。</p><pre class="cmd"><code>/compact 只保留網站價目表修改的重點</code></pre><p>可以告訴它要保留什麼。</p><pre class="cmd"><code>/context</code></pre><p>看白板現在被什麼佔掉。</p>
+          <p class="callout">清掉之前，先把重要的東西寫進檔案（下一張）。</p>
+        </section>
+        <section class="slide" data-title="習慣 2：把進度寫進檔案，當交接單">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>習慣 2：把進度寫進檔案，當交接單</h2>
+          <p class="lead">對話記憶換個對話（session）就不見了，換另一個 AI 也帶不走。把任務進度寫進一個實體檔案，例如 <code>progress.md</code>，下次開新對話、甚至換一個 AI，請它先讀這個檔案就能接著做。</p>
+          <p>像值班交接單。下一班的人不用聽上一班從頭講一遍，看交接單就知道做到哪。</p>
+          <div class="card-grid">
+          <article class="card">
+          <h3>白板越來越肥</h3>
+          <p>同一個對話一直做下去，每句話都要重讀全部歷史，越來越貴、越來越健忘。</p>
+          </article>
+          <article class="card">
+          <h3>交接單</h3>
+          <p>做完一段就寫進檔案、/clear，新對話只讀一頁交接單，便宜又不會忘。</p>
+          </article>
+          </div>
+        </section>
+        <section class="slide" data-title="習慣 2：交接單範例與開工、收工">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>習慣 2：交接單範例與開工、收工</h2>
+          <pre class="example"><code># 網站改版進度
+## 已完成
+- 首頁價目表更新（霧眉 8800、飄眉 9800），已上傳
+- 作品集換成 2026 新照片
+## 下一步
+- 預約表單加上 LINE 按鈕
+## 注意
+- 預覽用 npm run dev；改完要存檔並上傳</code></pre><p>收工時：</p>
+          <div class="prompt-card"><pre class="cmd"><code>把今天做到哪、下一步要做什麼、要注意的事，寫進 progress.md。</code></pre></div>
+          <p>開工時：</p>
+          <div class="prompt-card"><pre class="cmd"><code>先讀 progress.md，接著做下一步。</code></pre></div>
+          <p class="note">CLAUDE.md 放「永遠的規則」，記憶放「你的習慣」，progress.md 放「這個任務做到哪」。任務做完就可以刪掉或封存。</p>
+        </section>
+        <section class="slide" data-title="習慣 3：CLAUDE.md 要精簡">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>習慣 3：CLAUDE.md 要精簡</h2>
+          <p class="lead">CLAUDE.md 每次對話都會整份讀進來，寫一頁就每句話都多付一頁的錢。</p>
+          <div class="card-grid">
+          <article class="card">
+          <h3>該放</h3>
+          <p>每次都用得到的規則：語言、風格、專案怎麼預覽、不能做的事。</p>
+          </article>
+          <article class="card">
+          <h3>不該放</h3>
+          <p>只有某件工作才用得到的長篇做法 → 改寫成 Skill。平常只讀一句說明，用到才讀全文。</p>
+          </article>
+          </div>
+          <div class="prompt-card"><pre class="cmd"><code>幫我檢查 CLAUDE.md，刪掉重複和用不到的內容，只有特定工作才用到的部分移到 skill。</code></pre></div>
+        </section>
+        <section class="slide" data-title="習慣 4：說清楚，少繞路">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>習慣 4：說清楚，少繞路</h2>
+          <div class="table-wrap">
+          <table>
+          <thead>
+          <tr>
+          <th scope="col">花比較多</th>
+          <th scope="col">花比較少</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+          <td>「網站怪怪的，幫我看看」</td>
+          <td>「首頁價目表在手機上跑版，在 src/pages/Index.tsx，幫我修」</td>
+          </tr>
+          <tr>
+          <td>整段幾千行錯誤紀錄直接貼上</td>
+          <td>「錯誤紀錄在 log.txt，幫我找出錯誤原因」（讓它自己搜尋需要的部分）</td>
+          </tr>
+          <tr>
+          <td>讓它直接動手，改錯再重來</td>
+          <td>大改之前先 Shift+Tab 切 plan mode，確認計畫再動手</td>
+          </tr>
+          <tr>
+          <td>發現方向不對還等它做完</td>
+          <td>一看到方向不對就按 Esc 中斷</td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+          <p class="note">可以用 @ 指定檔案，例如 <code>@src/pages/Index.tsx</code>，它就不用到處找。</p>
+        </section>
+        <section class="slide" data-title="習慣 5：用對模型、派對分身">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>習慣 5：用對模型、派對分身</h2>
+          <pre class="cmd"><code>/model</code></pre><p>切換模型。簡單的事（改錯字、改文字）用輕量模型；需要想很多的設計和除錯才用最強的模型。最強的模型同樣的工作會用掉比較多額度。</p>
+          <p class="callout">派 subagent 讀大量資料，主對話只收摘要（見第 10 章 Multi-agent）。</p><pre class="cmd"><code>/mcp</code></pre><p>看裝了哪些外掛工具（MCP）。每個開著的工具說明都會佔白板，用不到的就關掉。</p>
+        </section>
+        <section class="slide" data-title="省 token 小抄：交接與清理">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>省 token 小抄：交接與清理</h2>
+          <div class="cmd-list">
+          <article class="card">
+          <p>換工作就清空</p><pre class="cmd"><code>/clear</code></pre></article>
+          <article class="card">
+          <p>濃縮繼續</p><pre class="cmd"><code>/compact</code></pre></article>
+          <article class="card">
+          <p>看白板被誰佔</p><pre class="cmd"><code>/context</code></pre></article>
+          <article class="card">
+          <p>收工寫交接、開工先讀</p>
+          <p><code>progress.md</code></p>
+          </article>
+          </div>
+        </section>
+        <section class="slide" data-title="省 token 小抄：模型與操作">
+          <p class="eyebrow">11 · 省 token：讓額度用更久</p>
+          <h2>省 token 小抄：模型與操作</h2>
+          <div class="cmd-list">
+          <article class="card">
+          <p>換模型</p><pre class="cmd"><code>/model</code></pre></article>
+          <article class="card">
+          <p>關掉用不到的工具</p><pre class="cmd"><code>/mcp</code></pre></article>
+          <article class="card">
+          <p>先規劃再動手</p>
+          <p><code>Shift+Tab</code></p>
+          </article>
+          <article class="card">
+          <p>方向不對就停</p>
+          <p><code>Esc</code></p>
+          </article>
+          </div>
+          <p class="callout">該記的寫進檔案（CLAUDE.md、記憶、progress.md、Skill），對話本身大方地清。</p>
         </section>
       </section>
     </main>

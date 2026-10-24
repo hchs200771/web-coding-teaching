@@ -1,21 +1,23 @@
 # Web Coding Teaching
 
-「第一堂：用 Claude Code 管理你的網站」是一份給 Windows 10/11 完全初學者的繁體中文互動課程，從沒有編輯器開始教。以紋繡師的 Lovable 網站為例，3 小時從安裝 VS Code 一路做到用 Claude Code 修改網站、用 Git / GitHub 存檔與上傳。內建後端功能小測驗、拍照存檔動畫、5 個引導任務與自由練習，以及 Git 練習場（14 題）。任務模組另外保留 undo、remote、gh 三個舊任務供測試與日後使用。
+「用 Claude Code 管理你的網站」是一份給 Windows 10/11 完全初學者的繁體中文互動課程，從沒有編輯器開始教。以紋繡師的 Lovable 網站為例，3 小時從安裝 VS Code 一路做到用 Claude Code 修改網站、用 Git / GitHub 存檔與上傳。課後延伸涵蓋 Claude 進階使用（CLAUDE.md、記憶、Skill、Hook、Workflow、Multi-agent），以及省 token 與進度交接的習慣，不計入主課程 3 小時。內建後端功能小測驗、拍照存檔動畫、5 個引導任務與自由練習，以及 Git 練習場（14 題）。任務模組另外保留 undo、remote、gh 三個舊任務供測試與日後使用。
 
 ## 課程章節
 
 | #  | 章節                   | 內容                                                                                           |
 | -- | ---------------------- | ---------------------------------------------------------------------------------------------- |
 | 00 | 上課前要準備           | Claude Code 訂閱、要先註冊的帳號、電腦準備、還沒有訂閱時的上課順序                             |
-| 01 | 第一堂課               | 封面、時間表、投影片操作方式                                                                   |
+| 01 | 課程介紹               | 封面、時間表、投影片操作方式                                                                   |
 | 02 | VS Code 安裝與介紹     | 下載安裝、換成繁體中文、開資料夾、畫面五個區塊、內建終端機                                     |
-| 03 | Claude Code 安裝與試用 | 安裝與指令解說、找不到 claude 的修正、登入授權、設定、用練習資料夾試用；額外：Claude in Chrome |
+| 03 | Claude Code 安裝與試用 | 安裝含 PATH 設定步驟、登入授權、狀態列設定、用練習資料夾試用；額外：Claude in Chrome |
 | 04 | 網站前端與後端         | 請求流程、前後端、靜態與動態網站、SEO                                                          |
-| 05 | Git 第一章：存檔       | 安裝 Git 與 gh、登入 GitHub、add / commit 練習                                                 |
-| 06 | Git 第二章：分支簡介   | branch / switch / merge 練習                                                                   |
+| 05 | Git 第一章：存檔       | 安裝 Git 與 gh、登入 GitHub、五個名詞、四個區域、用口語請 Claude 存檔與救回                                                 |
+| 06 | Git 第二章：分支簡介   | 分支一張圖、用口語請 Claude 開草稿、切換與合併                                                                   |
 | 07 | Git 第三章：實戰       | Lovable 連上 GitHub、gh clone、本機預覽、push；SSH 放在章末當額外項目                          |
-| 08 | 小抄與課後練習         | 指令小抄、Git 練習場、自由練習、資源連結                                                       |
+| 08 | 小抄與課後練習         | 說法小抄、進階附錄、Git 練習場、自由練習、資源連結                                                       |
 | 09 | 課後：用自己的網域上線 | 用 GitHub Actions 部署 Lovable 網站、workflow 與 action、驗證網域、DNS、HTTPS                  |
+| 10 | Claude 進階使用 | 員工手冊、記憶、Skill、Hook、Workflow、Multi-agent 與課後練習 |
+| 11 | 省 token：讓額度用更久 | 對話記憶、清空與濃縮、progress.md 交接單、精簡規則、模型與工具選擇 |
 
 ## 上課前
 
