@@ -5,7 +5,7 @@ description: 製作給零基礎學員的網頁投影片講義（HTML 簡報、�
 
 # 教學投影片製作重點
 
-從「第二堂：用 Claude Code 管理你的網站」（web-coding-teaching）整理出來。實作可參考這個 repo 的 `index.html`、`css/style.css`、`js/deck.js`。
+從「用 Claude Code 管理你的網站」（web-coding-teaching）整理出來。實作可參考這個 repo 的 `index.html`、`css/style.css`、`js/deck.js`。
 
 ## 1. 導覽操作
 
