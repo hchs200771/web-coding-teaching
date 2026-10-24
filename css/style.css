@@ -24,13 +24,16 @@
   --terminal-accent: #96dbc1;
   --header-height: 64px;
   --footer-height: 77px;
-  /* Git 三個區域：紅、黃、綠，文字一律用深色才看得清楚 */
+  /* Git 四個區域：紅、黃、綠、藍，框內文字一律用深色才看得清楚 */
   --area-work: #ec6a64;
   --area-stage: #f2cf55;
   --area-repo: #79bf57;
+  --area-remote: #8bc4ee;
   --area-ink: #1f2a2a;
   --area-add: #d09a10;
   --area-commit: #4c9a32;
+  --area-push: #2874b2;
+  --area-pull: #8751b2;
   font-family:
     system-ui,
     -apple-system,
@@ -54,11 +57,15 @@
   --warn-ink: #f0c27e;
   --shadow: 0 14px 45px #10182533;
   --terminal: #202a35;
+  /* 深色主題也保留亮色區域底與深色框內文字 */
   --area-work: #d9605b;
   --area-stage: #dcbc4a;
   --area-repo: #6aab4b;
+  --area-remote: #79b3df;
   --area-add: #f0c94a;
   --area-commit: #8fd46f;
+  --area-push: #83c4f5;
+  --area-pull: #c5a0ed;
 }
 
 /* ==========================================================
@@ -652,17 +659,27 @@ kbd {
 
 .areas-diagram {
   display: grid;
-  grid-template-columns: auto 80px minmax(0, 300px);
-  grid-template-rows: repeat(3, 96px);
+  flex-shrink: 0;
+  grid-template-columns: auto 64px minmax(0, 300px) 64px auto;
   justify-content: center;
   row-gap: 12px;
   width: 100%;
   margin: 20px 0;
 }
 
+.areas-diagram--four {
+  grid-template-rows: repeat(4, 96px);
+}
+
 .areas-diagram__arrows {
   grid-column: 2;
-  grid-row: 1 / 4;
+  grid-row: 1 / 5;
+  width: 100%;
+  height: 100%;
+}
+
+.areas-diagram__arrows--pull {
+  grid-column: 4;
 }
 
 .areas-diagram__label {
@@ -681,6 +698,16 @@ kbd {
   grid-row: 2 / 4;
 }
 
+.areas-diagram__label--push {
+  grid-row: 3 / 5;
+}
+
+.areas-diagram__label--pull {
+  grid-column: 5;
+  grid-row: 1 / 5;
+  justify-self: start;
+}
+
 .areas-diagram__box {
   grid-column: 3;
   display: grid;
@@ -697,6 +724,16 @@ kbd {
 
 .areas-diagram__box span {
   font-size: 0.9rem;
+}
+
+.areas-diagram__box small {
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+.areas-diagram__box--remote {
+  grid-row: 4;
+  background: var(--area-remote);
 }
 
 .areas-diagram__box--work {
@@ -2284,6 +2321,34 @@ pre.cmd code {
 
   .slide > h2 {
     margin-top: 10px;
+  }
+
+  .areas-diagram {
+    grid-template-columns: 65px 30px minmax(0, 1fr) 30px 57px;
+    row-gap: 10px;
+  }
+
+  .areas-diagram--four {
+    grid-template-rows: repeat(4, 84px);
+  }
+
+  .areas-diagram__label {
+    padding: 0;
+    font-size: 0.65rem;
+    white-space: nowrap;
+  }
+
+  .areas-diagram__box {
+    border-radius: 12px;
+  }
+
+  .areas-diagram__box strong {
+    font-size: 1.1rem;
+  }
+
+  .areas-diagram__box span,
+  .areas-diagram__box small {
+    font-size: 0.67rem;
   }
 
   .deck-footer {
